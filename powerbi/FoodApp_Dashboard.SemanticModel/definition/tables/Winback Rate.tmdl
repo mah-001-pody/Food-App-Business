@@ -1,0 +1,22 @@
+/// Tham số What-if: tỷ lệ kéo khách At Risk quay lại
+table 'Winback Rate'
+	lineageTag: 8ce69acf-b7ab-5b1f-96e7-2799f24293e7
+
+	column 'Winback Rate'
+		formatString: 0%
+		lineageTag: 00507346-e673-5fb4-b6a7-6f0a7e5486cf
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'Winback Rate' = calculated
+		mode: import
+		source = GENERATESERIES(0, 0.5, 0.05)
+
+	annotation PBI_Id = 7cc60eda70897681eb46

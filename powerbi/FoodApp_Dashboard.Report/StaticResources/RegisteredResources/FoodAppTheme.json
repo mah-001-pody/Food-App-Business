@@ -1,0 +1,82 @@
+{
+  "name": "FoodAppTheme",
+  "dataColors": [
+    "#1F4E79",
+    "#E07B39",
+    "#2A9D8F",
+    "#9CA3AF",
+    "#E9C46A",
+    "#C0392B",
+    "#5B8DB8",
+    "#6D597A"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#1F2937",
+  "tableAccent": "#1F4E79",
+  "good": "#2A9D8F",
+  "neutral": "#E9C46A",
+  "bad": "#C0392B",
+  "maximum": "#1F4E79",
+  "center": "#9DB8D2",
+  "minimum": "#EEF3F8",
+  "textClasses": {
+    "callout": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 24,
+      "color": "#1F4E79"
+    },
+    "title": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 12,
+      "color": "#1F2937"
+    },
+    "header": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 12,
+      "color": "#1F2937"
+    },
+    "label": {
+      "fontFace": "Segoe UI",
+      "fontSize": 10,
+      "color": "#4B5563"
+    }
+  },
+  "visualStyles": {
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": { "solid": { "color": "#F3F5F8" } },
+            "transparency": 0
+          }
+        ]
+      }
+    },
+    "*": {
+      "*": {
+        "background": [
+          {
+            "show": true,
+            "color": { "solid": { "color": "#FFFFFF" } },
+            "transparency": 0
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": { "solid": { "color": "#E5E7EB" } },
+            "radius": 8
+          }
+        ],
+        "title": [
+          {
+            "show": true,
+            "fontColor": { "solid": { "color": "#1F2937" } },
+            "fontSize": 11,
+            "bold": true
+          }
+        ]
+      }
+    }
+  }
+}

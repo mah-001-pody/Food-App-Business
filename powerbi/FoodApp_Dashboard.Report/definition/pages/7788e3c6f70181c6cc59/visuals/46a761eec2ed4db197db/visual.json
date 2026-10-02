@@ -1,0 +1,112 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "46a761eec2ed4db197db",
+  "position": {
+    "x": 850,
+    "y": 78,
+    "z": 1900,
+    "height": 270,
+    "width": 410,
+    "tabOrder": 1900
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_IncomeGroup"
+                    }
+                  },
+                  "Property": "Income_Group"
+                }
+              },
+              "queryRef": "Dim_IncomeGroup.Income_Group",
+              "nativeQueryRef": "Income_Group",
+              "displayName": "Nhóm thu nhập"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Tỷ lệ phản hồi CD"
+                }
+              },
+              "queryRef": "_Measures.Tỷ lệ phản hồi CD",
+              "nativeQueryRef": "Tỷ lệ phản hồi CD"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Dim_IncomeGroup"
+                  }
+                },
+                "Property": "Income_Group"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Tỷ lệ phản hồi chiến dịch theo thu nhập'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

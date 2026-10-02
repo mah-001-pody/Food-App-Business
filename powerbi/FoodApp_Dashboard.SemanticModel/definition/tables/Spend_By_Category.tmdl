@@ -1,0 +1,63 @@
+/// Unpivot chi tiêu 5 nhóm hàng
+table Spend_By_Category
+	lineageTag: 6089cd41-4365-5ec8-aa08-365d479f4b1c
+
+	column CustomerID
+		dataType: string
+		lineageTag: 5ff97864-d27e-5004-afde-d3baeb87ae51
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category_Code
+		dataType: string
+		isHidden
+		lineageTag: 4efef221-f3db-5404-835b-ad6843bb4cdf
+		summarizeBy: none
+		sourceColumn: Category_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Spend
+		dataType: int64
+		formatString: #,##0
+		lineageTag: f557d5a6-33b6-5898-baab-36d06b45efd5
+		summarizeBy: sum
+		sourceColumn: Spend
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 81854218-9872-50e8-ac8c-e70932bda4fa
+		summarizeBy: none
+		sourceColumn: Category
+		sortByColumn: Category_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category_Sort
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 8408d1d1-8773-5f1f-be13-8f3e971fd837
+		summarizeBy: none
+		sourceColumn: Category_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Spend_By_Category = m
+		mode: import
+		source =
+				let
+				    Source = Table.SelectColumns(Customers, {"CustomerID", "Spend_Wines", "Spend_Meat", "Spend_Fish", "Spend_Fruits", "Spend_Sweets"}),
+				    Unpivoted = Table.UnpivotOtherColumns(Source, {"CustomerID"}, "Category_Code", "Spend"),
+				    Map = [Spend_Wines = {"Rượu vang", 1}, Spend_Meat = {"Thịt", 2}, Spend_Fish = {"Cá", 3}, Spend_Fruits = {"Trái cây", 4}, Spend_Sweets = {"Đồ ngọt", 5}],
+				    #"Added Category" = Table.AddColumn(Unpivoted, "Category", each Record.Field(Map, [Category_Code]){0}, type text),
+				    #"Added Category_Sort" = Table.AddColumn(#"Added Category", "Category_Sort", each Record.Field(Map, [Category_Code]){1}, Int64.Type),
+				    Typed = Table.TransformColumnTypes(#"Added Category_Sort", {{"CustomerID", type text}, {"Category_Code", type text}, {"Spend", Int64.Type}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

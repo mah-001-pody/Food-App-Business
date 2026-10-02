@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "e867295fb0583cd43a8c",
+  "position": {
+    "x": 640,
+    "y": 170,
+    "z": 2400,
+    "height": 462,
+    "width": 300,
+    "tabOrder": 2400
+  },
+  "visual": {
+    "visualType": "donutChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Spend_By_Category"
+                    }
+                  },
+                  "Property": "Category"
+                }
+              },
+              "queryRef": "Spend_By_Category.Category",
+              "nativeQueryRef": "Category"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Chi tiêu theo nhóm hàng"
+                }
+              },
+              "queryRef": "_Measures.Chi tiêu theo nhóm hàng",
+              "nativeQueryRef": "Chi tiêu theo nhóm hàng",
+              "displayName": "Chi tiêu"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Cơ cấu chi tiêu theo nhóm hàng'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

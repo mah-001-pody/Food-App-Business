@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "c93ca0d9d3e8fc12cfb9",
+  "position": {
+    "x": 644,
+    "y": 78,
+    "z": 2000,
+    "height": 82,
+    "width": 200,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "AOV (giá trị TB/đơn)"
+                }
+              },
+              "queryRef": "_Measures.AOV (giá trị TB/đơn)",
+              "nativeQueryRef": "AOV (giá trị TB/đơn)"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

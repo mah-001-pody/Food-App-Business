@@ -1,0 +1,145 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "c9eee4ee9d49dee39ff3",
+  "position": {
+    "x": 640,
+    "y": 170,
+    "z": 2300,
+    "height": 250,
+    "width": 620,
+    "tabOrder": 2300
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Segment"
+                    }
+                  },
+                  "Property": "RFM_Segment"
+                }
+              },
+              "queryRef": "Dim_Segment.RFM_Segment",
+              "nativeQueryRef": "RFM_Segment",
+              "displayName": "Phân khúc"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Số khách hàng"
+                }
+              },
+              "queryRef": "_Measures.Số khách hàng",
+              "nativeQueryRef": "Số khách hàng"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "% khách hàng"
+                }
+              },
+              "queryRef": "_Measures.% khách hàng",
+              "nativeQueryRef": "% khách hàng"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "% doanh thu"
+                }
+              },
+              "queryRef": "_Measures.% doanh thu",
+              "nativeQueryRef": "% doanh thu"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Chi tiêu TB/khách"
+                }
+              },
+              "queryRef": "_Measures.Chi tiêu TB/khách",
+              "nativeQueryRef": "Chi tiêu TB/khách"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Recency TB (ngày)"
+                }
+              },
+              "queryRef": "_Measures.Recency TB (ngày)",
+              "nativeQueryRef": "Recency TB (ngày)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Tỷ lệ phản hồi CD"
+                }
+              },
+              "queryRef": "_Measures.Tỷ lệ phản hồi CD",
+              "nativeQueryRef": "Tỷ lệ phản hồi CD"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'So sánh 6 phân khúc RFM (chuột phải → Drill through để xem danh sách khách)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

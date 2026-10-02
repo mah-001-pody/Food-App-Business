@@ -1,0 +1,145 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "1148fd8eed54de640929",
+  "position": {
+    "x": 640,
+    "y": 358,
+    "z": 2100,
+    "height": 274,
+    "width": 620,
+    "tabOrder": 2100
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Customers"
+                    }
+                  },
+                  "Property": "Web_Visit_Group"
+                }
+              },
+              "queryRef": "Customers.Web_Visit_Group",
+              "nativeQueryRef": "Web_Visit_Group",
+              "displayName": "Nhóm truy cập web"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Số khách hàng"
+                }
+              },
+              "queryRef": "_Measures.Số khách hàng",
+              "nativeQueryRef": "Số khách hàng"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Thu nhập TB"
+                }
+              },
+              "queryRef": "_Measures.Thu nhập TB",
+              "nativeQueryRef": "Thu nhập TB"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Chi tiêu TB/khách"
+                }
+              },
+              "queryRef": "_Measures.Chi tiêu TB/khách",
+              "nativeQueryRef": "Chi tiêu TB/khách"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Tỷ lệ mua giảm giá"
+                }
+              },
+              "queryRef": "_Measures.Tỷ lệ mua giảm giá",
+              "nativeQueryRef": "Tỷ lệ mua giảm giá"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Số đơn web TB"
+                }
+              },
+              "queryRef": "_Measures.Số đơn web TB",
+              "nativeQueryRef": "Số đơn web TB"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Lượt truy cập web TB/tháng"
+                }
+              },
+              "queryRef": "_Measures.Lượt truy cập web TB/tháng",
+              "nativeQueryRef": "Lượt truy cập web TB/tháng"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Truy cập nhiều ≠ mua nhiều: so sánh 2 nhóm truy cập web'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,238 @@
+/// Bảng chứa toàn bộ measure DAX
+table _Measures
+	lineageTag: 4aae6acd-151d-5ce8-add6-c67f70f404eb
+
+	measure 'Số khách hàng' = COUNTROWS(Customers)
+		formatString: #,##0
+		displayFolder: 1. Tổng quan
+		lineageTag: 461edf41-502d-598d-9178-7815be181114
+
+	measure 'Tổng chi tiêu' = SUM(Customers[Total_Spend])
+		formatString: #,##0
+		displayFolder: 1. Tổng quan
+		lineageTag: 7a4c7b93-f30b-528b-b4bb-afa88fc0fc8e
+
+	measure 'Chi tiêu TB/khách' = DIVIDE([Tổng chi tiêu], [Số khách hàng])
+		formatString: #,##0
+		displayFolder: 1. Tổng quan
+		lineageTag: e04a9d45-af2d-5933-97d3-04a6b3fc4710
+
+	measure 'Tổng số đơn' = SUM(Customers[Total_Purchases])
+		formatString: #,##0
+		displayFolder: 1. Tổng quan
+		lineageTag: 51aea25f-fe97-5893-9559-c63d6e1fcc69
+
+	measure 'AOV (giá trị TB/đơn)' = DIVIDE([Tổng chi tiêu], [Tổng số đơn])
+		formatString: #,##0.0
+		displayFolder: 1. Tổng quan
+		lineageTag: c4cfc2d1-ccf5-5677-8de2-9099780afac8
+
+	measure 'Recency TB (ngày)' = AVERAGE(Customers[Recency])
+		formatString: 0.0
+		displayFolder: 1. Tổng quan
+		lineageTag: ab99f977-837a-5b51-a1d3-e531911337f7
+
+	measure '% khách hàng' = DIVIDE([Số khách hàng], CALCULATE([Số khách hàng], ALLSELECTED(Customers)))
+		formatString: 0.0%
+		displayFolder: 1. Tổng quan
+		lineageTag: 71630535-9636-5616-bec6-8d176e98201f
+
+	measure '% doanh thu' = DIVIDE([Tổng chi tiêu], CALCULATE([Tổng chi tiêu], ALLSELECTED(Customers)))
+		formatString: 0.0%
+		displayFolder: 1. Tổng quan
+		lineageTag: fab397c5-ae93-5d28-adcf-dd0e12e3e186
+
+	measure 'Top 20% khách chiếm % doanh thu' =
+			VAR _all = CALCULATETABLE(Customers, ALLSELECTED(Customers))
+			VAR _n = ROUND(COUNTROWS(_all) * 0.2, 0)
+			VAR _top = TOPN(_n, _all, Customers[Total_Spend], DESC)
+			RETURN
+			    DIVIDE(SUMX(_top, Customers[Total_Spend]), SUMX(_all, Customers[Total_Spend]))
+		formatString: 0.0%
+		displayFolder: 1. Tổng quan
+		lineageTag: c56009c3-cfa5-5445-b35a-357d77a76f70
+
+	measure '% doanh thu theo thập phân vị' =
+			DIVIDE(
+			    [Tổng chi tiêu],
+			    CALCULATE([Tổng chi tiêu], REMOVEFILTERS(Customers[Spend_Decile_Label], Customers[Spend_Decile]))
+			)
+		formatString: 0.0%
+		displayFolder: 1. Tổng quan
+		lineageTag: 496df5c6-9784-5b20-8e8f-8903e6ead6ab
+
+	measure '% doanh thu lũy kế' =
+			VAR _d = MAX(Customers[Spend_Decile])
+			RETURN
+			    DIVIDE(
+			        CALCULATE([Tổng chi tiêu], REMOVEFILTERS(Customers[Spend_Decile_Label]), Customers[Spend_Decile] <= _d),
+			        CALCULATE([Tổng chi tiêu], REMOVEFILTERS(Customers[Spend_Decile_Label], Customers[Spend_Decile]))
+			    )
+		formatString: 0.0%
+		displayFolder: 1. Tổng quan
+		lineageTag: 6360a81a-5ac2-5335-a6ef-a2e3ea9e48f9
+
+	measure 'Thu nhập TB' = AVERAGE(Customers[Income])
+		formatString: #,##0
+		displayFolder: 2. Khách hàng
+		lineageTag: e0bc0876-e1fd-57e4-b567-097d5bcb5431
+
+	measure 'Số con TB' = AVERAGE(Customers[Total_Children])
+		formatString: 0.00
+		displayFolder: 2. Khách hàng
+		lineageTag: 3b7e2efa-2056-5a14-9ed7-fc6db53bd287
+
+	measure 'Chi tiêu theo nhóm hàng' = SUM(Spend_By_Category[Spend])
+		formatString: #,##0
+		displayFolder: 3. Sản phẩm & kênh
+		lineageTag: 7a5544fc-3f46-58de-a067-94f2ef9424be
+
+	measure 'Tỷ trọng nhóm hàng' = DIVIDE([Chi tiêu theo nhóm hàng], CALCULATE([Chi tiêu theo nhóm hàng], ALLSELECTED(Spend_By_Category)))
+		formatString: 0.0%
+		displayFolder: 3. Sản phẩm & kênh
+		lineageTag: f014e48b-015f-56e2-a86e-eff4a85f724e
+
+	measure 'Số lần mua theo kênh' = SUM(Purchases_By_Channel[Purchases])
+		formatString: #,##0
+		displayFolder: 3. Sản phẩm & kênh
+		lineageTag: 91b4def4-bfe5-570d-be33-648207e993f7
+
+	measure 'Tỷ lệ mua giảm giá' = DIVIDE(SUM(Customers[Deals_Purchases]), [Tổng số đơn])
+		formatString: 0.0%
+		displayFolder: 3. Sản phẩm & kênh
+		lineageTag: 3628741f-67bd-50aa-bc4e-bd745e777eca
+
+	measure 'Lượt truy cập web TB/tháng' = AVERAGE(Customers[Web_Visits_Month])
+		formatString: 0.0
+		displayFolder: 3. Sản phẩm & kênh
+		lineageTag: cab7db76-351f-595f-8a34-6bb835309543
+
+	measure 'Số đơn web TB' = AVERAGE(Customers[Web_Purchases])
+		formatString: 0.0
+		displayFolder: 3. Sản phẩm & kênh
+		lineageTag: 356da1fe-2170-5691-aea8-2a4b71ecd81e
+
+	measure 'Khách phản hồi CD' = CALCULATE([Số khách hàng], Customers[Campaign_Responder] = 1)
+		formatString: #,##0
+		displayFolder: 4. Chiến dịch
+		lineageTag: 448ebabf-affd-505a-911b-e6120671a344
+
+	measure 'Tỷ lệ phản hồi CD' = DIVIDE([Khách phản hồi CD], [Số khách hàng])
+		formatString: 0.0%
+		displayFolder: 4. Chiến dịch
+		lineageTag: 6e4d1aec-e42d-53a6-8a2d-f97a77bf1f0f
+
+	measure 'Khách chưa từng phản hồi' = CALCULATE([Số khách hàng], Customers[Campaign_Responder] = 0)
+		formatString: #,##0
+		displayFolder: 4. Chiến dịch
+		lineageTag: 2131a1e6-1941-5c57-a883-2bec7ca649f9
+
+	measure '% chưa từng phản hồi' = DIVIDE([Khách chưa từng phản hồi], [Số khách hàng])
+		formatString: 0.0%
+		displayFolder: 4. Chiến dịch
+		lineageTag: b15f0d36-58ba-5060-ab55-e3ce1142984e
+
+	measure 'Lượt chấp nhận CD' = SUM(Campaign_Response[Accepted])
+		formatString: #,##0
+		displayFolder: 4. Chiến dịch
+		lineageTag: 33ed9fc0-d402-581f-9ed7-5795e4ae88b3
+
+	measure 'Tỷ lệ chấp nhận CD' = DIVIDE([Lượt chấp nhận CD], [Số khách hàng])
+		formatString: 0.0%
+		displayFolder: 4. Chiến dịch
+		lineageTag: b7dff6b9-3875-5a81-a4f4-c643154f3059
+
+	measure 'Thu nhập TB người nhận CD' = AVERAGEX(FILTER(Campaign_Response, Campaign_Response[Accepted] = 1), RELATED(Customers[Income]))
+		formatString: #,##0
+		displayFolder: 4. Chiến dịch
+		lineageTag: 25e883f4-1fe2-5811-8083-be1ee094236d
+
+	measure 'Số con TB người nhận CD' = AVERAGEX(FILTER(Campaign_Response, Campaign_Response[Accepted] = 1), RELATED(Customers[Total_Children]))
+		formatString: 0.00
+		displayFolder: 4. Chiến dịch
+		lineageTag: ca7996d5-c2bf-5cf6-b0fb-d552b8470a7d
+
+	measure 'Chi tiêu TB người nhận CD' = AVERAGEX(FILTER(Campaign_Response, Campaign_Response[Accepted] = 1), RELATED(Customers[Total_Spend]))
+		formatString: #,##0
+		displayFolder: 4. Chiến dịch
+		lineageTag: 92bff9d4-0861-5a5c-8dfc-2b0b6b10f6c1
+
+	measure 'Doanh thu rủi ro (At Risk)' = CALCULATE([Tổng chi tiêu], Customers[RFM_Segment] = "At Risk")
+		formatString: #,##0
+		displayFolder: 5. RFM & giữ chân
+		lineageTag: 06907502-76b5-5c46-b973-2231cd9e19fc
+
+	measure '% doanh thu rủi ro' = DIVIDE([Doanh thu rủi ro (At Risk)], [Tổng chi tiêu])
+		formatString: 0.0%
+		displayFolder: 5. RFM & giữ chân
+		lineageTag: 50b5aa1c-4b83-5071-bab7-c85f29ae559a
+
+	measure 'Khách At Risk' = CALCULATE([Số khách hàng], Customers[RFM_Segment] = "At Risk")
+		formatString: #,##0
+		displayFolder: 5. RFM & giữ chân
+		lineageTag: 1f4d0de6-6c42-5a19-b8c3-778673dfc17a
+
+	measure 'Khách VIP đang At Risk' = CALCULATE([Số khách hàng], Customers[RFM_Segment] = "At Risk", Customers[Value_Tier] = "High")
+		formatString: #,##0
+		displayFolder: 5. RFM & giữ chân
+		lineageTag: ba72e129-fee8-5e26-ba14-a814ea0a55d6
+
+	measure 'Tỷ lệ win-back' = SELECTEDVALUE('Winback Rate'[Winback Rate], 0.1)
+		formatString: 0%
+		displayFolder: 5. RFM & giữ chân
+		lineageTag: 2cf8fcae-7ad7-5dfc-b78a-105d076d10b0
+
+	measure 'Doanh thu giữ lại được' = [Doanh thu rủi ro (At Risk)] * [Tỷ lệ win-back]
+		formatString: #,##0
+		displayFolder: 5. RFM & giữ chân
+		lineageTag: a1f4393a-52cf-5168-a28c-9dbfa103cc1a
+
+	measure '% tổng doanh thu giữ lại' = DIVIDE([Doanh thu giữ lại được], [Tổng chi tiêu])
+		formatString: 0.0%
+		displayFolder: 5. RFM & giữ chân
+		lineageTag: 1b683415-27dd-5e09-a04f-280e073ad9fd
+
+	measure 'Dòng dữ liệu gốc' = CALCULATE(MAX(Data_Funnel[Rows]), Data_Funnel[Stage_Sort] = 1)
+		formatString: #,##0
+		displayFolder: 6. Chất lượng dữ liệu
+		lineageTag: 670aba01-5f9b-5432-a784-66491bebc8de
+
+	measure 'Dòng dữ liệu sạch' = CALCULATE(MAX(Data_Funnel[Rows]), Data_Funnel[Stage_Sort] = 3)
+		formatString: #,##0
+		displayFolder: 6. Chất lượng dữ liệu
+		lineageTag: 2981692c-8a60-5db5-81a8-5e18c7bcc91a
+
+	measure 'Dòng bị loại' = [Dòng dữ liệu gốc] - [Dòng dữ liệu sạch]
+		formatString: #,##0
+		displayFolder: 6. Chất lượng dữ liệu
+		lineageTag: c8634d50-3ffa-5504-95d3-59622d6e23a0
+
+	measure '% dữ liệu giữ lại' = DIVIDE([Dòng dữ liệu sạch], [Dòng dữ liệu gốc])
+		formatString: 0.0%
+		displayFolder: 6. Chất lượng dữ liệu
+		lineageTag: 644fdcc1-5461-543e-94d9-fb77aa44acd5
+
+	measure 'Số dòng' = SUM(Data_Funnel[Rows])
+		formatString: #,##0
+		displayFolder: 6. Chất lượng dữ liệu
+		lineageTag: 11314a0f-7363-5744-ba75-551e30828fd7
+
+	column Dummy
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 058c743d-a20c-5b90-8947-8317e5e219a7
+		summarizeBy: none
+		sourceColumn: Dummy
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = #table(type table [Dummy = Int64.Type], {{1}})
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

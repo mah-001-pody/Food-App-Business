@@ -1,0 +1,59 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "37e6e0e038ce1554f526",
+  "position": {
+    "x": 1115,
+    "y": 10,
+    "z": 1500,
+    "height": 58,
+    "width": 150,
+    "tabOrder": 1500
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Segment"
+                    }
+                  },
+                  "Property": "RFM_Segment"
+                }
+              },
+              "queryRef": "Dim_Segment.RFM_Segment",
+              "nativeQueryRef": "RFM_Segment",
+              "displayName": "Phân khúc RFM"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true,
+    "syncGroup": {
+      "groupName": "sync_segment",
+      "fieldChanges": true,
+      "filterChanges": true
+    }
+  }
+}

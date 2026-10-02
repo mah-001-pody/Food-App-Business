@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "e184a83d6b9946b8d61e",
+  "position": {
+    "x": 646,
+    "y": 78,
+    "z": 1500,
+    "height": 82,
+    "width": 300,
+    "tabOrder": 1500
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Dòng dữ liệu sạch"
+                }
+              },
+              "queryRef": "_Measures.Dòng dữ liệu sạch",
+              "nativeQueryRef": "Dòng dữ liệu sạch"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

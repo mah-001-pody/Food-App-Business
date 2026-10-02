@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "9a32f12a349b3902ab9a",
+  "position": {
+    "x": 950,
+    "y": 170,
+    "z": 2500,
+    "height": 462,
+    "width": 310,
+    "tabOrder": 2500
+  },
+  "visual": {
+    "visualType": "treemap",
+    "query": {
+      "queryState": {
+        "Group": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Segment"
+                    }
+                  },
+                  "Property": "RFM_Segment"
+                }
+              },
+              "queryRef": "Dim_Segment.RFM_Segment",
+              "nativeQueryRef": "RFM_Segment"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Tổng chi tiêu"
+                }
+              },
+              "queryRef": "_Measures.Tổng chi tiêu",
+              "nativeQueryRef": "Tổng chi tiêu",
+              "displayName": "Chi tiêu"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Doanh thu theo phân khúc RFM'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,23 @@
+relationship e441b748-83b4-5a6c-aafb-40156f2b487b
+	fromColumn: Customers.Income_Group
+	toColumn: Dim_IncomeGroup.Income_Group
+
+relationship 02fa6d72-4373-5253-99c2-85f144b7b085
+	fromColumn: Customers.Age_Group
+	toColumn: Dim_AgeGroup.Age_Group
+
+relationship 856504c6-5ee9-5302-860c-d08a91027e6b
+	fromColumn: Customers.RFM_Segment
+	toColumn: Dim_Segment.RFM_Segment
+
+relationship 3af71df8-39e2-546e-87b0-a8e92dc5c393
+	fromColumn: Spend_By_Category.CustomerID
+	toColumn: Customers.CustomerID
+
+relationship 1ac6e13e-26e5-5c93-8ef6-dceb3c70dcb9
+	fromColumn: Purchases_By_Channel.CustomerID
+	toColumn: Customers.CustomerID
+
+relationship d83f1ba0-2049-57d9-a838-62ab289d5f16
+	fromColumn: Campaign_Response.CustomerID
+	toColumn: Customers.CustomerID

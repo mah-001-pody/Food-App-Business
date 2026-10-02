@@ -1,0 +1,129 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "9432fb88e3fc3049be89",
+  "position": {
+    "x": 20,
+    "y": 170,
+    "z": 2200,
+    "height": 462,
+    "width": 610,
+    "tabOrder": 2200
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Segment"
+                    }
+                  },
+                  "Property": "RFM_Segment"
+                }
+              },
+              "queryRef": "Dim_Segment.RFM_Segment",
+              "nativeQueryRef": "RFM_Segment"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Recency TB (ngày)"
+                }
+              },
+              "queryRef": "_Measures.Recency TB (ngày)",
+              "nativeQueryRef": "Recency TB (ngày)"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Chi tiêu TB/khách"
+                }
+              },
+              "queryRef": "_Measures.Chi tiêu TB/khách",
+              "nativeQueryRef": "Chi tiêu TB/khách"
+            }
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Số khách hàng"
+                }
+              },
+              "queryRef": "_Measures.Số khách hàng",
+              "nativeQueryRef": "Số khách hàng"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "categoryLabels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Bản đồ phân khúc: chi tiêu TB vs số ngày chưa quay lại (bóng = số khách)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

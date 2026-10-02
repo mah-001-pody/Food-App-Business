@@ -1,0 +1,614 @@
+/// Bảng sự kiện chính: 1 dòng = 1 khách hàng (dữ liệu đã làm sạch)
+table Customers
+	lineageTag: e3a84045-f634-5dca-b5e3-7204c6f2b34f
+
+	column CustomerID
+		dataType: string
+		lineageTag: 25849a33-f27d-5d84-a967-c55d63867fc0
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Raw_Row
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 440bcd92-0bec-5aad-9712-cfa2056a9d87
+		summarizeBy: none
+		sourceColumn: Raw_Row
+
+		annotation SummarizationSetBy = Automatic
+
+	column Income
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 93e0fae5-9859-5c5e-93bb-2adc9cd0af76
+		summarizeBy: average
+		sourceColumn: Income
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tenure_Days
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 46a3f5ae-4810-5167-9253-28cdcca61735
+		summarizeBy: average
+		sourceColumn: Tenure_Days
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tenure_Years
+		dataType: double
+		formatString: 0.0
+		lineageTag: 02e15b98-c394-59ea-a41a-c1a6d3f0517b
+		summarizeBy: average
+		sourceColumn: Tenure_Years
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age
+		dataType: int64
+		formatString: 0
+		lineageTag: a821bdf1-7c88-5f5c-82da-15bea7466d5b
+		summarizeBy: average
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column Graduate
+		dataType: int64
+		formatString: 0
+		lineageTag: cc93d965-da95-5b06-abb8-2f6729db7a83
+		summarizeBy: none
+		sourceColumn: Graduate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Married
+		dataType: int64
+		formatString: 0
+		lineageTag: 4d1476c9-42a3-5d68-9d2c-c6a691bac401
+		summarizeBy: none
+		sourceColumn: Married
+
+		annotation SummarizationSetBy = Automatic
+
+	column Kids
+		dataType: int64
+		formatString: 0
+		lineageTag: 22750058-0c2c-5f59-81e3-f46103b7e9d9
+		summarizeBy: sum
+		sourceColumn: Kids
+
+		annotation SummarizationSetBy = Automatic
+
+	column Teens
+		dataType: int64
+		formatString: 0
+		lineageTag: f54e118c-bb0f-5d10-bcda-144d4f474027
+		summarizeBy: sum
+		sourceColumn: Teens
+
+		annotation SummarizationSetBy = Automatic
+
+	column Recency
+		dataType: int64
+		formatString: 0
+		lineageTag: cb966ce9-4ff0-5170-82f0-f9c58e77385f
+		summarizeBy: average
+		sourceColumn: Recency
+
+		annotation SummarizationSetBy = Automatic
+
+	column Spend_Wines
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 7fb3c182-b802-5ddf-b0f6-35c18624f9c8
+		summarizeBy: sum
+		sourceColumn: Spend_Wines
+
+		annotation SummarizationSetBy = Automatic
+
+	column Spend_Fruits
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 303c3111-c772-5a1a-be1a-db95e56d7fe2
+		summarizeBy: sum
+		sourceColumn: Spend_Fruits
+
+		annotation SummarizationSetBy = Automatic
+
+	column Spend_Meat
+		dataType: int64
+		formatString: #,##0
+		lineageTag: defa49bd-ed56-55f9-9570-2f65710b5b79
+		summarizeBy: sum
+		sourceColumn: Spend_Meat
+
+		annotation SummarizationSetBy = Automatic
+
+	column Spend_Fish
+		dataType: int64
+		formatString: #,##0
+		lineageTag: f73e79e5-1575-5093-9763-1ebba9d5b21f
+		summarizeBy: sum
+		sourceColumn: Spend_Fish
+
+		annotation SummarizationSetBy = Automatic
+
+	column Spend_Sweets
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 87a022b4-8133-50c2-bb53-baf14d30ad0c
+		summarizeBy: sum
+		sourceColumn: Spend_Sweets
+
+		annotation SummarizationSetBy = Automatic
+
+	column Deals_Purchases
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 1b8bd701-54b9-58ce-b1e5-1fc27906335e
+		summarizeBy: sum
+		sourceColumn: Deals_Purchases
+
+		annotation SummarizationSetBy = Automatic
+
+	column Web_Purchases
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 36d37465-dbf7-5952-b123-4c9ace29605a
+		summarizeBy: sum
+		sourceColumn: Web_Purchases
+
+		annotation SummarizationSetBy = Automatic
+
+	column Catalog_Purchases
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 1225fe13-1f63-5124-aaeb-9fabd0069566
+		summarizeBy: sum
+		sourceColumn: Catalog_Purchases
+
+		annotation SummarizationSetBy = Automatic
+
+	column Store_Purchases
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 633b5ecf-17e3-5de9-83df-b17d05488a04
+		summarizeBy: sum
+		sourceColumn: Store_Purchases
+
+		annotation SummarizationSetBy = Automatic
+
+	column Web_Visits_Month
+		dataType: int64
+		formatString: 0
+		lineageTag: af0380f9-8fbc-5817-b5c3-6f813f0c1c8d
+		summarizeBy: average
+		sourceColumn: Web_Visits_Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cmp1
+		dataType: int64
+		formatString: 0
+		lineageTag: a2f0f5f4-2617-57e3-b50a-c1ac5cff4e64
+		summarizeBy: sum
+		sourceColumn: Cmp1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cmp2
+		dataType: int64
+		formatString: 0
+		lineageTag: 0c2b0b14-53e9-5217-9458-1e8bf5b55380
+		summarizeBy: sum
+		sourceColumn: Cmp2
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cmp3
+		dataType: int64
+		formatString: 0
+		lineageTag: 76449512-184d-54af-a768-7582094b1925
+		summarizeBy: sum
+		sourceColumn: Cmp3
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cmp4
+		dataType: int64
+		formatString: 0
+		lineageTag: c3f64e7d-2887-5f06-90cd-d024e6c2542c
+		summarizeBy: sum
+		sourceColumn: Cmp4
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cmp5
+		dataType: int64
+		formatString: 0
+		lineageTag: b6cd25ad-a4e9-5e68-9a2c-6b280e2df197
+		summarizeBy: sum
+		sourceColumn: Cmp5
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total_Campaigns
+		dataType: int64
+		formatString: 0
+		lineageTag: 337975d8-1138-5df6-9d36-96e3425585c6
+		summarizeBy: none
+		sourceColumn: Total_Campaigns
+
+		annotation SummarizationSetBy = Automatic
+
+	column Complain
+		dataType: int64
+		formatString: 0
+		lineageTag: 0ba76eca-2867-5269-9a86-b05c94b9b29f
+		summarizeBy: sum
+		sourceColumn: Complain
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age_Group
+		dataType: string
+		lineageTag: be6b7dac-7953-5fda-aebf-0f4daa86d2be
+		summarizeBy: none
+		sourceColumn: Age_Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column Income_Group
+		dataType: string
+		lineageTag: 65fec8e3-f57b-58c2-ae1c-ede06b16e386
+		summarizeBy: none
+		sourceColumn: Income_Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column Marital_Status
+		dataType: string
+		lineageTag: b629c628-cd90-57bf-b07f-f24b9fa68146
+		summarizeBy: none
+		sourceColumn: Marital_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Education
+		dataType: string
+		lineageTag: 7763d19c-b9fe-5c75-a455-b83528205ad1
+		summarizeBy: none
+		sourceColumn: Education
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total_Children
+		dataType: int64
+		formatString: 0
+		lineageTag: 59a402f2-e7e0-5a08-9f36-548d030491dd
+		summarizeBy: none
+		sourceColumn: Total_Children
+
+		annotation SummarizationSetBy = Automatic
+
+	column Has_Children
+		dataType: int64
+		formatString: 0
+		lineageTag: bf22d4da-adfc-58c6-a0b0-fd25930c3e20
+		summarizeBy: none
+		sourceColumn: Has_Children
+
+		annotation SummarizationSetBy = Automatic
+
+	column Family_Size
+		dataType: int64
+		formatString: 0
+		lineageTag: 507d111d-df58-5cb1-a5f1-fe0b9f9dd1f9
+		summarizeBy: none
+		sourceColumn: Family_Size
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total_Spend
+		dataType: int64
+		formatString: #,##0
+		lineageTag: b2fa5da0-e381-51c8-baf0-36b811c1749b
+		summarizeBy: sum
+		sourceColumn: Total_Spend
+
+		annotation SummarizationSetBy = Automatic
+
+	column Share_Wines
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 24888f29-7eba-5885-b5a4-53fb49567b94
+		summarizeBy: average
+		sourceColumn: Share_Wines
+
+		annotation SummarizationSetBy = Automatic
+
+	column Share_Fruits
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 791b6e29-7b6b-5f9c-8276-23f2b98efe28
+		summarizeBy: average
+		sourceColumn: Share_Fruits
+
+		annotation SummarizationSetBy = Automatic
+
+	column Share_Meat
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 89a30c87-268d-5896-9aca-5a1b220a7e25
+		summarizeBy: average
+		sourceColumn: Share_Meat
+
+		annotation SummarizationSetBy = Automatic
+
+	column Share_Fish
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 5113e586-e7b7-5f24-a6fa-918c6d62f97e
+		summarizeBy: average
+		sourceColumn: Share_Fish
+
+		annotation SummarizationSetBy = Automatic
+
+	column Share_Sweets
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 084080ba-a04c-5518-8e49-68b760b04ee0
+		summarizeBy: average
+		sourceColumn: Share_Sweets
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total_Purchases
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 633669eb-24e5-50b0-801f-070197e8b829
+		summarizeBy: sum
+		sourceColumn: Total_Purchases
+
+		annotation SummarizationSetBy = Automatic
+
+	column AOV
+		dataType: double
+		formatString: #,##0.0
+		lineageTag: 3bc1e0b5-ae05-5f34-a0d3-7259b11743af
+		summarizeBy: average
+		sourceColumn: AOV
+
+		annotation SummarizationSetBy = Automatic
+
+	column Deal_Ratio
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 67bf63b7-5df0-5a33-8870-54c73bebcf8c
+		summarizeBy: average
+		sourceColumn: Deal_Ratio
+
+		annotation SummarizationSetBy = Automatic
+
+	column Share_Web
+		dataType: double
+		formatString: 0.0%
+		lineageTag: cd5ea6ad-e124-584f-bf20-94f7ebb5f915
+		summarizeBy: average
+		sourceColumn: Share_Web
+
+		annotation SummarizationSetBy = Automatic
+
+	column Share_Catalog
+		dataType: double
+		formatString: 0.0%
+		lineageTag: c350cd95-6b30-5fcb-836c-6b668f334c30
+		summarizeBy: average
+		sourceColumn: Share_Catalog
+
+		annotation SummarizationSetBy = Automatic
+
+	column Share_Store
+		dataType: double
+		formatString: 0.0%
+		lineageTag: e341f294-5b38-54ba-964f-a418803fe279
+		summarizeBy: average
+		sourceColumn: Share_Store
+
+		annotation SummarizationSetBy = Automatic
+
+	column Preferred_Channel
+		dataType: string
+		lineageTag: 044b17f4-e712-5369-a843-bdd6ca99504c
+		summarizeBy: none
+		sourceColumn: Preferred_Channel
+
+		annotation SummarizationSetBy = Automatic
+
+	column Spend_to_Income_Pct
+		dataType: double
+		formatString: 0.00
+		lineageTag: 0b0e10ee-2ba3-561c-b741-39c475d90755
+		summarizeBy: average
+		sourceColumn: Spend_to_Income_Pct
+
+		annotation SummarizationSetBy = Automatic
+
+	column Campaign_Responder
+		dataType: int64
+		formatString: 0
+		lineageTag: 2f7fb47a-014b-55d3-af79-b73c680168a6
+		summarizeBy: sum
+		sourceColumn: Campaign_Responder
+
+		annotation SummarizationSetBy = Automatic
+
+	column Recency_Group
+		dataType: string
+		lineageTag: f15092fe-7206-51cb-b611-df6ad5173fc1
+		summarizeBy: none
+		sourceColumn: Recency_Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column R_Score
+		dataType: int64
+		formatString: 0
+		lineageTag: 0d952af1-ce7f-57c1-aef8-dceda0ae0338
+		summarizeBy: none
+		sourceColumn: R_Score
+
+		annotation SummarizationSetBy = Automatic
+
+	column F_Score
+		dataType: int64
+		formatString: 0
+		lineageTag: d742ae69-4dd9-553a-9415-0cac0cf85e59
+		summarizeBy: none
+		sourceColumn: F_Score
+
+		annotation SummarizationSetBy = Automatic
+
+	column M_Score
+		dataType: int64
+		formatString: 0
+		lineageTag: 1a018b21-f2c2-5d4b-86ba-dd0094024a80
+		summarizeBy: none
+		sourceColumn: M_Score
+
+		annotation SummarizationSetBy = Automatic
+
+	column FM_Score
+		dataType: double
+		formatString: 0.0
+		lineageTag: f59e22ea-62f9-552d-9588-e65c8e160cfb
+		summarizeBy: none
+		sourceColumn: FM_Score
+
+		annotation SummarizationSetBy = Automatic
+
+	column RFM_Score
+		dataType: int64
+		formatString: 0
+		lineageTag: f9ea556f-e1ab-5ad5-8a31-a1862704b092
+		summarizeBy: none
+		sourceColumn: RFM_Score
+
+		annotation SummarizationSetBy = Automatic
+
+	column RFM_Segment
+		dataType: string
+		lineageTag: d7ba2b94-20e9-593b-9def-ab9a2da3a30a
+		summarizeBy: none
+		sourceColumn: RFM_Segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value_Tier
+		dataType: string
+		lineageTag: 30e6f5cc-506a-5059-a9f3-d835572f9b28
+		summarizeBy: none
+		sourceColumn: Value_Tier
+		sortByColumn: Value_Tier_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Children_Label
+		dataType: string
+		lineageTag: 8c3639a4-18ff-53e0-94d1-696f818dcde0
+		summarizeBy: none
+		sourceColumn: Children_Label
+		sortByColumn: Total_Children
+
+		annotation SummarizationSetBy = Automatic
+
+	column Web_Visit_Group
+		dataType: string
+		lineageTag: 364cdc6b-c58e-5093-b621-94e026deb184
+		summarizeBy: none
+		sourceColumn: Web_Visit_Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column Deal_Hunter
+		dataType: string
+		lineageTag: 7904e0a8-8cc1-55d6-98d8-03abcab2ea98
+		summarizeBy: none
+		sourceColumn: Deal_Hunter
+
+		annotation SummarizationSetBy = Automatic
+
+	column Campaigns_Label
+		dataType: string
+		lineageTag: 8a183973-fdf8-517c-95b9-48b10da9b3e8
+		summarizeBy: none
+		sourceColumn: Campaigns_Label
+		sortByColumn: Total_Campaigns
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value_Tier_Sort
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 04d93b0c-be5f-57ad-b6ef-1f030a334584
+		summarizeBy: none
+		sourceColumn: Value_Tier_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Spend_Rank
+		dataType: int64
+		formatString: 0
+		lineageTag: 4bc319c7-725f-5979-be07-f9951bf16b96
+		summarizeBy: none
+		sourceColumn: Spend_Rank
+
+		annotation SummarizationSetBy = Automatic
+
+	column Spend_Decile
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 18532ef8-e4aa-59a0-bffa-6e1c29371444
+		summarizeBy: none
+		sourceColumn: Spend_Decile
+
+		annotation SummarizationSetBy = Automatic
+
+	column Spend_Decile_Label
+		dataType: string
+		lineageTag: 7ba4033b-6f53-532e-9cc8-b350d71bb9e7
+		summarizeBy: none
+		sourceColumn: Spend_Decile_Label
+		sortByColumn: Spend_Decile
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Customers = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents(DataFile), null, true),
+				    Data_Clean = Source{[Item="Data_Clean",Kind="Sheet"]}[Data],
+				    Promoted = Table.PromoteHeaders(Data_Clean, [PromoteAllScalars=true]),
+				    Selected = Table.SelectColumns(Promoted, {"CustomerID", "Raw_Row", "Income", "Tenure_Days", "Tenure_Years", "Age", "Graduate", "Married", "Kids", "Teens", "Recency", "Spend_Wines", "Spend_Fruits", "Spend_Meat", "Spend_Fish", "Spend_Sweets", "Deals_Purchases", "Web_Purchases", "Catalog_Purchases", "Store_Purchases", "Web_Visits_Month", "Cmp1", "Cmp2", "Cmp3", "Cmp4", "Cmp5", "Total_Campaigns", "Complain", "Age_Group", "Income_Group", "Marital_Status", "Education", "Total_Children", "Has_Children", "Family_Size", "Total_Spend", "Share_Wines", "Share_Fruits", "Share_Meat", "Share_Fish", "Share_Sweets", "Total_Purchases", "AOV", "Deal_Ratio", "Share_Web", "Share_Catalog", "Share_Store", "Preferred_Channel", "Spend_to_Income_Pct", "Campaign_Responder", "Recency_Group", "R_Score", "F_Score", "M_Score", "FM_Score", "RFM_Score", "RFM_Segment", "Value_Tier"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"CustomerID", type text}, {"Raw_Row", Int64.Type}, {"Income", Int64.Type}, {"Tenure_Days", Int64.Type}, {"Tenure_Years", type number}, {"Age", Int64.Type}, {"Graduate", Int64.Type}, {"Married", Int64.Type}, {"Kids", Int64.Type}, {"Teens", Int64.Type}, {"Recency", Int64.Type}, {"Spend_Wines", Int64.Type}, {"Spend_Fruits", Int64.Type}, {"Spend_Meat", Int64.Type}, {"Spend_Fish", Int64.Type}, {"Spend_Sweets", Int64.Type}, {"Deals_Purchases", Int64.Type}, {"Web_Purchases", Int64.Type}, {"Catalog_Purchases", Int64.Type}, {"Store_Purchases", Int64.Type}, {"Web_Visits_Month", Int64.Type}, {"Cmp1", Int64.Type}, {"Cmp2", Int64.Type}, {"Cmp3", Int64.Type}, {"Cmp4", Int64.Type}, {"Cmp5", Int64.Type}, {"Total_Campaigns", Int64.Type}, {"Complain", Int64.Type}, {"Age_Group", type text}, {"Income_Group", type text}, {"Marital_Status", type text}, {"Education", type text}, {"Total_Children", Int64.Type}, {"Has_Children", Int64.Type}, {"Family_Size", Int64.Type}, {"Total_Spend", Int64.Type}, {"Share_Wines", type number}, {"Share_Fruits", type number}, {"Share_Meat", type number}, {"Share_Fish", type number}, {"Share_Sweets", type number}, {"Total_Purchases", Int64.Type}, {"AOV", type number}, {"Deal_Ratio", type number}, {"Share_Web", type number}, {"Share_Catalog", type number}, {"Share_Store", type number}, {"Preferred_Channel", type text}, {"Spend_to_Income_Pct", type number}, {"Campaign_Responder", Int64.Type}, {"Recency_Group", type text}, {"R_Score", Int64.Type}, {"F_Score", Int64.Type}, {"M_Score", Int64.Type}, {"FM_Score", type number}, {"RFM_Score", Int64.Type}, {"RFM_Segment", type text}, {"Value_Tier", type text}}),
+				    #"Added Children_Label" = Table.AddColumn(Typed, "Children_Label", each Text.From([Total_Children]) & " con", type text),
+				    #"Added Web_Visit_Group" = Table.AddColumn(#"Added Children_Label", "Web_Visit_Group", each if [Web_Visits_Month] >= 7 then "Truy cập cao (≥7 lần/tháng)" else "Truy cập thấp (<7 lần/tháng)", type text),
+				    #"Added Deal_Hunter" = Table.AddColumn(#"Added Web_Visit_Group", "Deal_Hunter", each if [Deal_Ratio] >= 0.4 then "Săn giảm giá (≥40% đơn)" else "Mua giá thường (<40% đơn)", type text),
+				    #"Added Campaigns_Label" = Table.AddColumn(#"Added Deal_Hunter", "Campaigns_Label", each Text.From([Total_Campaigns]) & " chiến dịch", type text),
+				    #"Added Value_Tier_Sort" = Table.AddColumn(#"Added Campaigns_Label", "Value_Tier_Sort", each if [Value_Tier] = "Low" then 1 else if [Value_Tier] = "Mid" then 2 else 3, Int64.Type),
+				    #"Sorted by Spend" = Table.Sort(#"Added Value_Tier_Sort", {{"Total_Spend", Order.Descending}, {"CustomerID", Order.Ascending}}),
+				    #"Added Spend_Rank" = Table.AddIndexColumn(#"Sorted by Spend", "Spend_Rank", 1, 1, Int64.Type),
+				    RowCount = Table.RowCount(#"Added Spend_Rank"),
+				    #"Added Spend_Decile" = Table.AddColumn(#"Added Spend_Rank", "Spend_Decile", each Number.RoundUp([Spend_Rank] * 10 / RowCount), Int64.Type),
+				    Result = Table.AddColumn(#"Added Spend_Decile", "Spend_Decile_Label", each if [Spend_Decile] = 1 then "Top 10%" else Text.From(([Spend_Decile] - 1) * 10) & "-" & Text.From([Spend_Decile] * 10) & "%", type text)
+				in
+				    Result
+
+	annotation PBI_ResultType = Table

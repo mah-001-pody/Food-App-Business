@@ -81,7 +81,7 @@ def drop_rows(d: pd.DataFrame, mask: pd.Series, rule: str, reason: str) -> pd.Da
         r.insert(1, "Rule", rule)
         r.insert(2, "Reason", reason)
         removed.append(r)
-    log.append({"Step": rule, "Action": "Loai bo", "Rows_Affected": n,
+    log.append({"Step": rule, "Action": "Loại bỏ", "Rows_Affected": n,
                 "Reason": reason, "Rows_After": len(d) - n})
     return d[~mask].copy()
 
@@ -92,33 +92,33 @@ def note(rule: str, action: str, n: int, reason: str, d: pd.DataFrame):
 
 
 before = profile(df, "Before")
-note("R0", "Kiem tra", len(df), "Du lieu goc: 2.205 dong x 26 cot, tat ca kieu so nguyen", df)
+note("R0", "Kiểm tra", len(df), "Dữ liệu gốc: 2.205 dòng × 26 cột, tất cả kiểu số nguyên", df)
 
 # ---------------------------------------------------------------------------
 # 1. Kiem tra cau truc: missing, kieu du lieu, mien gia tri
 # ---------------------------------------------------------------------------
 n_missing = int(df.isna().sum().sum())
-note("R1", "Kiem tra", n_missing, "Gia tri thieu (missing) - khong co, khong can impute", df)
+note("R1", "Kiểm tra", n_missing, "Giá trị thiếu (missing): không có, không cần điền khuyết", df)
 
 bad_binary = int((~df[BINARY].isin([0, 1])).sum().sum())
-note("R1", "Kiem tra", bad_binary, "Bien nhi phan ngoai {0,1}", df)
+note("R1", "Kiểm tra", bad_binary, "Biến nhị phân nằm ngoài {0,1}", df)
 
 bad_marital = int(((df["Married"] + df["Single"]) != 1).sum())
-note("R1", "Kiem tra", bad_marital, "Married + Single != 1 (mau thuan tinh trang hon nhan)", df)
+note("R1", "Kiểm tra", bad_marital, "Married + Single ≠ 1 (mâu thuẫn tình trạng hôn nhân)", df)
 
 bad_total = int((df[CMP].sum(axis=1) != df["Total_Campaigns"]).sum())
-note("R1", "Kiem tra", bad_total, "Total_Campaigns != tong Cmp1..Cmp5", df)
+note("R1", "Kiểm tra", bad_total, "Total_Campaigns ≠ tổng Cmp1..Cmp5", df)
 
 neg = int((df.drop(columns="Raw_Row") < 0).sum().sum())
-note("R1", "Kiem tra", neg, "Gia tri am", df)
+note("R1", "Kiểm tra", neg, "Giá trị âm", df)
 
 # ---------------------------------------------------------------------------
 # 2. Ban ghi trung lap (khong co CustomerID -> trung toan bo 26 cot)
 # ---------------------------------------------------------------------------
 dup_mask = df.drop(columns="Raw_Row").duplicated(keep="first")
 df = drop_rows(df, dup_mask, "R2",
-               "Trung lap hoan toan 26/26 cot (ca thu nhap, so ngay hoat dong, chi tieu...) "
-               "-> xac suat trung tu nhien gan bang 0; giu ban ghi dau tien")
+               "Trùng lặp hoàn toàn 26/26 cột (cả thu nhập, số ngày hoạt động, chi tiêu...) "
+               "→ xác suất trùng tự nhiên gần bằng 0; giữ bản ghi đầu tiên")
 
 # ---------------------------------------------------------------------------
 # 3. Ban ghi bat hop ly ve logic kinh doanh
@@ -128,21 +128,21 @@ df["_TP"] = df[CHANNEL].sum(axis=1)
 
 m = df["_TP"] == 0
 df = drop_rows(df, m, "R3",
-               "Tong so lan mua = 0 nhung van co chi tieu > 0 -> mau thuan")
+               "Tổng số lần mua = 0 nhưng vẫn có chi tiêu > 0 → mâu thuẫn")
 
 m = df["Deals_Purchases"] > df["_TP"]
 df = drop_rows(df, m, "R4",
-               "So lan mua co giam gia lon hon tong so lan mua -> mau thuan")
+               "Số lần mua có giảm giá lớn hơn tổng số lần mua → mâu thuẫn")
 
 m = df["_TS"] > 0.5 * df["Income"]
 df = drop_rows(df, m, "R5",
-               "Tong chi tieu > 50% thu nhap (ban ghi lien ke cao nhat chi ~3%) -> "
-               "nghi sai so nhap lieu thu nhap")
+               "Tổng chi tiêu > 50% thu nhập (bản ghi liền kề cao nhất chỉ ~3%) → "
+               "nghi sai số nhập liệu thu nhập")
 
 m = (df["Web_Purchases"] > 20) & (df["Web_Visits_Month"] <= 1)
 df = drop_rows(df, m, "R6",
-               "Tren 20 lan mua qua web nhung <=1 luot truy cap/thang va chi tieu rat thap "
-               "-> hanh vi bat thuong (bot/nhap lieu sai)")
+               "Trên 20 lần mua qua web nhưng ≤1 lượt truy cập/tháng và chi tiêu rất thấp "
+               "→ hành vi bất thường (bot/nhập liệu sai)")
 
 df = df.drop(columns=["_TS", "_TP"])
 
@@ -160,15 +160,15 @@ for c in ["Income", "Age", "Recency"] + SPEND + CHANNEL + ["Deals_Purchases", "W
                          "Skewness": round(df[c].skew(), 2)})
 outliers = pd.DataFrame(outlier_rows)
 spend_out = df[SPEND].gt(df[SPEND].quantile(0.75) + 1.5 * (df[SPEND].quantile(0.75) - df[SPEND].quantile(0.25)))
-note("R7", "Giu lai", int(spend_out.any(axis=1).sum()),
-     "So khach co it nhat 1 nhom chi tieu vuot nguong IQR. Ngoai lai IQR o chi tieu/kenh mua la khach hang chi tieu cao THAT (phan phoi lech phai) "
-     "-> khong xoa, khong cap; dung log-transform khi chay mo hinh", df)
+note("R7", "Giữ lại", int(spend_out.any(axis=1).sum()),
+     "Số khách có ít nhất 1 nhóm chi tiêu vượt ngưỡng IQR. Đây là khách chi tiêu cao THẬT (phân phối lệch phải) "
+     "→ không xoá, không cắt ngưỡng; dùng log-transform khi chạy mô hình", df)
 
 # ---------------------------------------------------------------------------
 # 5. Bien du thua
 # ---------------------------------------------------------------------------
 df = df.drop(columns=["Single"])
-note("R8", "Loai cot", 0, "Bo cot Single (= 1 - Married) tranh da cong tuyen / dummy trap", df)
+note("R8", "Loại cột", 0, "Bỏ cột Single (= 1 − Married) để tránh đa cộng tuyến / dummy trap", df)
 
 # ---------------------------------------------------------------------------
 # 6. Feature engineering
@@ -201,7 +201,7 @@ df["Spend_to_Income_Pct"] = (df["Total_Spend"] / df["Income"] * 100).round(3)
 
 df["Campaign_Responder"] = (df["Total_Campaigns"] > 0).astype(int)
 df["Recency_Group"] = pd.cut(df["Recency"], [-1, 30, 60, 100],
-                             labels=["0-30 ngay", "31-60 ngay", "61-99 ngay"])
+                             labels=["0-30 ngày", "31-60 ngày", "61-99 ngày"])
 
 # RFM (diem 1-5 theo ngu phan vi; R dao chieu: mua cang gan diem cang cao)
 df["R_Score"] = pd.qcut(df["Recency"].rank(method="first"), 5, labels=[5, 4, 3, 2, 1]).astype(int)
@@ -232,7 +232,7 @@ df["Value_Tier"] = pd.qcut(df["Total_Spend"], [0, .5, .8, 1.0], labels=["Low", "
 df["Log_Income"] = np.log1p(df["Income"]).round(4)
 df["Log_Total_Spend"] = np.log1p(df["Total_Spend"]).round(4)
 
-note("R9", "Tao bien", len(df), "Feature engineering: 33 bien moi (nhan khau hoc, chi tieu, kenh, RFM, log)", df)
+note("R9", "Tạo biến", len(df), "Feature engineering: 33 biến mới (nhân khẩu học, chi tiêu, kênh, RFM, log)", df)
 
 # ---------------------------------------------------------------------------
 # 7. Kiem tra sau lam sach
@@ -241,7 +241,7 @@ assert df.isna().sum().sum() == 0
 assert df.drop(columns=["CustomerID", "Raw_Row"]).duplicated().sum() == 0
 assert (df["Total_Purchases"] > 0).all()
 assert (df["Deals_Purchases"] <= df["Total_Purchases"]).all()
-note("R10", "Kiem tra", len(df), "Du lieu sach: 0 missing, 0 trung lap, 0 mau thuan logic", df)
+note("R10", "Kiểm tra", len(df), "Dữ liệu sạch: 0 missing, 0 trùng lặp, 0 mâu thuẫn logic", df)
 
 after = profile(df, "After")
 quality = before.join(after, how="outer")

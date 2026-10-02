@@ -1,0 +1,62 @@
+/// Unpivot phản hồi 5 chiến dịch
+table Campaign_Response
+	lineageTag: d19dc078-939b-5c23-9709-63ad1f5edd9b
+
+	column CustomerID
+		dataType: string
+		lineageTag: 7154ebb7-1589-5a5d-bf8b-bad939eb4869
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Campaign_Code
+		dataType: string
+		isHidden
+		lineageTag: 833799c9-f88a-50df-a4db-315240e032a7
+		summarizeBy: none
+		sourceColumn: Campaign_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Accepted
+		dataType: int64
+		formatString: 0
+		lineageTag: 30fc7ccd-09de-5284-8912-c4c33830eb93
+		summarizeBy: sum
+		sourceColumn: Accepted
+
+		annotation SummarizationSetBy = Automatic
+
+	column Campaign_No
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: f9f6ecea-69db-5b5b-9711-da97b01e3b27
+		summarizeBy: none
+		sourceColumn: Campaign_No
+
+		annotation SummarizationSetBy = Automatic
+
+	column Campaign
+		dataType: string
+		lineageTag: b4975e0c-34b4-5fe7-a61a-99096f38a375
+		summarizeBy: none
+		sourceColumn: Campaign
+		sortByColumn: Campaign_No
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Campaign_Response = m
+		mode: import
+		source =
+				let
+				    Source = Table.SelectColumns(Customers, {"CustomerID", "Cmp1", "Cmp2", "Cmp3", "Cmp4", "Cmp5"}),
+				    Unpivoted = Table.UnpivotOtherColumns(Source, {"CustomerID"}, "Campaign_Code", "Accepted"),
+				    #"Added Campaign_No" = Table.AddColumn(Unpivoted, "Campaign_No", each Number.From(Text.End([Campaign_Code], 1)), Int64.Type),
+				    #"Added Campaign" = Table.AddColumn(#"Added Campaign_No", "Campaign", each "Chiến dịch " & Text.From([Campaign_No]), type text),
+				    Typed = Table.TransformColumnTypes(#"Added Campaign", {{"CustomerID", type text}, {"Campaign_Code", type text}, {"Accepted", Int64.Type}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

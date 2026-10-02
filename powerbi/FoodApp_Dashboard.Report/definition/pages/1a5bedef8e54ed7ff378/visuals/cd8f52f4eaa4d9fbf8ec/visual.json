@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "cd8f52f4eaa4d9fbf8ec",
+  "position": {
+    "x": 228,
+    "y": 78,
+    "z": 1800,
+    "height": 82,
+    "width": 200,
+    "tabOrder": 1800
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Tổng chi tiêu"
+                }
+              },
+              "queryRef": "_Measures.Tổng chi tiêu",
+              "nativeQueryRef": "Tổng chi tiêu"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

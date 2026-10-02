@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "0c334b2cbda912d9ed05",
+  "position": {
+    "x": 1060,
+    "y": 78,
+    "z": 2200,
+    "height": 82,
+    "width": 200,
+    "tabOrder": 2200
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Top 20% khách chiếm % doanh thu"
+                }
+              },
+              "queryRef": "_Measures.Top 20% khách chiếm % doanh thu",
+              "nativeQueryRef": "Top 20% khách chiếm % doanh thu"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

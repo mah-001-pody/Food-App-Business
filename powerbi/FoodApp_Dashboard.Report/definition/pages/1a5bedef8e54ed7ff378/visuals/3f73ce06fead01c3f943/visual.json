@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "3f73ce06fead01c3f943",
+  "position": {
+    "x": 852,
+    "y": 78,
+    "z": 2100,
+    "height": 82,
+    "width": 200,
+    "tabOrder": 2100
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Tỷ lệ phản hồi CD"
+                }
+              },
+              "queryRef": "_Measures.Tỷ lệ phản hồi CD",
+              "nativeQueryRef": "Tỷ lệ phản hồi CD"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,40 @@
+/// Dimension nhóm tuổi
+table Dim_AgeGroup
+	lineageTag: b3292de1-eac4-5a9e-8108-709847c66522
+
+	column Age_Group
+		dataType: string
+		lineageTag: c46e939b-c99a-51c4-9c30-5f24eb0166fd
+		summarizeBy: none
+		sourceColumn: Age_Group
+		sortByColumn: Age_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age_Sort
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2d092c46-0cb1-50ac-bf6c-25650bb0d1ef
+		summarizeBy: none
+		sourceColumn: Age_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_AgeGroup = m
+		mode: import
+		source =
+				let
+				    Source = #table(
+				        type table [Age_Group = text, Age_Sort = Int64.Type],
+				        {
+				            {"24-34", 1},
+				            {"35-44", 2},
+				            {"45-54", 3},
+				            {"55-64", 4},
+				            {"65+", 5}
+				        })
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

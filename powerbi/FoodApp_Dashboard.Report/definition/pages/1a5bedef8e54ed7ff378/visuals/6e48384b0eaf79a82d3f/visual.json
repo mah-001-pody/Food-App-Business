@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "6e48384b0eaf79a82d3f",
+  "position": {
+    "x": 20,
+    "y": 78,
+    "z": 1700,
+    "height": 82,
+    "width": 200,
+    "tabOrder": 1700
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Số khách hàng"
+                }
+              },
+              "queryRef": "_Measures.Số khách hàng",
+              "nativeQueryRef": "Số khách hàng"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

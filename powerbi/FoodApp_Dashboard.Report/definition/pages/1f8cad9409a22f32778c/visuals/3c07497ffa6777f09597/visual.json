@@ -1,0 +1,67 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "3c07497ffa6777f09597",
+  "position": {
+    "x": 980,
+    "y": 78,
+    "z": 2100,
+    "height": 82,
+    "width": 280,
+    "tabOrder": 2100
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Winback Rate"
+                    }
+                  },
+                  "Property": "Winback Rate"
+                }
+              },
+              "queryRef": "Winback Rate.Winback Rate",
+              "nativeQueryRef": "Winback Rate",
+              "displayName": "Giả định tỷ lệ win-back (mặc định 10%)"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "selection": [
+        {
+          "properties": {
+            "singleSelect": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

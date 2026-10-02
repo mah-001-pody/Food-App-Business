@@ -1,0 +1,91 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "da4ce34b7cc7642243f5",
+  "position": {
+    "x": 640,
+    "y": 430,
+    "z": 2400,
+    "height": 202,
+    "width": 620,
+    "tabOrder": 2400
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Segment"
+                    }
+                  },
+                  "Property": "RFM_Segment"
+                }
+              },
+              "queryRef": "Dim_Segment.RFM_Segment",
+              "nativeQueryRef": "RFM_Segment",
+              "displayName": "Phân khúc"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Segment"
+                    }
+                  },
+                  "Property": "Segment_Description"
+                }
+              },
+              "queryRef": "Dim_Segment.Segment_Description",
+              "nativeQueryRef": "Segment_Description",
+              "displayName": "Đặc điểm"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Segment"
+                    }
+                  },
+                  "Property": "Recommended_Action"
+                }
+              },
+              "queryRef": "Dim_Segment.Recommended_Action",
+              "nativeQueryRef": "Recommended_Action",
+              "displayName": "Hành động đề xuất"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Hành động đề xuất theo phân khúc'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,63 @@
+/// Unpivot số lần mua theo 3 kênh
+table Purchases_By_Channel
+	lineageTag: a736d981-92b9-5933-8c1d-a563bf05320c
+
+	column CustomerID
+		dataType: string
+		lineageTag: a6402b43-86bb-5a17-a3c6-43c84a105488
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Channel_Code
+		dataType: string
+		isHidden
+		lineageTag: ef7bf991-00f1-5f3a-ab56-40a96879c299
+		summarizeBy: none
+		sourceColumn: Channel_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Purchases
+		dataType: int64
+		formatString: #,##0
+		lineageTag: a32da5c6-5097-51ce-9557-2762ef67b3b2
+		summarizeBy: sum
+		sourceColumn: Purchases
+
+		annotation SummarizationSetBy = Automatic
+
+	column Channel
+		dataType: string
+		lineageTag: a8c344d1-847d-55f8-b927-ceb856ddeaf6
+		summarizeBy: none
+		sourceColumn: Channel
+		sortByColumn: Channel_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Channel_Sort
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a7a91858-53d1-5fd1-88f3-fe7f0b5374a5
+		summarizeBy: none
+		sourceColumn: Channel_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Purchases_By_Channel = m
+		mode: import
+		source =
+				let
+				    Source = Table.SelectColumns(Customers, {"CustomerID", "Store_Purchases", "Web_Purchases", "Catalog_Purchases"}),
+				    Unpivoted = Table.UnpivotOtherColumns(Source, {"CustomerID"}, "Channel_Code", "Purchases"),
+				    Map = [Store_Purchases = {"Store", 1}, Web_Purchases = {"Web", 2}, Catalog_Purchases = {"Catalog", 3}],
+				    #"Added Channel" = Table.AddColumn(Unpivoted, "Channel", each Record.Field(Map, [Channel_Code]){0}, type text),
+				    #"Added Channel_Sort" = Table.AddColumn(#"Added Channel", "Channel_Sort", each Record.Field(Map, [Channel_Code]){1}, Int64.Type),
+				    Typed = Table.TransformColumnTypes(#"Added Channel_Sort", {{"CustomerID", type text}, {"Channel_Code", type text}, {"Purchases", Int64.Type}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

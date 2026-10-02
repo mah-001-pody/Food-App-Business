@@ -1,0 +1,117 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "776b3742216fdc8f291f",
+  "position": {
+    "x": 435,
+    "y": 358,
+    "z": 2100,
+    "height": 274,
+    "width": 405,
+    "tabOrder": 2100
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Customers"
+                    }
+                  },
+                  "Property": "Value_Tier"
+                }
+              },
+              "queryRef": "Customers.Value_Tier",
+              "nativeQueryRef": "Value_Tier",
+              "displayName": "Nhóm giá trị"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Số khách hàng"
+                }
+              },
+              "queryRef": "_Measures.Số khách hàng",
+              "nativeQueryRef": "Số khách hàng"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Tỷ lệ phản hồi CD"
+                }
+              },
+              "queryRef": "_Measures.Tỷ lệ phản hồi CD",
+              "nativeQueryRef": "Tỷ lệ phản hồi CD"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Khách chưa từng phản hồi"
+                }
+              },
+              "queryRef": "_Measures.Khách chưa từng phản hồi",
+              "nativeQueryRef": "Khách chưa từng phản hồi"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "% chưa từng phản hồi"
+                }
+              },
+              "queryRef": "_Measures.% chưa từng phản hồi",
+              "nativeQueryRef": "% chưa từng phản hồi"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Phủ sóng chiến dịch theo nhóm giá trị khách'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
