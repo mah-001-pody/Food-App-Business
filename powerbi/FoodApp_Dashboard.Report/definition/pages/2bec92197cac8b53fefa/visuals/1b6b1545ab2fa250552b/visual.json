@@ -26,8 +26,7 @@
                   "Property": "Dòng dữ liệu gốc"
                 }
               },
-              "queryRef": "_Measures.Dòng dữ liệu gốc",
-              "nativeQueryRef": "Dòng dữ liệu gốc"
+              "queryRef": "_Measures.Dòng dữ liệu gốc"
             }
           ]
         }

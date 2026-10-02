@@ -27,7 +27,6 @@
                 }
               },
               "queryRef": "Data_Funnel.Stage",
-              "nativeQueryRef": "Stage",
               "displayName": "Giai đoạn"
             }
           ]
@@ -46,7 +45,6 @@
                 }
               },
               "queryRef": "_Measures.Số dòng",
-              "nativeQueryRef": "Số dòng",
               "displayName": "Số dòng"
             }
           ]

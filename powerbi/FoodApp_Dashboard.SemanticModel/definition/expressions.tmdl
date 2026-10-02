@@ -1,5 +1,0 @@
-/// Đường dẫn tới file FoodApp_Clean.xlsx trên máy bạn
-expression DataFile = "C:\FoodApp\FoodApp_Clean.xlsx" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
-	lineageTag: aff767f4-ad13-509a-ab75-48cc6c7cb922
-
-	annotation PBI_ResultType = Text

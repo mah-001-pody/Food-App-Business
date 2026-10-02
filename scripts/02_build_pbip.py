@@ -7,15 +7,19 @@ Output: powerbi/FoodApp_Dashboard.pbip
         powerbi/FoodApp_Dashboard.SemanticModel/   (mo hinh du lieu, Power Query, DAX)
         powerbi/FoodApp_Dashboard.Report/          (7 trang bao cao)
 
-Mo bang Power BI Desktop -> sua tham so DataFile -> Refresh -> Save As .pbix
+Du lieu da nhung san trong model: mo bang Power BI Desktop -> Refresh -> Save As .pbix
 (xem powerbi/HUONG_DAN.md)
 """
+import base64
 import hashlib
 import json
 import re
 import shutil
 import uuid
+import zlib
 from pathlib import Path
+
+import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "powerbi"
@@ -24,7 +28,7 @@ SM = OUT / f"{NAME}.SemanticModel"
 RP = OUT / f"{NAME}.Report"
 THEME_SRC = ROOT / "scripts" / "pbip_assets"
 
-DEFAULT_PATH = r"C:\FoodApp\FoodApp_Clean.xlsx"
+CLEAN_XLSX = ROOT / "data" / "processed" / "FoodApp_Clean.xlsx"
 MEASURES = "_Measures"
 
 
@@ -103,11 +107,23 @@ def m_types(cols):
     return ", ".join(f'{{"{x["name"]}", {x["mt"]}}}' for x in cols)
 
 
+def m_embedded(sheet: str, columns: list) -> str:
+    """Nhung du lieu vao M (giong 'Enter data' cua Power BI): JSON -> raw deflate -> base64.
+    Khong phu thuoc duong dan file tren may nguoi mo."""
+    df = pd.read_excel(CLEAN_XLSX, sheet_name=sheet)[columns]
+    rows = [[None if pd.isna(v) else (v.item() if hasattr(v, "item") else v) for v in r]
+            for r in df.itertuples(index=False)]
+    comp = zlib.compressobj(9, zlib.DEFLATED, -15)
+    raw = comp.compress(json.dumps(rows, ensure_ascii=False, separators=(",", ":")).encode("utf-8")) + comp.flush()
+    b64 = base64.b64encode(raw).decode("ascii")
+    names = ", ".join(f'"{c}"' for c in columns)
+    return (f'Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("{b64}", '
+            f'BinaryEncoding.Base64), Compression.Deflate)), {{{names}}})')
+
+
 CUSTOMERS_M = f"""let
-    Source = Excel.Workbook(File.Contents(DataFile), null, true),
-    Data_Clean = Source{{[Item="Data_Clean",Kind="Sheet"]}}[Data],
-    Promoted = Table.PromoteHeaders(Data_Clean, [PromoteAllScalars=true]),
-    Selected = Table.SelectColumns(Promoted, {{{", ".join(f'"{x["name"]}"' for x in CUSTOMER_SOURCE)}}}),
+    {m_embedded("Data_Clean", [x["name"] for x in CUSTOMER_SOURCE])},
+    Selected = Table.SelectColumns(Source, {{{", ".join(f'"{x["name"]}"' for x in CUSTOMER_SOURCE)}}}),
     Typed = Table.TransformColumnTypes(Selected, {{{m_types(CUSTOMER_SOURCE)}}}),
     #"Added Children_Label" = Table.AddColumn(Typed, "Children_Label", each Text.From([Total_Children]) & " con", type text),
     #"Added Web_Visit_Group" = Table.AddColumn(#"Added Children_Label", "Web_Visit_Group", each if [Web_Visits_Month] >= 7 then "Truy cập cao (≥7 lần/tháng)" else "Truy cập thấp (<7 lần/tháng)", type text),
@@ -152,10 +168,8 @@ in
     Typed"""
 
 LOG_M = """let
-    Source = Excel.Workbook(File.Contents(DataFile), null, true),
-    Cleaning_Log = Source{[Item="Cleaning_Log",Kind="Sheet"]}[Data],
-    Promoted = Table.PromoteHeaders(Cleaning_Log, [PromoteAllScalars=true]),
-    Typed = Table.TransformColumnTypes(Promoted, {{"Step", type text}, {"Action", type text}, {"Rows_Affected", Int64.Type}, {"Reason", type text}, {"Rows_After", Int64.Type}}),
+    """ + m_embedded("Cleaning_Log", ["Step", "Action", "Rows_Affected", "Reason", "Rows_After"]) + """,
+    Typed = Table.TransformColumnTypes(Source, {{"Step", type text}, {"Action", type text}, {"Rows_Affected", Int64.Type}, {"Reason", type text}, {"Rows_After", Int64.Type}}),
     Result = Table.AddIndexColumn(Typed, "Log_Order", 1, 1, Int64.Type)
 in
     Result"""
@@ -441,7 +455,7 @@ def build_model():
         "shouldNotifyUserOfNameConflictResolution": True})
     write(d / "database.tmdl", "database\n\tcompatibilityLevel: 1567\n")
     names = list(TABLES) + [MEASURES, "Winback Rate"]
-    order = ["DataFile"] + list(TABLES) + [MEASURES]
+    order = list(TABLES) + [MEASURES]
     write(d / "model.tmdl", "\n".join([
         "model Model", f"{T}culture: en-US", f"{T}defaultPowerBIDataSourceVersion: powerBI_V3",
         f"{T}sourceQueryCulture: en-US", f"{T}dataAccessOptions", f"{T*2}legacyRedirects",
@@ -449,10 +463,6 @@ def build_model():
         f"annotation PBI_QueryOrder = {json.dumps(order, ensure_ascii=False)}", "",
         "annotation __PBI_TimeIntelligenceEnabled = 0", ""]
         + [f"ref table {q(n)}" for n in names]) + "\n")
-    write(d / "expressions.tmdl", "\n".join([
-        "/// Đường dẫn tới file FoodApp_Clean.xlsx trên máy bạn",
-        f'expression DataFile = "{DEFAULT_PATH}" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]',
-        f"{T}lineageTag: {lt('DataFile')}", "", f"{T}annotation PBI_ResultType = Text", ""]))
     rel = []
     for ft, fc, tt, tc in RELATIONSHIPS:
         rel += [f"relationship {lt(f'rel/{ft}.{fc}->{tt}.{tc}')}",
@@ -523,7 +533,7 @@ def projections(specs):
         if isinstance(s, tuple):
             s, disp = s
         f, ref = field(s)
-        pr = {"field": f, "queryRef": ref, "nativeQueryRef": ref.split(".", 1)[-1]}
+        pr = {"field": f, "queryRef": ref}
         if disp:
             pr["displayName"] = disp
         out.append(pr)

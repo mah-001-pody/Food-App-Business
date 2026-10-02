@@ -26,8 +26,7 @@
                   "Property": "Tỷ lệ phản hồi CD"
                 }
               },
-              "queryRef": "_Measures.Tỷ lệ phản hồi CD",
-              "nativeQueryRef": "Tỷ lệ phản hồi CD"
+              "queryRef": "_Measures.Tỷ lệ phản hồi CD"
             }
           ]
         }

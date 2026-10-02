@@ -27,7 +27,6 @@
                 }
               },
               "queryRef": "Customers.Preferred_Channel",
-              "nativeQueryRef": "Preferred_Channel",
               "displayName": "Kênh ưa thích"
             }
           ]
@@ -45,8 +44,7 @@
                   "Property": "% khách hàng"
                 }
               },
-              "queryRef": "_Measures.% khách hàng",
-              "nativeQueryRef": "% khách hàng"
+              "queryRef": "_Measures.% khách hàng"
             },
             {
               "field": {
@@ -59,8 +57,7 @@
                   "Property": "% doanh thu"
                 }
               },
-              "queryRef": "_Measures.% doanh thu",
-              "nativeQueryRef": "% doanh thu"
+              "queryRef": "_Measures.% doanh thu"
             }
           ]
         }

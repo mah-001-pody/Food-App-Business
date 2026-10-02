@@ -26,8 +26,7 @@
                   "Property": "Chi tiêu TB/khách"
                 }
               },
-              "queryRef": "_Measures.Chi tiêu TB/khách",
-              "nativeQueryRef": "Chi tiêu TB/khách"
+              "queryRef": "_Measures.Chi tiêu TB/khách"
             }
           ]
         }

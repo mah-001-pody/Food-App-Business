@@ -26,8 +26,7 @@
                   "Property": "Tổng chi tiêu"
                 }
               },
-              "queryRef": "_Measures.Tổng chi tiêu",
-              "nativeQueryRef": "Tổng chi tiêu"
+              "queryRef": "_Measures.Tổng chi tiêu"
             }
           ]
         }

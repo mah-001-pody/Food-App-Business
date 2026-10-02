@@ -27,7 +27,6 @@
                 }
               },
               "queryRef": "Dim_IncomeGroup.Income_Group",
-              "nativeQueryRef": "Income_Group",
               "displayName": "Nhóm thu nhập"
             }
           ]
@@ -46,7 +45,6 @@
                 }
               },
               "queryRef": "Spend_By_Category.Category",
-              "nativeQueryRef": "Category",
               "displayName": "Nhóm hàng"
             }
           ]
@@ -65,7 +63,6 @@
                 }
               },
               "queryRef": "_Measures.Chi tiêu theo nhóm hàng",
-              "nativeQueryRef": "Chi tiêu theo nhóm hàng",
               "displayName": "Chi tiêu"
             }
           ]

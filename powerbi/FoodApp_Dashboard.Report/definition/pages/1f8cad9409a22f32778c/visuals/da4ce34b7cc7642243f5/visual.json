@@ -27,7 +27,6 @@
                 }
               },
               "queryRef": "Dim_Segment.RFM_Segment",
-              "nativeQueryRef": "RFM_Segment",
               "displayName": "Phân khúc"
             },
             {
@@ -42,7 +41,6 @@
                 }
               },
               "queryRef": "Dim_Segment.Segment_Description",
-              "nativeQueryRef": "Segment_Description",
               "displayName": "Đặc điểm"
             },
             {
@@ -57,7 +55,6 @@
                 }
               },
               "queryRef": "Dim_Segment.Recommended_Action",
-              "nativeQueryRef": "Recommended_Action",
               "displayName": "Hành động đề xuất"
             }
           ]

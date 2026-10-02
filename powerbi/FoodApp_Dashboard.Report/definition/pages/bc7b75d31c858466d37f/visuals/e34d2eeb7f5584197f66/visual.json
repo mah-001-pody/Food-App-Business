@@ -26,8 +26,7 @@
                   "Property": "CustomerID"
                 }
               },
-              "queryRef": "Customers.CustomerID",
-              "nativeQueryRef": "CustomerID"
+              "queryRef": "Customers.CustomerID"
             }
           ]
         },
@@ -45,7 +44,6 @@
                 }
               },
               "queryRef": "Customers.Children_Label",
-              "nativeQueryRef": "Children_Label",
               "displayName": "Số con"
             }
           ]
@@ -69,7 +67,6 @@
                 }
               },
               "queryRef": "Sum(Customers.Income)",
-              "nativeQueryRef": "Income)",
               "displayName": "Thu nhập"
             }
           ]
@@ -93,7 +90,6 @@
                 }
               },
               "queryRef": "Sum(Customers.Total_Spend)",
-              "nativeQueryRef": "Total_Spend)",
               "displayName": "Tổng chi tiêu"
             }
           ]

@@ -27,7 +27,6 @@
                 }
               },
               "queryRef": "Customers.Deal_Hunter",
-              "nativeQueryRef": "Deal_Hunter",
               "displayName": "Hành vi giá"
             }
           ]
@@ -45,8 +44,7 @@
                   "Property": "Tỷ lệ phản hồi CD"
                 }
               },
-              "queryRef": "_Measures.Tỷ lệ phản hồi CD",
-              "nativeQueryRef": "Tỷ lệ phản hồi CD"
+              "queryRef": "_Measures.Tỷ lệ phản hồi CD"
             },
             {
               "field": {
@@ -59,8 +57,7 @@
                   "Property": "Tỷ lệ mua giảm giá"
                 }
               },
-              "queryRef": "_Measures.Tỷ lệ mua giảm giá",
-              "nativeQueryRef": "Tỷ lệ mua giảm giá"
+              "queryRef": "_Measures.Tỷ lệ mua giảm giá"
             }
           ]
         }

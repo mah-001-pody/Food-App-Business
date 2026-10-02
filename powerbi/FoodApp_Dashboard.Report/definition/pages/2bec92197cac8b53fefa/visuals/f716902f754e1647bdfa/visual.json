@@ -26,8 +26,7 @@
                   "Property": "Dòng bị loại"
                 }
               },
-              "queryRef": "_Measures.Dòng bị loại",
-              "nativeQueryRef": "Dòng bị loại"
+              "queryRef": "_Measures.Dòng bị loại"
             }
           ]
         }

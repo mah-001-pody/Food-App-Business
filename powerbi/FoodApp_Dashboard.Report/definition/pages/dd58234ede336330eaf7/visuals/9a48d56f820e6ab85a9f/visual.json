@@ -27,7 +27,6 @@
                 }
               },
               "queryRef": "Customers.CustomerID",
-              "nativeQueryRef": "CustomerID",
               "displayName": "Mã KH"
             },
             {
@@ -42,7 +41,6 @@
                 }
               },
               "queryRef": "Customers.RFM_Segment",
-              "nativeQueryRef": "RFM_Segment",
               "displayName": "Phân khúc"
             },
             {
@@ -62,7 +60,6 @@
                 }
               },
               "queryRef": "Sum(Customers.Income)",
-              "nativeQueryRef": "Income)",
               "displayName": "Thu nhập"
             },
             {
@@ -77,7 +74,6 @@
                 }
               },
               "queryRef": "Customers.Age_Group",
-              "nativeQueryRef": "Age_Group",
               "displayName": "Nhóm tuổi"
             },
             {
@@ -92,7 +88,6 @@
                 }
               },
               "queryRef": "Customers.Children_Label",
-              "nativeQueryRef": "Children_Label",
               "displayName": "Số con"
             },
             {
@@ -112,7 +107,6 @@
                 }
               },
               "queryRef": "Sum(Customers.Total_Spend)",
-              "nativeQueryRef": "Total_Spend)",
               "displayName": "Tổng chi tiêu"
             },
             {
@@ -132,7 +126,6 @@
                 }
               },
               "queryRef": "Sum(Customers.Recency)",
-              "nativeQueryRef": "Recency)",
               "displayName": "Recency (ngày)"
             },
             {
@@ -152,7 +145,6 @@
                 }
               },
               "queryRef": "Sum(Customers.Total_Purchases)",
-              "nativeQueryRef": "Total_Purchases)",
               "displayName": "Số đơn"
             },
             {
@@ -167,7 +159,6 @@
                 }
               },
               "queryRef": "Customers.Preferred_Channel",
-              "nativeQueryRef": "Preferred_Channel",
               "displayName": "Kênh ưa thích"
             },
             {
@@ -187,7 +178,6 @@
                 }
               },
               "queryRef": "Sum(Customers.Total_Campaigns)",
-              "nativeQueryRef": "Total_Campaigns)",
               "displayName": "Số CD đã nhận"
             },
             {
@@ -202,7 +192,6 @@
                 }
               },
               "queryRef": "Customers.Value_Tier",
-              "nativeQueryRef": "Value_Tier",
               "displayName": "Nhóm giá trị"
             }
           ]

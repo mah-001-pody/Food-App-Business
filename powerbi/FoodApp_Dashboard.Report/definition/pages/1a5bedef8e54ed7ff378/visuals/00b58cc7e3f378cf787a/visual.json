@@ -27,7 +27,6 @@
                 }
               },
               "queryRef": "Customers.Spend_Decile_Label",
-              "nativeQueryRef": "Spend_Decile_Label",
               "displayName": "Nhóm 10% khách (xếp theo chi tiêu)"
             }
           ]
@@ -46,7 +45,6 @@
                 }
               },
               "queryRef": "_Measures.% doanh thu theo thập phân vị",
-              "nativeQueryRef": "% doanh thu theo thập phân vị",
               "displayName": "% doanh thu"
             }
           ]
@@ -65,7 +63,6 @@
                 }
               },
               "queryRef": "_Measures.% doanh thu lũy kế",
-              "nativeQueryRef": "% doanh thu lũy kế",
               "displayName": "% lũy kế"
             }
           ]

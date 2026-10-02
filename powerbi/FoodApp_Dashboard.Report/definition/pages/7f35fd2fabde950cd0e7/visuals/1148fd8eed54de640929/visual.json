@@ -27,7 +27,6 @@
                 }
               },
               "queryRef": "Customers.Web_Visit_Group",
-              "nativeQueryRef": "Web_Visit_Group",
               "displayName": "Nhóm truy cập web"
             },
             {
@@ -41,8 +40,7 @@
                   "Property": "Số khách hàng"
                 }
               },
-              "queryRef": "_Measures.Số khách hàng",
-              "nativeQueryRef": "Số khách hàng"
+              "queryRef": "_Measures.Số khách hàng"
             },
             {
               "field": {
@@ -55,8 +53,7 @@
                   "Property": "Thu nhập TB"
                 }
               },
-              "queryRef": "_Measures.Thu nhập TB",
-              "nativeQueryRef": "Thu nhập TB"
+              "queryRef": "_Measures.Thu nhập TB"
             },
             {
               "field": {
@@ -69,8 +66,7 @@
                   "Property": "Chi tiêu TB/khách"
                 }
               },
-              "queryRef": "_Measures.Chi tiêu TB/khách",
-              "nativeQueryRef": "Chi tiêu TB/khách"
+              "queryRef": "_Measures.Chi tiêu TB/khách"
             },
             {
               "field": {
@@ -83,8 +79,7 @@
                   "Property": "Tỷ lệ mua giảm giá"
                 }
               },
-              "queryRef": "_Measures.Tỷ lệ mua giảm giá",
-              "nativeQueryRef": "Tỷ lệ mua giảm giá"
+              "queryRef": "_Measures.Tỷ lệ mua giảm giá"
             },
             {
               "field": {
@@ -97,8 +92,7 @@
                   "Property": "Số đơn web TB"
                 }
               },
-              "queryRef": "_Measures.Số đơn web TB",
-              "nativeQueryRef": "Số đơn web TB"
+              "queryRef": "_Measures.Số đơn web TB"
             },
             {
               "field": {
@@ -111,8 +105,7 @@
                   "Property": "Lượt truy cập web TB/tháng"
                 }
               },
-              "queryRef": "_Measures.Lượt truy cập web TB/tháng",
-              "nativeQueryRef": "Lượt truy cập web TB/tháng"
+              "queryRef": "_Measures.Lượt truy cập web TB/tháng"
             }
           ]
         }

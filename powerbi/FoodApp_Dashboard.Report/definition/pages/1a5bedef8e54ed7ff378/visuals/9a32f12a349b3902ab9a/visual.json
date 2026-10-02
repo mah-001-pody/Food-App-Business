@@ -26,8 +26,7 @@
                   "Property": "RFM_Segment"
                 }
               },
-              "queryRef": "Dim_Segment.RFM_Segment",
-              "nativeQueryRef": "RFM_Segment"
+              "queryRef": "Dim_Segment.RFM_Segment"
             }
           ]
         },
@@ -45,7 +44,6 @@
                 }
               },
               "queryRef": "_Measures.Tổng chi tiêu",
-              "nativeQueryRef": "Tổng chi tiêu",
               "displayName": "Chi tiêu"
             }
           ]

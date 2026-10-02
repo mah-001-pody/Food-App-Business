@@ -27,7 +27,6 @@
                 }
               },
               "queryRef": "Dim_Segment.RFM_Segment",
-              "nativeQueryRef": "RFM_Segment",
               "displayName": "Phân khúc RFM"
             }
           ]

@@ -26,8 +26,7 @@
                   "Property": "AOV (giá trị TB/đơn)"
                 }
               },
-              "queryRef": "_Measures.AOV (giá trị TB/đơn)",
-              "nativeQueryRef": "AOV (giá trị TB/đơn)"
+              "queryRef": "_Measures.AOV (giá trị TB/đơn)"
             }
           ]
         }

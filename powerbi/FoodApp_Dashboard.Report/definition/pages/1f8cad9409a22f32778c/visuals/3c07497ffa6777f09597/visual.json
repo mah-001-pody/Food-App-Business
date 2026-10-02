@@ -27,7 +27,6 @@
                 }
               },
               "queryRef": "Winback Rate.Winback Rate",
-              "nativeQueryRef": "Winback Rate",
               "displayName": "Giả định tỷ lệ win-back (mặc định 10%)"
             }
           ]

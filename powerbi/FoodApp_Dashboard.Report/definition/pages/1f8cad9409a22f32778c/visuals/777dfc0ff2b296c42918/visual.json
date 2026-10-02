@@ -26,8 +26,7 @@
                   "Property": "Khách VIP đang At Risk"
                 }
               },
-              "queryRef": "_Measures.Khách VIP đang At Risk",
-              "nativeQueryRef": "Khách VIP đang At Risk"
+              "queryRef": "_Measures.Khách VIP đang At Risk"
             }
           ]
         }

@@ -26,8 +26,7 @@
                   "Property": "Top 20% khách chiếm % doanh thu"
                 }
               },
-              "queryRef": "_Measures.Top 20% khách chiếm % doanh thu",
-              "nativeQueryRef": "Top 20% khách chiếm % doanh thu"
+              "queryRef": "_Measures.Top 20% khách chiếm % doanh thu"
             }
           ]
         }

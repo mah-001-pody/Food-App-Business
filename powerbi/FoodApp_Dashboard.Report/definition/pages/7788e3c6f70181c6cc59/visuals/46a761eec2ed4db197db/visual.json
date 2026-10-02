@@ -27,7 +27,6 @@
                 }
               },
               "queryRef": "Dim_IncomeGroup.Income_Group",
-              "nativeQueryRef": "Income_Group",
               "displayName": "Nhóm thu nhập"
             }
           ]
@@ -45,8 +44,7 @@
                   "Property": "Tỷ lệ phản hồi CD"
                 }
               },
-              "queryRef": "_Measures.Tỷ lệ phản hồi CD",
-              "nativeQueryRef": "Tỷ lệ phản hồi CD"
+              "queryRef": "_Measures.Tỷ lệ phản hồi CD"
             }
           ]
         }

@@ -27,7 +27,6 @@
                 }
               },
               "queryRef": "Dim_AgeGroup.Age_Group",
-              "nativeQueryRef": "Age_Group",
               "displayName": "Nhóm tuổi"
             }
           ]
@@ -45,8 +44,7 @@
                   "Property": "Chi tiêu TB/khách"
                 }
               },
-              "queryRef": "_Measures.Chi tiêu TB/khách",
-              "nativeQueryRef": "Chi tiêu TB/khách"
+              "queryRef": "_Measures.Chi tiêu TB/khách"
             }
           ]
         }

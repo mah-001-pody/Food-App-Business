@@ -26,8 +26,7 @@
                   "Property": "Số khách hàng"
                 }
               },
-              "queryRef": "_Measures.Số khách hàng",
-              "nativeQueryRef": "Số khách hàng"
+              "queryRef": "_Measures.Số khách hàng"
             }
           ]
         }

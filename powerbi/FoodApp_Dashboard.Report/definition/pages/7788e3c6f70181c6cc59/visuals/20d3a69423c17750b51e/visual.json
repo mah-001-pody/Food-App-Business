@@ -26,8 +26,7 @@
                   "Property": "Campaign"
                 }
               },
-              "queryRef": "Campaign_Response.Campaign",
-              "nativeQueryRef": "Campaign"
+              "queryRef": "Campaign_Response.Campaign"
             }
           ]
         },
@@ -44,8 +43,7 @@
                   "Property": "Tỷ lệ chấp nhận CD"
                 }
               },
-              "queryRef": "_Measures.Tỷ lệ chấp nhận CD",
-              "nativeQueryRef": "Tỷ lệ chấp nhận CD"
+              "queryRef": "_Measures.Tỷ lệ chấp nhận CD"
             }
           ]
         }

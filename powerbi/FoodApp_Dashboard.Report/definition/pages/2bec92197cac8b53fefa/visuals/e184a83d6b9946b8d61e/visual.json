@@ -26,8 +26,7 @@
                   "Property": "Dòng dữ liệu sạch"
                 }
               },
-              "queryRef": "_Measures.Dòng dữ liệu sạch",
-              "nativeQueryRef": "Dòng dữ liệu sạch"
+              "queryRef": "_Measures.Dòng dữ liệu sạch"
             }
           ]
         }

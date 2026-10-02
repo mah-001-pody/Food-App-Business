@@ -27,7 +27,6 @@
                 }
               },
               "queryRef": "Dim_IncomeGroup.Income_Group",
-              "nativeQueryRef": "Income_Group",
               "displayName": "Nhóm thu nhập"
             }
           ]
@@ -46,7 +45,6 @@
                 }
               },
               "queryRef": "Purchases_By_Channel.Channel",
-              "nativeQueryRef": "Channel",
               "displayName": "Kênh"
             }
           ]
@@ -65,7 +63,6 @@
                 }
               },
               "queryRef": "_Measures.Số lần mua theo kênh",
-              "nativeQueryRef": "Số lần mua theo kênh",
               "displayName": "Số lần mua"
             }
           ]

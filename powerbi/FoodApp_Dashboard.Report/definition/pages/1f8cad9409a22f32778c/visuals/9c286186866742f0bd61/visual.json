@@ -27,7 +27,6 @@
                 }
               },
               "queryRef": "Customers.Children_Label",
-              "nativeQueryRef": "Children_Label",
               "displayName": "Số con"
             }
           ]

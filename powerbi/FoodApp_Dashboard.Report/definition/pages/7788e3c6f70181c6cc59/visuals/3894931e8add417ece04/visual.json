@@ -26,8 +26,7 @@
                   "Property": "Campaign"
                 }
               },
-              "queryRef": "Campaign_Response.Campaign",
-              "nativeQueryRef": "Campaign"
+              "queryRef": "Campaign_Response.Campaign"
             }
           ]
         },
@@ -44,8 +43,7 @@
                   "Property": "Thu nhập TB người nhận CD"
                 }
               },
-              "queryRef": "_Measures.Thu nhập TB người nhận CD",
-              "nativeQueryRef": "Thu nhập TB người nhận CD"
+              "queryRef": "_Measures.Thu nhập TB người nhận CD"
             }
           ]
         }

@@ -4,24 +4,25 @@
 - **Windows** có cài **Power BI Desktop bản mới** (2025 trở lên). Cài từ Microsoft Store để luôn được cập nhật.
 - Nếu Power BI báo không mở được `.pbip`, vào **File → Options and settings → Options → Preview features**, bật **Power BI Project (.pbip) save option** và **Store reports using enhanced metadata format (PBIR)**, rồi khởi động lại Power BI.
 
-## 1. Chuẩn bị thư mục (cách nhanh nhất)
-Giải nén `FoodApp_Dashboard.zip` vào **ổ C:\\**. Sau khi giải nén, bạn sẽ có:
+## 1. Giải nén (BẮT BUỘC)
+1. Chuột phải `FoodApp_Dashboard.zip` → **Extract All…** → **Extract**. Giải nén vào **bất kỳ đâu** cũng được (Desktop, Documents, ổ C:\ …).
+2. **KHÔNG** mở file `.pbip` trực tiếp từ bên trong file zip. Nếu mở như vậy, Windows chỉ trích ra một file, thiếu hai thư mục `.SemanticModel` và `.Report`, nên dashboard sẽ lỗi.
 
+Sau khi giải nén:
 ```
-C:\FoodApp\
-├── FoodApp_Clean.xlsx               ← dữ liệu đã làm sạch
+...\FoodApp\
 ├── FoodApp_Dashboard.pbip           ← BẤM ĐÚP FILE NÀY
-├── FoodApp_Dashboard.SemanticModel\ ← mô hình dữ liệu (Power Query + DAX)
-└── FoodApp_Dashboard.Report\        ← 7 trang báo cáo
+├── FoodApp_Dashboard.SemanticModel\ ← mô hình dữ liệu (đã NHÚNG SẴN dữ liệu, không cần file Excel)
+├── FoodApp_Dashboard.Report\        ← 7 trang báo cáo
+└── FoodApp_Clean.xlsx               ← bản dữ liệu để tham khảo / nộp kèm
 ```
-
-> Đường dẫn mặc định của tham số `DataFile` là `C:\FoodApp\FoodApp_Clean.xlsx`. Giải nén đúng chỗ như trên thì **không cần sửa gì**.
 
 ## 2. Mở và nạp dữ liệu
 1. Bấm đúp **`FoodApp_Dashboard.pbip`**.
-2. Lần đầu mở, các biểu đồ sẽ **trống**. Đây là bình thường: file `.pbip` chỉ chứa cấu trúc, chưa chứa dữ liệu.
-3. Bấm **Home → Refresh**. Chờ khoảng 10–30 giây.
-4. *(Chỉ khi bạn để file Excel ở chỗ khác)* Vào **Home → Transform data ▾ → Edit parameters**, sửa `DataFile` thành đường dẫn đầy đủ tới `FoodApp_Clean.xlsx`, bấm OK rồi **Apply changes**.
+2. Lần đầu mở, các biểu đồ sẽ **trống** hoặc hiện biểu tượng cảnh báo. Đây là bình thường: file `.pbip` chưa chứa dữ liệu đã tính.
+3. Bấm **Home → Refresh** và chờ 10–30 giây. Toàn bộ biểu đồ sẽ hiện ra.
+
+> Dữ liệu đã được nhúng thẳng vào Power Query (giống tính năng *Enter data*), nên **không cần sửa đường dẫn** dù bạn giải nén ở đâu.
 
 ## 3. Lưu thành file `.pbix` để nộp bài
 **File → Save as**, chọn kiểu **Power BI file (\*.pbix)**, đặt tên theo quy định, ví dụ `MaLopBA_SoNhom.pbix`.
@@ -77,8 +78,10 @@ Bảng độc lập: _Measures (40 measure DAX) · Winback Rate (what-if) · Cle
 ## 7. Nếu gặp lỗi
 | Hiện tượng | Cách xử lý |
 |---|---|
-| Không mở được `.pbip` / báo lỗi định dạng | Cập nhật Power BI Desktop; bật Preview features ở mục 0 |
-| Refresh báo *"Could not find file"* | Sửa tham số `DataFile` (mục 2, bước 4) |
+| Không mở được `.pbip` / báo lỗi định dạng, phiên bản | Cập nhật Power BI Desktop lên bản mới nhất (Microsoft Store); bật Preview features ở mục 0 |
+| Báo thiếu thư mục / *"cannot find … .SemanticModel"* | Bạn đang mở từ bên trong zip → giải nén trước (mục 1) |
+| Biểu đồ vẫn trống sau khi mở | Chưa bấm **Refresh** (mục 2, bước 3) |
+| Refresh báo lỗi | Chụp **toàn bộ hộp thoại lỗi** (bấm "Show details" nếu có) gửi lại |
 | Một biểu đồ báo lỗi hoặc hiển thị lệch | Chụp màn hình gửi lại để mình sửa; hoặc xoá visual đó rồi kéo lại trường tương ứng |
 | Ô so-what bị tràn chữ | Kéo giãn ô, hoặc giảm cỡ chữ (chọn ô → Format) |
 

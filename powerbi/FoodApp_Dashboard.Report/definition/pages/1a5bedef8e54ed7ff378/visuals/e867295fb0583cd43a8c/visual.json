@@ -26,8 +26,7 @@
                   "Property": "Category"
                 }
               },
-              "queryRef": "Spend_By_Category.Category",
-              "nativeQueryRef": "Category"
+              "queryRef": "Spend_By_Category.Category"
             }
           ]
         },
@@ -45,7 +44,6 @@
                 }
               },
               "queryRef": "_Measures.Chi tiêu theo nhóm hàng",
-              "nativeQueryRef": "Chi tiêu theo nhóm hàng",
               "displayName": "Chi tiêu"
             }
           ]

@@ -26,8 +26,7 @@
                   "Property": "RFM_Segment"
                 }
               },
-              "queryRef": "Dim_Segment.RFM_Segment",
-              "nativeQueryRef": "RFM_Segment"
+              "queryRef": "Dim_Segment.RFM_Segment"
             }
           ]
         },
@@ -44,8 +43,7 @@
                   "Property": "Recency TB (ngày)"
                 }
               },
-              "queryRef": "_Measures.Recency TB (ngày)",
-              "nativeQueryRef": "Recency TB (ngày)"
+              "queryRef": "_Measures.Recency TB (ngày)"
             }
           ]
         },
@@ -62,8 +60,7 @@
                   "Property": "Chi tiêu TB/khách"
                 }
               },
-              "queryRef": "_Measures.Chi tiêu TB/khách",
-              "nativeQueryRef": "Chi tiêu TB/khách"
+              "queryRef": "_Measures.Chi tiêu TB/khách"
             }
           ]
         },
@@ -80,8 +77,7 @@
                   "Property": "Số khách hàng"
                 }
               },
-              "queryRef": "_Measures.Số khách hàng",
-              "nativeQueryRef": "Số khách hàng"
+              "queryRef": "_Measures.Số khách hàng"
             }
           ]
         }

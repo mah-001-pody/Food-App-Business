@@ -26,8 +26,7 @@
                   "Property": "% dữ liệu giữ lại"
                 }
               },
-              "queryRef": "_Measures.% dữ liệu giữ lại",
-              "nativeQueryRef": "% dữ liệu giữ lại"
+              "queryRef": "_Measures.% dữ liệu giữ lại"
             }
           ]
         }

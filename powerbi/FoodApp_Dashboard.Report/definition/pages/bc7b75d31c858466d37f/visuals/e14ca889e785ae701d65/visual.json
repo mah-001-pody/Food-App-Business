@@ -27,7 +27,6 @@
                 }
               },
               "queryRef": "Customers.Children_Label",
-              "nativeQueryRef": "Children_Label",
               "displayName": "Số con"
             }
           ]
@@ -45,8 +44,7 @@
                   "Property": "Chi tiêu TB/khách"
                 }
               },
-              "queryRef": "_Measures.Chi tiêu TB/khách",
-              "nativeQueryRef": "Chi tiêu TB/khách"
+              "queryRef": "_Measures.Chi tiêu TB/khách"
             }
           ]
         }

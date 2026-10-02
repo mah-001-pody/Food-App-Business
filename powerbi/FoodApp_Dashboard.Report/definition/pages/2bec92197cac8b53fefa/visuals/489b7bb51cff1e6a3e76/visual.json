@@ -27,7 +27,6 @@
                 }
               },
               "queryRef": "Cleaning_Log.Log_Order",
-              "nativeQueryRef": "Log_Order",
               "displayName": "#"
             },
             {
@@ -42,7 +41,6 @@
                 }
               },
               "queryRef": "Cleaning_Log.Step",
-              "nativeQueryRef": "Step",
               "displayName": "Bước"
             },
             {
@@ -57,7 +55,6 @@
                 }
               },
               "queryRef": "Cleaning_Log.Action",
-              "nativeQueryRef": "Action",
               "displayName": "Hành động"
             },
             {
@@ -77,7 +74,6 @@
                 }
               },
               "queryRef": "Sum(Cleaning_Log.Rows_Affected)",
-              "nativeQueryRef": "Rows_Affected)",
               "displayName": "Số dòng ảnh hưởng"
             },
             {
@@ -92,7 +88,6 @@
                 }
               },
               "queryRef": "Cleaning_Log.Reason",
-              "nativeQueryRef": "Reason",
               "displayName": "Lý do"
             },
             {
@@ -112,7 +107,6 @@
                 }
               },
               "queryRef": "Sum(Cleaning_Log.Rows_After)",
-              "nativeQueryRef": "Rows_After)",
               "displayName": "Số dòng còn lại"
             }
           ]

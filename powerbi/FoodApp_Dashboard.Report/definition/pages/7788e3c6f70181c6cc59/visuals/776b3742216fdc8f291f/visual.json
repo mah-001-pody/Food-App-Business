@@ -27,7 +27,6 @@
                 }
               },
               "queryRef": "Customers.Value_Tier",
-              "nativeQueryRef": "Value_Tier",
               "displayName": "Nhóm giá trị"
             },
             {
@@ -41,8 +40,7 @@
                   "Property": "Số khách hàng"
                 }
               },
-              "queryRef": "_Measures.Số khách hàng",
-              "nativeQueryRef": "Số khách hàng"
+              "queryRef": "_Measures.Số khách hàng"
             },
             {
               "field": {
@@ -55,8 +53,7 @@
                   "Property": "Tỷ lệ phản hồi CD"
                 }
               },
-              "queryRef": "_Measures.Tỷ lệ phản hồi CD",
-              "nativeQueryRef": "Tỷ lệ phản hồi CD"
+              "queryRef": "_Measures.Tỷ lệ phản hồi CD"
             },
             {
               "field": {
@@ -69,8 +66,7 @@
                   "Property": "Khách chưa từng phản hồi"
                 }
               },
-              "queryRef": "_Measures.Khách chưa từng phản hồi",
-              "nativeQueryRef": "Khách chưa từng phản hồi"
+              "queryRef": "_Measures.Khách chưa từng phản hồi"
             },
             {
               "field": {
@@ -83,8 +79,7 @@
                   "Property": "% chưa từng phản hồi"
                 }
               },
-              "queryRef": "_Measures.% chưa từng phản hồi",
-              "nativeQueryRef": "% chưa từng phản hồi"
+              "queryRef": "_Measures.% chưa từng phản hồi"
             }
           ]
         }
