@@ -526,6 +526,25 @@ table Customers
 
 		annotation SummarizationSetBy = Automatic
 
+	column Children_Group
+		dataType: string
+		lineageTag: 36813349-e94f-5294-8fbf-43b15f1d7c2e
+		summarizeBy: none
+		sourceColumn: Children_Group
+		sortByColumn: Children_Group_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Children_Group_Sort
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 38026427-c73c-5f83-89a7-ae7eca812328
+		summarizeBy: none
+		sourceColumn: Children_Group_Sort
+
+		annotation SummarizationSetBy = Automatic
+
 	column Web_Visit_Group
 		dataType: string
 		lineageTag: 364cdc6b-c58e-5093-b621-94e026deb184
@@ -597,7 +616,9 @@ table Customers
 				    Selected = Table.SelectColumns(Source, {"CustomerID", "Raw_Row", "Income", "Tenure_Days", "Tenure_Years", "Age", "Graduate", "Married", "Kids", "Teens", "Recency", "Spend_Wines", "Spend_Fruits", "Spend_Meat", "Spend_Fish", "Spend_Sweets", "Deals_Purchases", "Web_Purchases", "Catalog_Purchases", "Store_Purchases", "Web_Visits_Month", "Cmp1", "Cmp2", "Cmp3", "Cmp4", "Cmp5", "Total_Campaigns", "Complain", "Age_Group", "Income_Group", "Marital_Status", "Education", "Total_Children", "Has_Children", "Family_Size", "Total_Spend", "Share_Wines", "Share_Fruits", "Share_Meat", "Share_Fish", "Share_Sweets", "Total_Purchases", "AOV", "Deal_Ratio", "Share_Web", "Share_Catalog", "Share_Store", "Preferred_Channel", "Spend_to_Income_Pct", "Campaign_Responder", "Recency_Group", "R_Score", "F_Score", "M_Score", "FM_Score", "RFM_Score", "RFM_Segment", "Value_Tier"}),
 				    Typed = Table.TransformColumnTypes(Selected, {{"CustomerID", type text}, {"Raw_Row", Int64.Type}, {"Income", Int64.Type}, {"Tenure_Days", Int64.Type}, {"Tenure_Years", type number}, {"Age", Int64.Type}, {"Graduate", Int64.Type}, {"Married", Int64.Type}, {"Kids", Int64.Type}, {"Teens", Int64.Type}, {"Recency", Int64.Type}, {"Spend_Wines", Int64.Type}, {"Spend_Fruits", Int64.Type}, {"Spend_Meat", Int64.Type}, {"Spend_Fish", Int64.Type}, {"Spend_Sweets", Int64.Type}, {"Deals_Purchases", Int64.Type}, {"Web_Purchases", Int64.Type}, {"Catalog_Purchases", Int64.Type}, {"Store_Purchases", Int64.Type}, {"Web_Visits_Month", Int64.Type}, {"Cmp1", Int64.Type}, {"Cmp2", Int64.Type}, {"Cmp3", Int64.Type}, {"Cmp4", Int64.Type}, {"Cmp5", Int64.Type}, {"Total_Campaigns", Int64.Type}, {"Complain", Int64.Type}, {"Age_Group", type text}, {"Income_Group", type text}, {"Marital_Status", type text}, {"Education", type text}, {"Total_Children", Int64.Type}, {"Has_Children", Int64.Type}, {"Family_Size", Int64.Type}, {"Total_Spend", Int64.Type}, {"Share_Wines", type number}, {"Share_Fruits", type number}, {"Share_Meat", type number}, {"Share_Fish", type number}, {"Share_Sweets", type number}, {"Total_Purchases", Int64.Type}, {"AOV", type number}, {"Deal_Ratio", type number}, {"Share_Web", type number}, {"Share_Catalog", type number}, {"Share_Store", type number}, {"Preferred_Channel", type text}, {"Spend_to_Income_Pct", type number}, {"Campaign_Responder", Int64.Type}, {"Recency_Group", type text}, {"R_Score", Int64.Type}, {"F_Score", Int64.Type}, {"M_Score", Int64.Type}, {"FM_Score", type number}, {"RFM_Score", Int64.Type}, {"RFM_Segment", type text}, {"Value_Tier", type text}}),
 				    #"Added Children_Label" = Table.AddColumn(Typed, "Children_Label", each Text.From([Total_Children]) & " con", type text),
-				    #"Added Web_Visit_Group" = Table.AddColumn(#"Added Children_Label", "Web_Visit_Group", each if [Web_Visits_Month] >= 7 then "Truy cập cao (≥7 lần/tháng)" else "Truy cập thấp (<7 lần/tháng)", type text),
+				    #"Added Children_Group_Sort" = Table.AddColumn(#"Added Children_Label", "Children_Group_Sort", each List.Min({[Total_Children], 2}), Int64.Type),
+				    #"Added Children_Group" = Table.AddColumn(#"Added Children_Group_Sort", "Children_Group", each if [Children_Group_Sort] >= 2 then "2+ con" else Text.From([Children_Group_Sort]) & " con", type text),
+				    #"Added Web_Visit_Group" = Table.AddColumn(#"Added Children_Group", "Web_Visit_Group", each if [Web_Visits_Month] >= 7 then "Truy cập cao (≥7 lần/tháng)" else "Truy cập thấp (<7 lần/tháng)", type text),
 				    #"Added Deal_Hunter" = Table.AddColumn(#"Added Web_Visit_Group", "Deal_Hunter", each if [Deal_Ratio] >= 0.4 then "Săn giảm giá (≥40% đơn)" else "Mua giá thường (<40% đơn)", type text),
 				    #"Added Campaigns_Label" = Table.AddColumn(#"Added Deal_Hunter", "Campaigns_Label", each Text.From([Total_Campaigns]) & " chiến dịch", type text),
 				    #"Added Value_Tier_Sort" = Table.AddColumn(#"Added Campaigns_Label", "Value_Tier_Sort", each if [Value_Tier] = "Low" then 1 else if [Value_Tier] = "Mid" then 2 else 3, Int64.Type),

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
   "name": "b17b093164bcd21d4122",
   "position": {
-    "x": 20,
-    "y": 8,
+    "x": 0,
+    "y": 0,
     "z": 1100,
-    "height": 62,
-    "width": 620,
+    "height": 56,
+    "width": 1280,
     "tabOrder": 1100
   },
   "visual": {
@@ -22,9 +22,9 @@
                     "value": "Chiến dịch đang bỏ sót một nửa khách VIP",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
-                      "fontSize": "18pt",
+                      "fontSize": "16pt",
                       "fontWeight": "bold",
-                      "color": "#1F4E79"
+                      "color": "#FFFFFF"
                     }
                   }
                 ]
@@ -35,8 +35,8 @@
                     "value": "Chiến dịch nào hiệu quả, với ai?",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
-                      "fontSize": "10pt",
-                      "color": "#6B7280"
+                      "fontSize": "9pt",
+                      "color": "#CDE2FB"
                     }
                   }
                 ]
@@ -48,13 +48,44 @@
     },
     "drillFilterOtherVisuals": true,
     "visualContainerObjects": {
-      "background": [
+      "title": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#104281'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.0D"
                 }
               }
             }

@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
   "name": "da4ce34b7cc7642243f5",
   "position": {
-    "x": 640,
-    "y": 430,
+    "x": 644,
+    "y": 464,
     "z": 2400,
-    "height": 202,
+    "height": 176,
     "width": 620,
     "tabOrder": 2400
   },
@@ -37,20 +37,6 @@
                       "Entity": "Dim_Segment"
                     }
                   },
-                  "Property": "Segment_Description"
-                }
-              },
-              "queryRef": "Dim_Segment.Segment_Description",
-              "displayName": "Đặc điểm"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Dim_Segment"
-                    }
-                  },
                   "Property": "Recommended_Action"
                 }
               },
@@ -59,6 +45,24 @@
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Dim_Segment"
+                  }
+                },
+                "Property": "RFM_Segment"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": false
       }
     },
     "drillFilterOtherVisuals": true,

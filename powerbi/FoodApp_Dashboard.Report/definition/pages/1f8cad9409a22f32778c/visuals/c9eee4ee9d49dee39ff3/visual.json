@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
   "name": "c9eee4ee9d49dee39ff3",
   "position": {
-    "x": 640,
-    "y": 170,
+    "x": 644,
+    "y": 216,
     "z": 2300,
-    "height": 250,
+    "height": 236,
     "width": 620,
     "tabOrder": 2300
   },
@@ -40,7 +40,8 @@
                   "Property": "Số khách hàng"
                 }
               },
-              "queryRef": "_Measures.Số khách hàng"
+              "queryRef": "_Measures.Số khách hàng",
+              "displayName": "Số khách"
             },
             {
               "field": {
@@ -53,7 +54,8 @@
                   "Property": "% khách hàng"
                 }
               },
-              "queryRef": "_Measures.% khách hàng"
+              "queryRef": "_Measures.% khách hàng",
+              "displayName": "% khách"
             },
             {
               "field": {
@@ -66,7 +68,8 @@
                   "Property": "% doanh thu"
                 }
               },
-              "queryRef": "_Measures.% doanh thu"
+              "queryRef": "_Measures.% doanh thu",
+              "displayName": "% doanh thu"
             },
             {
               "field": {
@@ -79,7 +82,8 @@
                   "Property": "Chi tiêu TB/khách"
                 }
               },
-              "queryRef": "_Measures.Chi tiêu TB/khách"
+              "queryRef": "_Measures.Chi tiêu TB/khách",
+              "displayName": "Chi tiêu TB"
             },
             {
               "field": {
@@ -92,7 +96,8 @@
                   "Property": "Recency TB (ngày)"
                 }
               },
-              "queryRef": "_Measures.Recency TB (ngày)"
+              "queryRef": "_Measures.Recency TB (ngày)",
+              "displayName": "Recency TB"
             },
             {
               "field": {
@@ -105,10 +110,29 @@
                   "Property": "Tỷ lệ phản hồi CD"
                 }
               },
-              "queryRef": "_Measures.Tỷ lệ phản hồi CD"
+              "queryRef": "_Measures.Tỷ lệ phản hồi CD",
+              "displayName": "Phản hồi CD"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Dim_Segment"
+                  }
+                },
+                "Property": "RFM_Segment"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": false
       }
     },
     "drillFilterOtherVisuals": true,
@@ -126,7 +150,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'So sánh 6 phân khúc RFM (chuột phải → Drill through để xem danh sách khách)'"
+                  "Value": "'So sánh 6 phân khúc (chuột phải → Drill through)'"
                 }
               }
             }

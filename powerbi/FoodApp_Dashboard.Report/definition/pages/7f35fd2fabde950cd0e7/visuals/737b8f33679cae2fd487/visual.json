@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
   "name": "737b8f33679cae2fd487",
   "position": {
-    "x": 640,
-    "y": 78,
+    "x": 644,
+    "y": 116,
     "z": 1800,
-    "height": 270,
-    "width": 300,
+    "height": 256,
+    "width": 304,
     "tabOrder": 1800
   },
   "visual": {
@@ -79,6 +79,88 @@
                   "Value": "true"
                 }
               }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#52514E'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#9EC5F4'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#104281'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Customers"
+                          }
+                        },
+                        "Property": "Preferred_Channel"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Catalog'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
             }
           }
         }
@@ -98,7 +180,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'AOV theo kênh mua ưa thích'"
+                  "Value": "'AOV theo kênh: catalog dẫn đầu'"
                 }
               }
             }

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
   "name": "d435ee71ddb77ecf96f7",
   "position": {
-    "x": 20,
-    "y": 642,
+    "x": 16,
+    "y": 648,
     "z": 1600,
-    "height": 70,
-    "width": 1240,
+    "height": 64,
+    "width": 1248,
     "tabOrder": 1600
   },
   "visual": {
@@ -19,12 +19,12 @@
               {
                 "textRuns": [
                   {
-                    "value": "SO WHAT?  ",
+                    "value": "SO WHAT?   ",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "10pt",
                       "fontWeight": "bold",
-                      "color": "#E07B39"
+                      "color": "#EB6834"
                     }
                   },
                   {
@@ -33,7 +33,7 @@
                       "fontFamily": "Segoe UI",
                       "fontSize": "10pt",
                       "fontWeight": "bold",
-                      "color": "#1F2937"
+                      "color": "#1F2328"
                     }
                   }
                 ]
@@ -45,7 +45,7 @@
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "9pt",
-                      "color": "#374151"
+                      "color": "#52514E"
                     }
                   }
                 ]
@@ -57,6 +57,19 @@
     },
     "drillFilterOtherVisuals": true,
     "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
       "background": [
         {
           "properties": {
@@ -72,7 +85,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFF4EC'"
+                      "Value": "'#FFF4EE'"
                     }
                   }
                 }
@@ -103,9 +116,16 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E07B39'"
+                      "Value": "'#EB6834'"
                     }
                   }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "10.0D"
                 }
               }
             }

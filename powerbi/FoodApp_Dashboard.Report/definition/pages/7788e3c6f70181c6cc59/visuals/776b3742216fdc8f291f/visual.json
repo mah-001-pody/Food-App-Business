@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
   "name": "776b3742216fdc8f291f",
   "position": {
-    "x": 435,
-    "y": 358,
+    "x": 436,
+    "y": 384,
     "z": 2100,
-    "height": 274,
-    "width": 405,
+    "height": 256,
+    "width": 408,
     "tabOrder": 2100
   },
   "visual": {
@@ -40,7 +40,8 @@
                   "Property": "Số khách hàng"
                 }
               },
-              "queryRef": "_Measures.Số khách hàng"
+              "queryRef": "_Measures.Số khách hàng",
+              "displayName": "Số khách"
             },
             {
               "field": {
@@ -53,7 +54,8 @@
                   "Property": "Tỷ lệ phản hồi CD"
                 }
               },
-              "queryRef": "_Measures.Tỷ lệ phản hồi CD"
+              "queryRef": "_Measures.Tỷ lệ phản hồi CD",
+              "displayName": "Tỷ lệ phản hồi"
             },
             {
               "field": {
@@ -66,7 +68,8 @@
                   "Property": "Khách chưa từng phản hồi"
                 }
               },
-              "queryRef": "_Measures.Khách chưa từng phản hồi"
+              "queryRef": "_Measures.Khách chưa từng phản hồi",
+              "displayName": "Chưa phản hồi"
             },
             {
               "field": {
@@ -79,10 +82,29 @@
                   "Property": "% chưa từng phản hồi"
                 }
               },
-              "queryRef": "_Measures.% chưa từng phản hồi"
+              "queryRef": "_Measures.% chưa từng phản hồi",
+              "displayName": "% chưa phản hồi"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Customers"
+                  }
+                },
+                "Property": "Value_Tier"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": false
       }
     },
     "drillFilterOtherVisuals": true,

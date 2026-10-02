@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
   "name": "ec08336fa5483cb97c8a",
   "position": {
-    "x": 20,
-    "y": 358,
+    "x": 16,
+    "y": 384,
     "z": 2000,
-    "height": 274,
-    "width": 610,
+    "height": 256,
+    "width": 616,
     "tabOrder": 2000
   },
   "visual": {
@@ -88,6 +88,28 @@
       }
     },
     "drillFilterOtherVisuals": true,
+    "objects": {
+      "legend": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Top'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "visualContainerObjects": {
       "title": [
         {
@@ -102,7 +124,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Cơ cấu số lần mua theo kênh và thu nhập'"
+                  "Value": "'Thu nhập càng cao, tỷ trọng mua qua catalog càng lớn'"
                 }
               }
             }

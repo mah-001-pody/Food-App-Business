@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
   "name": "3894931e8add417ece04",
   "position": {
-    "x": 435,
-    "y": 78,
+    "x": 436,
+    "y": 116,
     "z": 1800,
-    "height": 270,
-    "width": 405,
+    "height": 256,
+    "width": 408,
     "tabOrder": 1800
   },
   "visual": {
@@ -78,6 +78,88 @@
                   "Value": "true"
                 }
               }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#52514E'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#9EC5F4'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#104281'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Campaign_Response"
+                          }
+                        },
+                        "Property": "Campaign"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Chiến dịch 3'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
             }
           }
         }
@@ -97,7 +179,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Thu nhập TB của người nhận từng chiến dịch'"
+                  "Value": "'Thu nhập TB người nhận: CD3 chạm nhóm đại trà'"
                 }
               }
             }

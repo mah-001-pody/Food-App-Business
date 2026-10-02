@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
   "name": "52f82c657d4f5f48b1eb",
   "position": {
-    "x": 20,
-    "y": 78,
+    "x": 16,
+    "y": 116,
     "z": 1700,
-    "height": 270,
-    "width": 610,
+    "height": 256,
+    "width": 616,
     "tabOrder": 1700
   },
   "visual": {
@@ -88,6 +88,28 @@
       }
     },
     "drillFilterOtherVisuals": true,
+    "objects": {
+      "legend": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Top'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "visualContainerObjects": {
       "title": [
         {
@@ -102,7 +124,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Cơ cấu giỏ hàng theo nhóm thu nhập'"
+                  "Value": "'Cơ cấu giỏ hàng theo thu nhập: nhóm khá giả dồn vào rượu vang & thịt'"
                 }
               }
             }

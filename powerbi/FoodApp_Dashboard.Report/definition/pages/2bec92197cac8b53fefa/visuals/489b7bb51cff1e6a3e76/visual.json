@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
   "name": "489b7bb51cff1e6a3e76",
   "position": {
-    "x": 530,
-    "y": 170,
+    "x": 528,
+    "y": 164,
     "z": 1900,
-    "height": 462,
-    "width": 730,
+    "height": 476,
+    "width": 736,
     "tabOrder": 1900
   },
   "visual": {
@@ -107,7 +107,7 @@
                 }
               },
               "queryRef": "Sum(Cleaning_Log.Rows_After)",
-              "displayName": "Số dòng còn lại"
+              "displayName": "Còn lại"
             }
           ]
         }

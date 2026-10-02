@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
   "name": "e34d2eeb7f5584197f66",
   "position": {
-    "x": 20,
-    "y": 358,
+    "x": 16,
+    "y": 384,
     "z": 2000,
-    "height": 274,
+    "height": 256,
     "width": 820,
     "tabOrder": 2000
   },
@@ -40,10 +40,10 @@
                       "Entity": "Customers"
                     }
                   },
-                  "Property": "Children_Label"
+                  "Property": "Children_Group"
                 }
               },
-              "queryRef": "Customers.Children_Label",
+              "queryRef": "Customers.Children_Group",
               "displayName": "Số con"
             }
           ]
@@ -94,9 +94,49 @@
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Customers"
+                  }
+                },
+                "Property": "Children_Group"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": false
       }
     },
     "drillFilterOtherVisuals": true,
+    "objects": {
+      "legend": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Top'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "visualContainerObjects": {
       "title": [
         {
@@ -111,7 +151,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Thu nhập vs chi tiêu từng khách (màu = số con)'"
+                  "Value": "'Thu nhập vs chi tiêu từng khách (r = 0,83) · màu = số con'"
                 }
               }
             }

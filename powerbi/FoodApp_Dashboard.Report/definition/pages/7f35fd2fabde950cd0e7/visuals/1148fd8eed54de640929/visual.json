@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
   "name": "1148fd8eed54de640929",
   "position": {
-    "x": 640,
-    "y": 358,
+    "x": 644,
+    "y": 384,
     "z": 2100,
-    "height": 274,
+    "height": 256,
     "width": 620,
     "tabOrder": 2100
   },
@@ -40,7 +40,8 @@
                   "Property": "Số khách hàng"
                 }
               },
-              "queryRef": "_Measures.Số khách hàng"
+              "queryRef": "_Measures.Số khách hàng",
+              "displayName": "Số khách"
             },
             {
               "field": {
@@ -53,7 +54,8 @@
                   "Property": "Thu nhập TB"
                 }
               },
-              "queryRef": "_Measures.Thu nhập TB"
+              "queryRef": "_Measures.Thu nhập TB",
+              "displayName": "Thu nhập TB"
             },
             {
               "field": {
@@ -66,7 +68,8 @@
                   "Property": "Chi tiêu TB/khách"
                 }
               },
-              "queryRef": "_Measures.Chi tiêu TB/khách"
+              "queryRef": "_Measures.Chi tiêu TB/khách",
+              "displayName": "Chi tiêu TB"
             },
             {
               "field": {
@@ -79,7 +82,8 @@
                   "Property": "Tỷ lệ mua giảm giá"
                 }
               },
-              "queryRef": "_Measures.Tỷ lệ mua giảm giá"
+              "queryRef": "_Measures.Tỷ lệ mua giảm giá",
+              "displayName": "% đơn giảm giá"
             },
             {
               "field": {
@@ -92,7 +96,8 @@
                   "Property": "Số đơn web TB"
                 }
               },
-              "queryRef": "_Measures.Số đơn web TB"
+              "queryRef": "_Measures.Số đơn web TB",
+              "displayName": "Đơn web TB"
             },
             {
               "field": {
@@ -105,7 +110,8 @@
                   "Property": "Lượt truy cập web TB/tháng"
                 }
               },
-              "queryRef": "_Measures.Lượt truy cập web TB/tháng"
+              "queryRef": "_Measures.Lượt truy cập web TB/tháng",
+              "displayName": "Lượt truy cập/tháng"
             }
           ]
         }

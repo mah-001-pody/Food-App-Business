@@ -93,6 +93,8 @@ CUSTOMER_SOURCE = [
 # Cot tao them trong Power Query
 CUSTOMER_ADDED = [
     c("Children_Label", S, sort="Total_Children"),
+    c("Children_Group", S, sort="Children_Group_Sort"),
+    c("Children_Group_Sort", I, "0", hidden=True),
     c("Web_Visit_Group", S),
     c("Deal_Hunter", S),
     c("Campaigns_Label", S, sort="Total_Campaigns"),
@@ -126,7 +128,9 @@ CUSTOMERS_M = f"""let
     Selected = Table.SelectColumns(Source, {{{", ".join(f'"{x["name"]}"' for x in CUSTOMER_SOURCE)}}}),
     Typed = Table.TransformColumnTypes(Selected, {{{m_types(CUSTOMER_SOURCE)}}}),
     #"Added Children_Label" = Table.AddColumn(Typed, "Children_Label", each Text.From([Total_Children]) & " con", type text),
-    #"Added Web_Visit_Group" = Table.AddColumn(#"Added Children_Label", "Web_Visit_Group", each if [Web_Visits_Month] >= 7 then "Truy cập cao (≥7 lần/tháng)" else "Truy cập thấp (<7 lần/tháng)", type text),
+    #"Added Children_Group_Sort" = Table.AddColumn(#"Added Children_Label", "Children_Group_Sort", each List.Min({{[Total_Children], 2}}), Int64.Type),
+    #"Added Children_Group" = Table.AddColumn(#"Added Children_Group_Sort", "Children_Group", each if [Children_Group_Sort] >= 2 then "2+ con" else Text.From([Children_Group_Sort]) & " con", type text),
+    #"Added Web_Visit_Group" = Table.AddColumn(#"Added Children_Group", "Web_Visit_Group", each if [Web_Visits_Month] >= 7 then "Truy cập cao (≥7 lần/tháng)" else "Truy cập thấp (<7 lần/tháng)", type text),
     #"Added Deal_Hunter" = Table.AddColumn(#"Added Web_Visit_Group", "Deal_Hunter", each if [Deal_Ratio] >= 0.4 then "Săn giảm giá (≥40% đơn)" else "Mua giá thường (<40% đơn)", type text),
     #"Added Campaigns_Label" = Table.AddColumn(#"Added Deal_Hunter", "Campaigns_Label", each Text.From([Total_Campaigns]) & " chiến dịch", type text),
     #"Added Value_Tier_Sort" = Table.AddColumn(#"Added Campaigns_Label", "Value_Tier_Sort", each if [Value_Tier] = "Low" then 1 else if [Value_Tier] = "Mid" then 2 else 3, Int64.Type),
@@ -478,7 +482,15 @@ def build_model():
 # 3. REPORT (PBIR) HELPERS
 # =============================================================================
 SCHEMA = "https://developer.microsoft.com/json-schemas/fabric/item/report/definition"
-NAVY, ORANGE, GRAY, RED = "#1F4E79", "#E07B39", "#6B7280", "#C0392B"
+# --- Design tokens (bang mau da kiem tra CVD/do tuong phan; xem scripts/pbip_assets/FoodAppTheme.json) ---
+BAND, INK_ON_DARK, INK_ON_DARK_2 = "#104281", "#FFFFFF", "#CDE2FB"      # dai tieu de
+INK, INK_2, MUTED = "#1F2328", "#52514E", "#898781"                       # chu
+SURFACE, BORDER = "#FFFFFF", "#E3E5E8"                                    # the
+BRAND, SERIES_1, CONTEXT, CONTEXT_2 = "#104281", "#2A78D6", "#9EC5F4", "#CDE2FB"  # xanh: dam = trong tam
+NEUTRAL, NEUTRAL_DARK = "#C3C2B7", "#898781"                              # xam: boi canh
+ACCENT, SOWHAT_BG = "#EB6834", "#FFF4EE"                                  # cam: SO WHAT
+CRITICAL, GOOD = "#D03B3B", "#0CA30C"                                     # trang thai
+M, W, G, TOP = 16, 1248, 12, 116                                          # le, rong, gutter, dinh noi dung
 
 
 def lit(v):
@@ -541,26 +553,30 @@ def projections(specs):
 
 
 class Page:
+    """Luoi 1280x720: le 16px, gutter 12px.
+    Dai tieu de (0-56) · hang slicer (64-108) · noi dung (116-640) · o SO WHAT (648-712)."""
+
     def __init__(self, key, display, title, subtitle, sowhat=None, slicers=True):
         self.key, self.name, self.display = key, hid("page/" + key), display
         self.visuals, self.z = [], 1000
         self.extra = {}
-        self.textbox("header", 20, 8, 620 if slicers else 1240, 62, [
-            [(title, {"fontSize": "18pt", "fontWeight": "bold", "color": NAVY})],
-            [(subtitle, {"fontSize": "10pt", "color": GRAY})]], frame=False)
+        self.top = TOP if slicers else 64
+        self.textbox("header", 0, 0, 1280, 56, [
+            [(title, {"fontSize": "16pt", "fontWeight": "bold", "color": INK_ON_DARK})],
+            [(subtitle, {"fontSize": "9pt", "color": INK_ON_DARK_2})]], bg=BAND, border=None)
         if slicers:
             for i, (fld, disp, grp) in enumerate([
                     ("Dim_IncomeGroup.Income_Group", "Nhóm thu nhập", "sync_income"),
                     ("Dim_AgeGroup.Age_Group", "Nhóm tuổi", "sync_age"),
                     ("Customers.Children_Label", "Số con", "sync_children"),
                     ("Dim_Segment.RFM_Segment", "Phân khúc RFM", "sync_segment")]):
-                self.slicer(f"slicer_{grp}", 650 + i * 155, 10, 150, 58, fld, disp, grp)
+                self.slicer(f"slicer_{grp}", M + i * 212, 64, 200, 44, fld, disp, grp)
         if sowhat:
-            self.textbox("sowhat", 20, 642, 1240, 70, [
-                [("SO WHAT?  ", {"fontSize": "10pt", "fontWeight": "bold", "color": ORANGE}),
-                 (sowhat[0], {"fontSize": "10pt", "fontWeight": "bold", "color": "#1F2937"})],
-                [(sowhat[1], {"fontSize": "9pt", "color": "#374151"})]],
-                bg="#FFF4EC")
+            self.textbox("sowhat", M, 648, W, 64, [
+                [("SO WHAT?   ", {"fontSize": "10pt", "fontWeight": "bold", "color": ACCENT}),
+                 (sowhat[0], {"fontSize": "10pt", "fontWeight": "bold", "color": INK})],
+                [(sowhat[1], {"fontSize": "9pt", "color": INK_2})]],
+                bg=SOWHAT_BG, border=ACCENT)
 
     def add(self, key, x, y, w, h, visual):
         self.z += 100
@@ -570,7 +586,9 @@ class Page:
             "position": {"x": x, "y": y, "z": self.z, "height": h, "width": w, "tabOrder": self.z},
             "visual": visual})
 
-    def chart(self, key, vtype, x, y, w, h, roles, title=None, sort=None, objects=None, labels=False):
+    def chart(self, key, vtype, x, y, w, h, roles, title=None, sort=None, objects=None,
+              labels=False, fill=None, highlight=None, hide_value_axis=False, legend_top=False):
+        """fill: mau mac dinh cho moi diem; highlight: (field, {gia tri: mau}) to mau rieng tung diem."""
         qs = {r: {"projections": projections(f)} for r, f in roles.items()}
         v = {"visualType": vtype, "query": {"queryState": qs}, "drillFilterOtherVisuals": True}
         if sort:
@@ -579,15 +597,46 @@ class Page:
                                             "isDefaultSort": False}
         obj = dict(objects or {})
         if labels:
-            obj.setdefault("labels", [{"properties": {"show": p(True)}}])
+            obj.setdefault("labels", [{"properties": {"show": p(True), "color": color(INK_2)}}])
+        points = []
+        if fill:
+            points.append({"properties": {"fill": color(fill)}})
+        if highlight:
+            hfield, mapping = highlight
+            for val, hexv in mapping.items():
+                points.append({"properties": {"fill": color(hexv)},
+                               "selector": {"data": [{"scopeId": {"Comparison": {
+                                   "ComparisonKind": 0, "Left": field(hfield)[0],
+                                   "Right": {"Literal": {"Value": lit(val)}}}}}]}})
+        if points:
+            obj["dataPoint"] = points
+        if hide_value_axis:
+            obj["valueAxis"] = [{"properties": {"show": p(False)}}]
+        if legend_top:
+            obj["legend"] = [{"properties": {"show": p(True), "position": p("Top")}}]
         if obj:
             v["objects"] = obj
         if title:
             v["visualContainerObjects"] = {"title": [{"properties": {"show": p(True), "text": p(title)}}]}
         self.add(key, x, y, w, h, v)
 
-    def card(self, key, x, y, w, h, measure, label=None):
-        self.chart(key, "card", x, y, w, h, {"Values": [(f"m:{measure}", label) if label else f"m:{measure}"]})
+    def bars(self, key, vtype, x, y, w, h, cat, measure, title, sort_cat=True, **kw):
+        """Bieu do 1 chuoi: nhan so tren cot, an truc gia tri (it nhieu hon)."""
+        self.chart(key, vtype, x, y, w, h, {"Category": [cat], "Y": [measure]}, title,
+                   sort=((cat[0] if isinstance(cat, tuple) else cat), ASC) if sort_cat is True else sort_cat,
+                   labels=True, hide_value_axis=True, fill=kw.pop("fill", SERIES_1), **kw)
+
+    def card(self, key, x, y, w, h, measure, label=None, value_color=None):
+        obj = {"labels": [{"properties": {"color": color(value_color or BRAND), "fontSize": p(22.0)}}],
+               "categoryLabels": [{"properties": {"show": p(True), "color": color(INK_2), "fontSize": p(9.0)}}]}
+        v = {"visualType": "card",
+             "query": {"queryState": {"Values": {"projections": projections(
+                 [(f"m:{measure}", label) if label else f"m:{measure}"])}}},
+             "objects": obj, "drillFilterOtherVisuals": True,
+             "visualContainerObjects": {
+                 "title": [{"properties": {"show": p(False)}}],
+                 "border": [{"properties": {"show": p(True), "color": color(BORDER), "radius": p(10.0)}}]}}
+        self.add(key, x, y, w, h, v)
 
     def slicer(self, key, x, y, w, h, fld, disp, group, dropdown=True, single=False):
         obj = {}
@@ -597,26 +646,23 @@ class Page:
             obj["selection"] = [{"properties": {"singleSelect": p(True)}}]
         v = {"visualType": "slicer",
              "query": {"queryState": {"Values": {"projections": projections([(fld, disp)])}}},
-             "objects": obj, "drillFilterOtherVisuals": True}
+             "objects": obj, "drillFilterOtherVisuals": True,
+             "visualContainerObjects": {"title": [{"properties": {"show": p(False)}}]}}
         if group:
             v["syncGroup"] = {"groupName": group, "fieldChanges": True, "filterChanges": True}
         self.add(key, x, y, w, h, v)
 
-    def textbox(self, key, x, y, w, h, paragraphs, frame=True, bg=None):
+    def textbox(self, key, x, y, w, h, paragraphs, bg=SURFACE, border=BORDER):
         paras = [{"textRuns": [{"value": t, "textStyle": {"fontFamily": "Segoe UI", **st}} for t, st in para]}
                  for para in paragraphs]
         v = {"visualType": "textbox",
              "objects": {"general": [{"properties": {"paragraphs": paras}}]},
-             "drillFilterOtherVisuals": True}
-        vco = {}
-        if not frame:
-            vco["background"] = [{"properties": {"show": p(False)}}]
-            vco["border"] = [{"properties": {"show": p(False)}}]
-        if bg:
-            vco["background"] = [{"properties": {"show": p(True), "color": color(bg), "transparency": p(0.0)}}]
-            vco["border"] = [{"properties": {"show": p(True), "color": color(ORANGE)}}]
-        if vco:
-            v["visualContainerObjects"] = vco
+             "drillFilterOtherVisuals": True,
+             "visualContainerObjects": {
+                 "title": [{"properties": {"show": p(False)}}],
+                 "background": [{"properties": {"show": p(True), "color": color(bg), "transparency": p(0.0)}}],
+                 "border": ([{"properties": {"show": p(True), "color": color(border), "radius": p(10.0)}}]
+                            if border else [{"properties": {"show": p(False)}}])}}
         self.add(key, x, y, w, h, v)
 
     def json(self):
@@ -630,34 +676,52 @@ class Page:
 ASC, DESC = "Ascending", "Descending"
 
 
+def grid(n, x0=None, width=None, gap=G):
+    """Chia deu `width` thanh n cot -> [(x, w), ...]."""
+    x0 = M if x0 is None else x0
+    width = W if width is None else width
+    w = (width - gap * (n - 1)) / n
+    return [(round(x0 + i * (w + gap)), round(w)) for i in range(n)]
+
+
+SEG_COLORS = {"Champions": BRAND, "Loyal Customers": SERIES_1, "New / Promising": CONTEXT,
+              "Need Attention": CONTEXT_2, "At Risk": CRITICAL, "Hibernating": NEUTRAL}
+
+
 # =============================================================================
 # 4. PAGES
 # =============================================================================
 def build_pages():
     pages = []
+    BOT = 640  # day vung noi dung
 
     # ---- Trang 1: Tong quan -------------------------------------------------
     pg = Page("overview", "1. Tổng quan",
               "Doanh thu nằm trong tay rất ít khách hàng",
-              "Tổng quan hiệu quả kinh doanh Food App - 1.992 khách hàng sau làm sạch",
+              "Tổng quan hiệu quả kinh doanh Food App  ·  1.992 khách hàng sau làm sạch",
               ("20% khách hàng tạo ra ~53% doanh thu; rượu vang + thịt chiếm ~83% chi tiêu.",
                "Doanh nghiệp chịu rủi ro tập trung kép (ít khách VIP + ít nhóm hàng). "
                "Mất một phần nhỏ khách giá trị cao sẽ làm doanh thu giảm mạnh → ưu tiên giữ chân."))
-    for i, m in enumerate(["Số khách hàng", "Tổng chi tiêu", "Chi tiêu TB/khách",
-                           "AOV (giá trị TB/đơn)", "Tỷ lệ phản hồi CD", "Top 20% khách chiếm % doanh thu"]):
-        pg.card(f"kpi{i}", 20 + i * 208, 78, 200, 82, m)
-    pg.chart("pareto", "lineClusteredColumnComboChart", 20, 170, 610, 462,
-             {"Category": [("Customers.Spend_Decile_Label", "Nhóm 10% khách (xếp theo chi tiêu)")],
-              "Y": [("m:% doanh thu theo thập phân vị", "% doanh thu")],
-              "Y2": [("m:% doanh thu lũy kế", "% lũy kế")]},
-             "Pareto: mỗi 10% khách hàng đóng góp bao nhiêu doanh thu?",
-             sort=("Customers.Spend_Decile_Label", ASC), labels=True)
-    pg.chart("donut", "donutChart", 640, 170, 300, 462,
+    y, h = pg.top, 88
+    for i, ((x, w), m) in enumerate(zip(grid(6), [
+            "Số khách hàng", "Tổng chi tiêu", "Chi tiêu TB/khách", "AOV (giá trị TB/đơn)",
+            "Tỷ lệ phản hồi CD", "Top 20% khách chiếm % doanh thu"])):
+        pg.card(f"kpi{i}", x, y, w, h, m, value_color=CRITICAL if i == 5 else None)
+    y2 = y + h + G
+    (x1, w1), (x2, w2), (x3, w3) = [(M, 616), (M + 616 + G, 304), (M + 616 + G + 304 + G, 304)]
+    pg.bars("pareto", "clusteredColumnChart", x1, y2, w1, BOT - y2,
+            ("Customers.Spend_Decile_Label", "Nhóm 10% khách (xếp theo chi tiêu)"),
+            ("m:% doanh thu theo thập phân vị", "% doanh thu"),
+            "Pareto: 10% khách đầu tiên tạo 31% doanh thu, 20% đầu tạo 53%",
+            fill=CONTEXT, highlight=("Customers.Spend_Decile_Label", {"Top 10%": BRAND, "10-20%": BRAND}))
+    pg.chart("donut", "donutChart", x2, y2, w2, BOT - y2,
              {"Category": ["Spend_By_Category.Category"], "Y": [("m:Chi tiêu theo nhóm hàng", "Chi tiêu")]},
-             "Cơ cấu chi tiêu theo nhóm hàng")
-    pg.chart("treemap", "treemap", 950, 170, 310, 462,
+             "Cơ cấu chi tiêu theo nhóm hàng", sort=("Spend_By_Category.Category", ASC),
+             legend_top=True, labels=True)
+    pg.chart("treemap", "treemap", x3, y2, w3, BOT - y2,
              {"Group": ["Dim_Segment.RFM_Segment"], "Values": [("m:Tổng chi tiêu", "Chi tiêu")]},
-             "Doanh thu theo phân khúc RFM")
+             "Doanh thu theo phân khúc RFM (đỏ = At Risk)", labels=True,
+             highlight=("Dim_Segment.RFM_Segment", SEG_COLORS))
     pages.append(pg)
 
     # ---- Trang 2: Chan dung khach hang --------------------------------------
@@ -667,31 +731,35 @@ def build_pages():
               ("Thu nhập 90K+ chi gấp ~33 lần nhóm <30K (r = 0,83); khách không con chi gấp ~3 lần khách 2 con.",
                "Phân khúc theo thu nhập + cấu trúc gia đình, KHÔNG theo hôn nhân (chênh lệch nhỏ). "
                "Chân dung VIP: thu nhập ≥70K, ít/không con."))
-    pg.chart("by_income", "clusteredColumnChart", 20, 78, 405, 270,
-             {"Category": [("Dim_IncomeGroup.Income_Group", "Nhóm thu nhập")],
-              "Y": ["m:Chi tiêu TB/khách"]},
-             "Chi tiêu TB/khách theo nhóm thu nhập",
-             sort=("Dim_IncomeGroup.Income_Group", ASC), labels=True)
-    pg.chart("by_children", "clusteredColumnChart", 435, 78, 405, 270,
-             {"Category": [("Customers.Children_Label", "Số con")], "Y": ["m:Chi tiêu TB/khách"]},
-             "Chi tiêu TB/khách theo số con",
-             sort=("Customers.Children_Label", ASC), labels=True)
-    pg.chart("by_age", "clusteredBarChart", 850, 78, 410, 270,
-             {"Category": [("Dim_AgeGroup.Age_Group", "Nhóm tuổi")], "Y": ["m:Chi tiêu TB/khách"]},
-             "Chi tiêu TB/khách theo nhóm tuổi",
-             sort=("Dim_AgeGroup.Age_Group", ASC), labels=True)
-    pg.chart("scatter", "scatterChart", 20, 358, 820, 274,
+    y, h = pg.top, 256
+    (a, wa), (b, wb), (c_, wc) = grid(3)
+    pg.bars("by_income", "clusteredColumnChart", a, y, wa, h,
+            ("Dim_IncomeGroup.Income_Group", "Nhóm thu nhập"), "m:Chi tiêu TB/khách",
+            "Chi tiêu TB/khách tăng mạnh theo thu nhập",
+            fill=CONTEXT, highlight=("Dim_IncomeGroup.Income_Group", {"70-90K": BRAND, "90K+": BRAND}))
+    pg.bars("by_children", "clusteredColumnChart", b, y, wb, h,
+            ("Customers.Children_Label", "Số con"), "m:Chi tiêu TB/khách",
+            "Càng nhiều con, chi tiêu càng giảm",
+            fill=CONTEXT, highlight=("Customers.Children_Label", {"0 con": BRAND}))
+    pg.bars("by_age", "clusteredBarChart", c_, y, wc, h,
+            ("Dim_AgeGroup.Age_Group", "Nhóm tuổi"), "m:Chi tiêu TB/khách",
+            "Tuổi tạo khác biệt nhỏ hơn nhiều", fill=NEUTRAL_DARK)
+    y2 = y + h + G
+    pg.chart("scatter", "scatterChart", M, y2, 820, BOT - y2,
              {"Category": ["Customers.CustomerID"],
-              "Series": [("Customers.Children_Label", "Số con")],
+              "Series": [("Customers.Children_Group", "Số con")],
               "X": [("sum:Customers.Income", "Thu nhập")],
               "Y": [("sum:Customers.Total_Spend", "Tổng chi tiêu")]},
-             "Thu nhập vs chi tiêu từng khách (màu = số con)")
-    pg.chart("by_edu", "clusteredBarChart", 850, 358, 410, 132,
-             {"Category": [("Customers.Education", "Học vấn")], "Y": ["m:Chi tiêu TB/khách"]},
-             "Chi tiêu TB/khách theo học vấn", labels=True)
-    pg.chart("by_marital", "clusteredBarChart", 850, 500, 410, 132,
-             {"Category": [("Customers.Marital_Status", "Hôn nhân")], "Y": ["m:Chi tiêu TB/khách"]},
-             "Chi tiêu TB/khách theo hôn nhân", labels=True)
+             "Thu nhập vs chi tiêu từng khách (r = 0,83) · màu = số con", legend_top=True,
+             sort=("Customers.Children_Group", ASC))
+    xr, wr = M + 820 + G, W - 820 - G
+    hh = (BOT - y2 - G) // 2
+    pg.bars("by_edu", "clusteredBarChart", xr, y2, wr, hh,
+            ("Customers.Education", "Học vấn"), "m:Chi tiêu TB/khách",
+            "Chi tiêu TB/khách theo học vấn", sort_cat=("m:Chi tiêu TB/khách", DESC), fill=NEUTRAL_DARK)
+    pg.bars("by_marital", "clusteredBarChart", xr, y2 + hh + G, wr, BOT - (y2 + hh + G),
+            ("Customers.Marital_Status", "Hôn nhân"), "m:Chi tiêu TB/khách",
+            "Hôn nhân gần như không tạo khác biệt", sort_cat=("m:Chi tiêu TB/khách", DESC), fill=NEUTRAL_DARK)
     pages.append(pg)
 
     # ---- Trang 3: San pham & kenh -------------------------------------------
@@ -702,30 +770,35 @@ def build_pages():
                "Khách truy cập web ≥7 lần/tháng chỉ chi ~40% so với nhóm còn lại.",
                "Mở rộng catalog cho nhóm thu nhập ≥70K; với web, vấn đề là CHUYỂN ĐỔI chứ không phải traffic "
                "- nhóm truy cập nhiều chủ yếu săn giảm giá."))
-    pg.chart("cat_income", "hundredPercentStackedColumnChart", 20, 78, 610, 270,
+    y, h = pg.top, 256
+    pg.chart("cat_income", "hundredPercentStackedColumnChart", M, y, 616, h,
              {"Category": [("Dim_IncomeGroup.Income_Group", "Nhóm thu nhập")],
               "Series": [("Spend_By_Category.Category", "Nhóm hàng")],
               "Y": [("m:Chi tiêu theo nhóm hàng", "Chi tiêu")]},
-             "Cơ cấu giỏ hàng theo nhóm thu nhập",
-             sort=("Dim_IncomeGroup.Income_Group", ASC))
-    pg.chart("aov_channel", "clusteredColumnChart", 640, 78, 300, 270,
-             {"Category": [("Customers.Preferred_Channel", "Kênh ưa thích")],
-              "Y": ["m:AOV (giá trị TB/đơn)"]},
-             "AOV theo kênh mua ưa thích", sort=("m:AOV (giá trị TB/đơn)", DESC), labels=True)
-    pg.chart("share_channel", "clusteredColumnChart", 950, 78, 310, 270,
+             "Cơ cấu giỏ hàng theo thu nhập: nhóm khá giả dồn vào rượu vang & thịt",
+             sort=("Dim_IncomeGroup.Income_Group", ASC), legend_top=True)
+    (xa, wa), (xb, wb) = grid(2, M + 616 + G, W - 616 - G)
+    pg.bars("aov_channel", "clusteredColumnChart", xa, y, wa, h,
+            ("Customers.Preferred_Channel", "Kênh ưa thích"), "m:AOV (giá trị TB/đơn)",
+            "AOV theo kênh: catalog dẫn đầu", sort_cat=("m:AOV (giá trị TB/đơn)", DESC),
+            fill=CONTEXT, highlight=("Customers.Preferred_Channel", {"Catalog": BRAND}))
+    pg.chart("share_channel", "clusteredColumnChart", xb, y, wb, h,
              {"Category": [("Customers.Preferred_Channel", "Kênh ưa thích")],
               "Y": ["m:% khách hàng", "m:% doanh thu"]},
-             "% khách vs % doanh thu theo kênh", sort=("m:% doanh thu", DESC), labels=True)
-    pg.chart("channel_income", "hundredPercentStackedBarChart", 20, 358, 610, 274,
+             "% khách vs % doanh thu theo kênh", sort=("m:% doanh thu", DESC),
+             labels=True, hide_value_axis=True, legend_top=True)
+    y2 = y + h + G
+    pg.chart("channel_income", "hundredPercentStackedBarChart", M, y2, 616, BOT - y2,
              {"Category": [("Dim_IncomeGroup.Income_Group", "Nhóm thu nhập")],
               "Series": [("Purchases_By_Channel.Channel", "Kênh")],
               "Y": [("m:Số lần mua theo kênh", "Số lần mua")]},
-             "Cơ cấu số lần mua theo kênh và thu nhập",
-             sort=("Dim_IncomeGroup.Income_Group", ASC))
-    pg.chart("web_table", "tableEx", 640, 358, 620, 274,
-             {"Values": [("Customers.Web_Visit_Group", "Nhóm truy cập web"), "m:Số khách hàng",
-                         "m:Thu nhập TB", "m:Chi tiêu TB/khách", "m:Tỷ lệ mua giảm giá",
-                         "m:Số đơn web TB", "m:Lượt truy cập web TB/tháng"]},
+             "Thu nhập càng cao, tỷ trọng mua qua catalog càng lớn",
+             sort=("Dim_IncomeGroup.Income_Group", ASC), legend_top=True)
+    pg.chart("web_table", "tableEx", M + 616 + G, y2, W - 616 - G, BOT - y2,
+             {"Values": [("Customers.Web_Visit_Group", "Nhóm truy cập web"), ("m:Số khách hàng", "Số khách"),
+                         ("m:Thu nhập TB", "Thu nhập TB"), ("m:Chi tiêu TB/khách", "Chi tiêu TB"),
+                         ("m:Tỷ lệ mua giảm giá", "% đơn giảm giá"), ("m:Số đơn web TB", "Đơn web TB"),
+                         ("m:Lượt truy cập web TB/tháng", "Lượt truy cập/tháng")]},
              "Truy cập nhiều ≠ mua nhiều: so sánh 2 nhóm truy cập web")
     pages.append(pg)
 
@@ -736,30 +809,34 @@ def build_pages():
               ("Chỉ 21% khách từng phản hồi; Chiến dịch 2 thất bại (1,3%); ~50% khách giá trị cao chưa từng phản hồi.",
                "Dừng/thiết kế lại CD2; nhân rộng cách tiếp cận của CD3 (chạm được nhóm thu nhập thấp hơn, nhiều con hơn); "
                "nhóm săn giảm giá cần mã giảm giá trực tiếp thay vì chiến dịch."))
-    pg.chart("acc_rate", "clusteredColumnChart", 20, 78, 405, 270,
-             {"Category": ["Campaign_Response.Campaign"], "Y": ["m:Tỷ lệ chấp nhận CD"]},
-             "Tỷ lệ chấp nhận theo chiến dịch", sort=("Campaign_Response.Campaign", ASC), labels=True)
-    pg.chart("acc_income", "clusteredColumnChart", 435, 78, 405, 270,
-             {"Category": ["Campaign_Response.Campaign"],
-              "Y": ["m:Thu nhập TB người nhận CD"]},
-             "Thu nhập TB của người nhận từng chiến dịch",
-             sort=("Campaign_Response.Campaign", ASC), labels=True)
-    pg.chart("resp_income", "clusteredColumnChart", 850, 78, 410, 270,
-             {"Category": [("Dim_IncomeGroup.Income_Group", "Nhóm thu nhập")], "Y": ["m:Tỷ lệ phản hồi CD"]},
-             "Tỷ lệ phản hồi chiến dịch theo thu nhập",
-             sort=("Dim_IncomeGroup.Income_Group", ASC), labels=True)
-    pg.chart("spend_ncamp", "clusteredColumnChart", 20, 358, 405, 274,
-             {"Category": [("Customers.Campaigns_Label", "Số chiến dịch đã nhận")], "Y": ["m:Chi tiêu TB/khách"]},
-             "Chi tiêu TB/khách theo số chiến dịch đã nhận",
-             sort=("Customers.Campaigns_Label", ASC), labels=True)
-    pg.chart("tier_table", "tableEx", 435, 358, 405, 274,
-             {"Values": [("Customers.Value_Tier", "Nhóm giá trị"), "m:Số khách hàng",
-                         "m:Tỷ lệ phản hồi CD", "m:Khách chưa từng phản hồi", "m:% chưa từng phản hồi"]},
-             "Phủ sóng chiến dịch theo nhóm giá trị khách")
-    pg.chart("deal_resp", "clusteredColumnChart", 850, 358, 410, 274,
+    y, h = pg.top, 256
+    (a, wa), (b, wb), (c_, wc) = grid(3)
+    pg.bars("acc_rate", "clusteredColumnChart", a, y, wa, h,
+            "Campaign_Response.Campaign", "m:Tỷ lệ chấp nhận CD",
+            "Tỷ lệ chấp nhận: Chiến dịch 2 thất bại (đỏ)",
+            highlight=("Campaign_Response.Campaign", {"Chiến dịch 2": CRITICAL}))
+    pg.bars("acc_income", "clusteredColumnChart", b, y, wb, h,
+            "Campaign_Response.Campaign", "m:Thu nhập TB người nhận CD",
+            "Thu nhập TB người nhận: CD3 chạm nhóm đại trà",
+            fill=CONTEXT, highlight=("Campaign_Response.Campaign", {"Chiến dịch 3": BRAND}))
+    pg.bars("resp_income", "clusteredColumnChart", c_, y, wc, h,
+            ("Dim_IncomeGroup.Income_Group", "Nhóm thu nhập"), "m:Tỷ lệ phản hồi CD",
+            "Tỷ lệ phản hồi tăng mạnh theo thu nhập")
+    y2 = y + h + G
+    pg.bars("spend_ncamp", "clusteredColumnChart", a, y2, wa, BOT - y2,
+            ("Customers.Campaigns_Label", "Số chiến dịch đã nhận"), "m:Chi tiêu TB/khách",
+            "Nhận càng nhiều chiến dịch, chi tiêu càng cao")
+    pg.chart("tier_table", "tableEx", b, y2, wb, BOT - y2,
+             {"Values": [("Customers.Value_Tier", "Nhóm giá trị"), ("m:Số khách hàng", "Số khách"),
+                         ("m:Tỷ lệ phản hồi CD", "Tỷ lệ phản hồi"),
+                         ("m:Khách chưa từng phản hồi", "Chưa phản hồi"),
+                         ("m:% chưa từng phản hồi", "% chưa phản hồi")]},
+             "Phủ sóng chiến dịch theo nhóm giá trị khách", sort=("Customers.Value_Tier", DESC))
+    pg.chart("deal_resp", "clusteredColumnChart", c_, y2, wc, BOT - y2,
              {"Category": [("Customers.Deal_Hunter", "Hành vi giá")],
               "Y": ["m:Tỷ lệ phản hồi CD", "m:Tỷ lệ mua giảm giá"]},
-             "Khách săn giảm giá ít phản hồi chiến dịch", labels=True)
+             "Khách săn giảm giá ít phản hồi chiến dịch",
+             labels=True, hide_value_axis=True, legend_top=True)
     pages.append(pg)
 
     # ---- Trang 5: RFM & giu chan ----------------------------------------------
@@ -769,25 +846,35 @@ def build_pages():
               ("480 khách At Risk (24%) tạo ra ~40% doanh thu, chi TB ~930 nhưng đã ~79 ngày không quay lại.",
                "Ưu tiên số 1: chiến dịch WIN-BACK cho At Risk (đặc biệt khách VIP). "
                "Kéo lại 10% doanh thu nhóm này ≈ +4% tổng doanh thu - rẻ hơn nhiều so với tìm khách mới."))
-    for i, m in enumerate(["Doanh thu rủi ro (At Risk)", "% doanh thu rủi ro",
-                           "Khách VIP đang At Risk", "Doanh thu giữ lại được"]):
-        pg.card(f"kpi{i}", 20 + i * 240, 78, 232, 82, m)
-    pg.slicer("winback", 980, 78, 280, 82, "Winback Rate.Winback Rate",
+    y, h = pg.top, 88
+    cards = grid(4, M, 980)
+    for i, ((x, w), m) in enumerate(zip(cards, [
+            "Doanh thu rủi ro (At Risk)", "% doanh thu rủi ro", "Khách VIP đang At Risk",
+            "Doanh thu giữ lại được"])):
+        pg.card(f"kpi{i}", x, y, w, h, m, value_color=CRITICAL if i < 3 else GOOD)
+    pg.slicer("winback", M + 980 + G, y, W - 980 - G, h, "Winback Rate.Winback Rate",
               "Giả định tỷ lệ win-back (mặc định 10%)", None, dropdown=True, single=True)
-    pg.chart("bubble", "scatterChart", 20, 170, 610, 462,
+    y2 = y + h + G
+    pg.chart("bubble", "scatterChart", M, y2, 616, BOT - y2,
              {"Category": ["Dim_Segment.RFM_Segment"],
-              "X": ["m:Recency TB (ngày)"], "Y": ["m:Chi tiêu TB/khách"], "Size": ["m:Số khách hàng"]},
-             "Bản đồ phân khúc: chi tiêu TB vs số ngày chưa quay lại (bóng = số khách)",
-             objects={"categoryLabels": [{"properties": {"show": p(True)}}]})
-    pg.chart("seg_table", "tableEx", 640, 170, 620, 250,
-             {"Values": [("Dim_Segment.RFM_Segment", "Phân khúc"), "m:Số khách hàng", "m:% khách hàng",
-                         "m:% doanh thu", "m:Chi tiêu TB/khách", "m:Recency TB (ngày)", "m:Tỷ lệ phản hồi CD"]},
-             "So sánh 6 phân khúc RFM (chuột phải → Drill through để xem danh sách khách)")
-    pg.chart("action_table", "tableEx", 640, 430, 620, 202,
+              "X": [("m:Recency TB (ngày)", "Số ngày chưa quay lại (TB)")],
+              "Y": [("m:Chi tiêu TB/khách", "Chi tiêu TB/khách")],
+              "Size": [("m:Số khách hàng", "Số khách")]},
+             "At Risk: chi tiêu cao nhưng đã lâu không quay lại (bóng = số khách)",
+             objects={"categoryLabels": [{"properties": {"show": p(True), "color": color(INK)}}]},
+             highlight=("Dim_Segment.RFM_Segment", SEG_COLORS))
+    xr, wr = M + 616 + G, W - 616 - G
+    pg.chart("seg_table", "tableEx", xr, y2, wr, 236,
+             {"Values": [("Dim_Segment.RFM_Segment", "Phân khúc"), ("m:Số khách hàng", "Số khách"),
+                         ("m:% khách hàng", "% khách"), ("m:% doanh thu", "% doanh thu"),
+                         ("m:Chi tiêu TB/khách", "Chi tiêu TB"), ("m:Recency TB (ngày)", "Recency TB"),
+                         ("m:Tỷ lệ phản hồi CD", "Phản hồi CD")]},
+             "So sánh 6 phân khúc (chuột phải → Drill through)",
+             sort=("Dim_Segment.RFM_Segment", ASC))
+    pg.chart("action_table", "tableEx", xr, y2 + 236 + G, wr, BOT - (y2 + 236 + G),
              {"Values": [("Dim_Segment.RFM_Segment", "Phân khúc"),
-                         ("Dim_Segment.Segment_Description", "Đặc điểm"),
                          ("Dim_Segment.Recommended_Action", "Hành động đề xuất")]},
-             "Hành động đề xuất theo phân khúc")
+             "Hành động đề xuất theo phân khúc", sort=("Dim_Segment.RFM_Segment", ASC))
     pages.append(pg)
 
     # ---- Trang 6: Chat luong du lieu -------------------------------------------
@@ -798,25 +885,28 @@ def build_pages():
                "Ngoại lai chi tiêu được GIỮ LẠI có chủ đích: đó là khách VIP thật (Champions/At Risk). "
                "Hạn chế: không có ngày giao dịch (dữ liệu dạng snapshot); cột Income nhiều khả năng là thu nhập năm."),
               slicers=False)
-    for i, m in enumerate(["Dòng dữ liệu gốc", "Dòng bị loại", "Dòng dữ liệu sạch", "% dữ liệu giữ lại"]):
-        pg.card(f"kpi{i}", 20 + i * 313, 78, 300, 82, m)
-    pg.chart("funnel", "funnel", 20, 170, 500, 300,
+    y, h = pg.top, 88
+    for i, ((x, w), m) in enumerate(zip(grid(4), [
+            "Dòng dữ liệu gốc", "Dòng bị loại", "Dòng dữ liệu sạch", "% dữ liệu giữ lại"])):
+        pg.card(f"kpi{i}", x, y, w, h, m, value_color=CRITICAL if i == 1 else (GOOD if i == 3 else None))
+    y2 = y + h + G
+    pg.chart("funnel", "funnel", M, y2, 500, 300,
              {"Category": [("Data_Funnel.Stage", "Giai đoạn")], "Y": [("m:Số dòng", "Số dòng")]},
-             "Phễu dữ liệu", sort=("Data_Funnel.Stage", ASC), labels=True)
-    pg.textbox("outlier_note", 20, 480, 500, 152, [
-        [("Vì sao KHÔNG xoá ngoại lai?", {"fontSize": "11pt", "fontWeight": "bold", "color": NAVY})],
+             "Phễu dữ liệu", sort=("Data_Funnel.Stage", ASC), labels=True, fill=SERIES_1)
+    pg.textbox("outlier_note", M, y2 + 300 + G, 500, BOT - (y2 + 300 + G), [
+        [("Vì sao KHÔNG xoá ngoại lai?", {"fontSize": "11pt", "fontWeight": "bold", "color": BRAND})],
         [("• 488 khách có ít nhất 1 nhóm chi tiêu vượt ngưỡng IQR - đây là hành vi thật, không phải lỗi.",
-          {"fontSize": "9pt", "color": "#374151"})],
+          {"fontSize": "9pt", "color": INK_2})],
         [("• Top 20% khách tạo ra 53% doanh thu: xoá ngoại lai = xoá nhóm khách quan trọng nhất.",
-          {"fontSize": "9pt", "color": "#374151"})],
+          {"fontSize": "9pt", "color": INK_2})],
         [("• Chỉ loại bản ghi MÂU THUẪN LOGIC; khi mô hình hoá dùng log(1+x) để giảm lệch phải.",
-          {"fontSize": "9pt", "color": "#374151"})]])
-    pg.chart("log_table", "tableEx", 530, 170, 730, 462,
+          {"fontSize": "9pt", "color": INK_2})]])
+    pg.chart("log_table", "tableEx", M + 500 + G, y2, W - 500 - G, BOT - y2,
              {"Values": [("Cleaning_Log.Log_Order", "#"), ("Cleaning_Log.Step", "Bước"),
                          ("Cleaning_Log.Action", "Hành động"),
                          ("sum:Cleaning_Log.Rows_Affected", "Số dòng ảnh hưởng"),
                          ("Cleaning_Log.Reason", "Lý do"),
-                         ("sum:Cleaning_Log.Rows_After", "Số dòng còn lại")]},
+                         ("sum:Cleaning_Log.Rows_After", "Còn lại")]},
              "Nhật ký làm sạch dữ liệu (Cleaning Log)", sort=("Cleaning_Log.Log_Order", ASC))
     pages.append(pg)
 
@@ -835,7 +925,7 @@ def build_pages():
             "parameters": [{"name": "Param_" + flt, "boundFilter": flt,
                             "fieldExpr": fcol("Dim_Segment", "RFM_Segment")}]},
         "visibility": "HiddenInViewMode"}
-    pg.chart("customer_table", "tableEx", 20, 78, 1240, 554,
+    pg.chart("customer_table", "tableEx", M, pg.top, W, BOT + 72 - pg.top,
              {"Values": [("Customers.CustomerID", "Mã KH"), ("Customers.RFM_Segment", "Phân khúc"),
                          ("sum:Customers.Income", "Thu nhập"), ("Customers.Age_Group", "Nhóm tuổi"),
                          ("Customers.Children_Label", "Số con"),
