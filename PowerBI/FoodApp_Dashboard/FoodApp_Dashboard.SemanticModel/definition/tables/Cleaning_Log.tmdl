@@ -1,0 +1,67 @@
+/// Nhật ký làm sạch dữ liệu
+table Cleaning_Log
+	lineageTag: e59e19ed-3143-5a05-9d2d-2a0349441eb3
+
+	column Step
+		dataType: string
+		lineageTag: 197a1822-a046-564c-a5bb-cb022254c875
+		summarizeBy: none
+		sourceColumn: Step
+
+		annotation SummarizationSetBy = Automatic
+
+	column Action
+		dataType: string
+		lineageTag: 027eb29d-1bcc-5595-9c35-95277fc1f9ac
+		summarizeBy: none
+		sourceColumn: Action
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rows_Affected
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 124bf4de-9f61-5c58-9687-e5af778172e8
+		summarizeBy: sum
+		sourceColumn: Rows_Affected
+
+		annotation SummarizationSetBy = Automatic
+
+	column Reason
+		dataType: string
+		lineageTag: 44e6a893-4b51-544b-8301-bcc98cb2b048
+		summarizeBy: none
+		sourceColumn: Reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rows_After
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 22d618fa-2a6e-5374-935f-83ba22e15ac4
+		summarizeBy: none
+		sourceColumn: Rows_After
+
+		annotation SummarizationSetBy = Automatic
+
+	column Log_Order
+		dataType: int64
+		formatString: 0
+		lineageTag: 2e597ac2-c12f-5a6e-92c9-f83b9aa3c557
+		summarizeBy: none
+		sourceColumn: Log_Order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Cleaning_Log = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("jVVda9xGFP0rF0Fgl6praTd2bIfkoSlpS5uHOn4LoWjljTREGqm7kpultFACTU0prQOllFKwvA0hHyafUCI95GGM/8f4l/TckTaWl2D6YFmzM3POuffce3XjhrXhWLb1udDV3ZiysWfZ/b6zbFsf6+oZRfj5Xk6Brnb9der3sENb6qUMSP1B/RXydfVnZlOmywcZFuWMbjNQThPcIBnkU/VY1og3bVC5C1SObX0iVIGFrn6mLBS6fJtTJxaTiZBBd51uh+o12Hz1yn73rsuHkg53AfODxI/5FJeys0k+YmBJMmSaNFT7eNflixgSE7Un6FvHdr87G+KaNx6L0RZ9QNchLRrR8c4eudCq9nMoz3X5RFKmnsqQoykLKGW94ARb92zszSTzoq+ueHHqiUBODHSmq9+BcSVO3V4Pz+X/nUa1H7fO9nH2iwSCBA119St2nPNgHKs3QI90+W9KIXIA7ebZX1ma+0od4yhi48SVB6k9t1XtTXEJmBl8wFEZ2OSHgjKhHue9Xq9Lxz/epzuq8GmSm9rIaj4E9QJgOCZRVOzjEDZgw7lIgeCKw3qGPYABuXyYG0wuIcdxTTyDxXg4mjpXRl1kYOPco0vkgOvoOXa2jTuoohOZdBnbLLNtoGW7a2sXDM/5RR7Xtq6fJmA8qC5nMf4h/ZGu/pIUHhVy7t6CovfSrRi65ffQNWG1JS8751qGUOckXVHTD3iS7yXmBDclSn6Hvh+cqz2RfHTiicbJGqXp8hNco6sun5VFXQNTPPCv77Qi+xp/34yG83wf7/zjUnT0XFcz9j6fctcepEtZqLgxttVeK6pxXSGsNzUiQxRiSNvMWO8w0N+41xkm2dJp0Yila+T2jdwLFreCGV2sGdWxutr4hvFR+KExTR1k8/y43KCv4pac7Ua2DPiF5X725UaPDn9T+1OKoHwO9O4Gp3vzU10+3aROPVxSZH1XcEHcw0msypmoDWiG2J1EFe2J9qzFdxEj1jRnEnyI9paTW8k4xlnBZpbFFCX0GjnCpGkFvnrik2neeuzBsaaXm6HVuYSIj3+6T80465oGvsv9WSDnh7ueOc+tauaqpCXayuN4yoMmbfGtWVyfZZHQ0MzWesu2ro68LB+PaCQDIUejMWjXaTBoTlGMFhHUMUMRIenyUU7I1S9+a4AgL6iv0KaNq9dszkLbYHfxa1XTtr9WE8jyw3W0d/MdsfGatQYer0+NbXAIvyG5+R8=", BinaryEncoding.Base64), Compression.Deflate)), {"Step", "Action", "Rows_Affected", "Reason", "Rows_After"}),
+				    Typed = Table.TransformColumnTypes(Source, {{"Step", type text}, {"Action", type text}, {"Rows_Affected", Int64.Type}, {"Reason", type text}, {"Rows_After", Int64.Type}}),
+				    Result = Table.AddIndexColumn(Typed, "Log_Order", 1, 1, Int64.Type)
+				in
+				    Result
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "f716902f754e1647bdfa",
+  "position": {
+    "x": 332.5,
+    "y": 76,
+    "z": 1400,
+    "height": 84,
+    "width": 302.5,
+    "tabOrder": 1400
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Dòng bị loại"
+                }
+              },
+              "queryRef": "_Measures.Dòng bị loại"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

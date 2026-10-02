@@ -1,0 +1,52 @@
+/// Phễu dữ liệu trước/sau làm sạch
+table Data_Funnel
+	lineageTag: 04c9fadc-78ef-5120-876a-9493634d7f6d
+
+	column Stage
+		dataType: string
+		lineageTag: a539dfac-7d56-5a8c-aad8-9e815f1800d0
+		summarizeBy: none
+		sourceColumn: Stage
+		sortByColumn: Stage_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rows
+		dataType: int64
+		formatString: #,##0
+		lineageTag: f033eaaa-5500-5ce9-a182-66629f0a54e6
+		summarizeBy: sum
+		sourceColumn: Rows
+
+		annotation SummarizationSetBy = Automatic
+
+	column Stage_Sort
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 335d9ac3-0775-5a01-aaa6-3fecf5117a8d
+		summarizeBy: none
+		sourceColumn: Stage_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Data_Funnel = m
+		mode: import
+		source =
+				let
+				    Log = Cleaning_Log,
+				    RawRows = Table.SelectRows(Log, each [Step] = "R0"){0}[Rows_After],
+				    AfterDedup = Table.SelectRows(Log, each [Step] = "R2"){0}[Rows_After],
+				    FinalRows = Table.SelectRows(Log, each [Step] = "R10"){0}[Rows_After],
+				    Funnel = #table(
+				        type table [Stage = text, Rows = Int64.Type, Stage_Sort = Int64.Type],
+				        {
+				            {"1. Dữ liệu gốc", RawRows, 1},
+				            {"2. Sau loại trùng lặp", AfterDedup, 2},
+				            {"3. Sau loại mâu thuẫn logic", FinalRows, 3}
+				        })
+				in
+				    Funnel
+
+	annotation PBI_ResultType = Table
+

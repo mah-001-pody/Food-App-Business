@@ -1,0 +1,59 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "f5ac411f41c5f1335c26",
+  "position": {
+    "x": 630,
+    "y": 12,
+    "z": 1200,
+    "height": 56,
+    "width": 150,
+    "tabOrder": 1200
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_IncomeGroup"
+                    }
+                  },
+                  "Property": "Income_Group"
+                }
+              },
+              "queryRef": "Dim_IncomeGroup.Income_Group",
+              "active": true,
+              "displayName": "Nhóm thu nhập"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "syncGroup": {
+      "groupName": "sync_income",
+      "fieldChanges": true,
+      "filterChanges": true
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

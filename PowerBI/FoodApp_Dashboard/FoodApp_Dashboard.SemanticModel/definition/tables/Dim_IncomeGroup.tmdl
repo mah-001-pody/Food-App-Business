@@ -1,0 +1,41 @@
+/// Dimension nhóm thu nhập
+table Dim_IncomeGroup
+	lineageTag: a92ed922-2739-56bc-b45a-9c410bcc65df
+
+	column Income_Group
+		dataType: string
+		lineageTag: 530eb224-21de-504b-8b3f-ad78d2f4e365
+		summarizeBy: none
+		sourceColumn: Income_Group
+		sortByColumn: Income_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Income_Sort
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 667c012f-097a-5336-885c-0ac150bad9a9
+		summarizeBy: none
+		sourceColumn: Income_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_IncomeGroup = m
+		mode: import
+		source =
+				let
+				    Source = #table(
+				        type table [Income_Group = text, Income_Sort = Int64.Type],
+				        {
+				            {"<30K", 1},
+				            {"30-50K", 2},
+				            {"50-70K", 3},
+				            {"70-90K", 4},
+				            {"90K+", 5}
+				        })
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

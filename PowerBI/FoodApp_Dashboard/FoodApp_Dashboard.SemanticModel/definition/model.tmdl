@@ -1,0 +1,24 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["Customers", "Dim_IncomeGroup", "Dim_AgeGroup", "Dim_Segment", "Spend_By_Category", "Purchases_By_Channel", "Campaign_Response", "Cleaning_Log", "Data_Funnel", "_Measures"]
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+ref table Customers
+ref table Dim_IncomeGroup
+ref table Dim_AgeGroup
+ref table Dim_Segment
+ref table Spend_By_Category
+ref table Purchases_By_Channel
+ref table Campaign_Response
+ref table Cleaning_Log
+ref table Data_Funnel
+ref table _Measures
+ref table 'Winback Rate'
+

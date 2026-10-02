@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "7e077f066e6b391b6976",
+  "position": {
+    "x": 260.0,
+    "y": 76,
+    "z": 1800,
+    "height": 84,
+    "width": 230.0,
+    "tabOrder": 1800
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "% doanh thu rủi ro"
+                }
+              },
+              "queryRef": "_Measures.% doanh thu rủi ro"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

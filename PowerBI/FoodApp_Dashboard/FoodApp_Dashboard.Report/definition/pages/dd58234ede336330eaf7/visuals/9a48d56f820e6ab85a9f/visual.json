@@ -1,0 +1,247 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "9a48d56f820e6ab85a9f",
+  "position": {
+    "x": 20,
+    "y": 78,
+    "z": 1200,
+    "height": 554,
+    "width": 1240,
+    "tabOrder": 1200
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Customers"
+                    }
+                  },
+                  "Property": "CustomerID"
+                }
+              },
+              "queryRef": "Customers.CustomerID",
+              "displayName": "Mã KH"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Customers"
+                    }
+                  },
+                  "Property": "RFM_Segment"
+                }
+              },
+              "queryRef": "Customers.RFM_Segment",
+              "displayName": "Phân khúc"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Customers"
+                        }
+                      },
+                      "Property": "Income"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Customers.Income)",
+              "displayName": "Thu nhập"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Customers"
+                    }
+                  },
+                  "Property": "Age_Group"
+                }
+              },
+              "queryRef": "Customers.Age_Group",
+              "displayName": "Nhóm tuổi"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Customers"
+                    }
+                  },
+                  "Property": "Children_Label"
+                }
+              },
+              "queryRef": "Customers.Children_Label",
+              "displayName": "Số con"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Customers"
+                        }
+                      },
+                      "Property": "Total_Spend"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Customers.Total_Spend)",
+              "displayName": "Tổng chi tiêu"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Customers"
+                        }
+                      },
+                      "Property": "Recency"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Customers.Recency)",
+              "displayName": "Recency (ngày)"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Customers"
+                        }
+                      },
+                      "Property": "Total_Purchases"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Customers.Total_Purchases)",
+              "displayName": "Số đơn"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Customers"
+                    }
+                  },
+                  "Property": "Preferred_Channel"
+                }
+              },
+              "queryRef": "Customers.Preferred_Channel",
+              "displayName": "Kênh ưa thích"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Customers"
+                        }
+                      },
+                      "Property": "Total_Campaigns"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Customers.Total_Campaigns)",
+              "displayName": "Số CD đã nhận"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Customers"
+                    }
+                  },
+                  "Property": "Value_Tier"
+                }
+              },
+              "queryRef": "Customers.Value_Tier",
+              "displayName": "Nhóm giá trị"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Customers"
+                      }
+                    },
+                    "Property": "Total_Spend"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Danh sách khách hàng (sắp xếp theo tổng chi tiêu)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

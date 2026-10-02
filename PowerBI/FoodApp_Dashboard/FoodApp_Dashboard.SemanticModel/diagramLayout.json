@@ -1,0 +1,165 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 874.4780753077364,
+            "y": 239.03545627951837
+          },
+          "nodeIndex": "_Measures",
+          "nodeLineageTag": "4aae6acd-151d-5ce8-add6-c67f70f404eb",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 640.4247008464854,
+            "y": -22.286917640457773
+          },
+          "nodeIndex": "Campaign_Response",
+          "nodeLineageTag": "d19dc078-939b-5c23-9709-63ad1f5edd9b",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1158.4780753077364,
+            "y": 277.03545627951837
+          },
+          "nodeIndex": "Cleaning_Log",
+          "nodeLineageTag": "e59e19ed-3143-5a05-9d2d-2a0349441eb3",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 356.2464541079255,
+            "y": 200.25010029125883
+          },
+          "nodeIndex": "Customers",
+          "nodeLineageTag": "e3a84045-f634-5dca-b5e3-7204c6f2b34f",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1442.4780753077364,
+            "y": 313.03545627951837
+          },
+          "nodeIndex": "Data_Funnel",
+          "nodeLineageTag": "04c9fadc-78ef-5120-876a-9493634d7f6d",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 200.16636915507678
+          },
+          "nodeIndex": "Dim_AgeGroup",
+          "nodeLineageTag": "b3292de1-eac4-5a9e-8108-709847c66522",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 640.4780753077364,
+            "y": 367.7127300201345
+          },
+          "nodeIndex": "Dim_IncomeGroup",
+          "nodeLineageTag": "a92ed922-2739-56bc-b45a-9c410bcc65df",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 436.90787857046007,
+            "y": 550.483911925871
+          },
+          "nodeIndex": "Dim_Segment",
+          "nodeLineageTag": "ceeb1479-7b81-5cf6-b4d5-2b095068f256",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 269.01851068697135,
+            "y": -50
+          },
+          "nodeIndex": "Purchases_By_Channel",
+          "nodeLineageTag": "a736d981-92b9-5933-8c1d-a563bf05320c",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 72.06994243152621,
+            "y": 528.0709125590367
+          },
+          "nodeIndex": "Spend_By_Category",
+          "nodeLineageTag": "6089cd41-4365-5ec8-aa08-365d479f4b1c",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1726.4780753077364,
+            "y": 289.03545627951837
+          },
+          "nodeIndex": "Winback Rate",
+          "nodeLineageTag": "8ce69acf-b7ab-5b1f-96e7-2799f24293e7",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

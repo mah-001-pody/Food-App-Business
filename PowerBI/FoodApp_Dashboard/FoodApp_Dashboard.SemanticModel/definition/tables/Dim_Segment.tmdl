@@ -1,0 +1,58 @@
+/// Dimension phân khúc RFM + hành động đề xuất
+table Dim_Segment
+	lineageTag: ceeb1479-7b81-5cf6-b4d5-2b095068f256
+
+	column RFM_Segment
+		dataType: string
+		lineageTag: 8eb04f57-7bc1-57b3-84b7-d589a40f5fc2
+		summarizeBy: none
+		sourceColumn: RFM_Segment
+		sortByColumn: Segment_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Segment_Sort
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 1d3716be-f485-5544-a089-7cc290d674bd
+		summarizeBy: none
+		sourceColumn: Segment_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Segment_Description
+		dataType: string
+		lineageTag: c2646fbb-9051-5457-a7ae-df37a9ac5dd0
+		summarizeBy: none
+		sourceColumn: Segment_Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Recommended_Action
+		dataType: string
+		lineageTag: f1442751-9f7a-5775-bd49-b5dbf784e93e
+		summarizeBy: none
+		sourceColumn: Recommended_Action
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Segment = m
+		mode: import
+		source =
+				let
+				    Source = #table(
+				        type table [RFM_Segment = text, Segment_Sort = Int64.Type, Segment_Description = text, Recommended_Action = text],
+				        {
+				            {"Champions", 1, "Mua gần đây, chi tiêu và tần suất cao nhất", "Chương trình VIP, ưu tiên catalog cao cấp; không cần giảm giá"},
+				            {"Loyal Customers", 2, "Mua đều đặn, giá trị khá", "Upsell / cross-sell để nâng lên Champions"},
+				            {"New / Promising", 3, "Mới mua gần đây nhưng giá trị còn thấp", "Nuôi dưỡng bằng ưu đãi kiểu Chiến dịch 3 (nhóm đại trà)"},
+				            {"Need Attention", 4, "Giá trị thấp, bắt đầu thưa dần", "Nhắc nhở tự động, mã giảm giá nhỏ"},
+				            {"At Risk", 5, "Từng chi tiêu cao nhưng đã lâu không quay lại", "WIN-BACK NGAY: catalog rượu vang & thịt cá nhân hoá, ưu đãi có hạn 30 ngày"},
+				            {"Hibernating", 6, "Giá trị thấp và lâu không mua", "Email tự động chi phí thấp; không dồn ngân sách"}
+				        })
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,59 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "cd6115cefa052b8da654",
+  "position": {
+    "x": 790,
+    "y": 12,
+    "z": 1300,
+    "height": 56,
+    "width": 150,
+    "tabOrder": 1300
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_AgeGroup"
+                    }
+                  },
+                  "Property": "Age_Group"
+                }
+              },
+              "queryRef": "Dim_AgeGroup.Age_Group",
+              "active": true,
+              "displayName": "Nhóm tuổi"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "syncGroup": {
+      "groupName": "sync_age",
+      "fieldChanges": true,
+      "filterChanges": true
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

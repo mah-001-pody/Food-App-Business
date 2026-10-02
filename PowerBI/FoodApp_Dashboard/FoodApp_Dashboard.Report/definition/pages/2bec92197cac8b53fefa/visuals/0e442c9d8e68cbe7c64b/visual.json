@@ -1,0 +1,75 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "0e442c9d8e68cbe7c64b",
+  "position": {
+    "x": 20,
+    "y": 480,
+    "z": 1800,
+    "height": 152,
+    "width": 500,
+    "tabOrder": 1800
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Vì sao KHÔNG xoá ngoại lai?",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "11pt",
+                      "fontWeight": "bold",
+                      "color": "#1F4D3A"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• 488 khách có ít nhất 1 nhóm chi tiêu vượt ngưỡng IQR - đây là hành vi thật, không phải lỗi.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "9pt",
+                      "color": "#4A3F35"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Top 20% khách tạo ra 53% doanh thu: xoá ngoại lai = xoá nhóm khách quan trọng nhất.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "9pt",
+                      "color": "#4A3F35"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Chỉ loại bản ghi MÂU THUẪN LOGIC; khi mô hình hoá dùng log(1+x) để giảm lệch phải.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "9pt",
+                      "color": "#4A3F35"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
