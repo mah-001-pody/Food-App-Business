@@ -3,10 +3,10 @@
   "name": "4fcf59a099b5ad81f1dd",
   "position": {
     "x": 34,
-    "y": 8,
+    "y": 10,
     "z": 1100,
     "height": 62,
-    "width": 586,
+    "width": 618,
     "tabOrder": 1100
   },
   "visual": {
@@ -22,7 +22,7 @@
                     "value": "Thu nhập và con cái quyết định mức chi tiêu",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
-                      "fontSize": "18pt",
+                      "fontSize": "16pt",
                       "fontWeight": "bold",
                       "color": "#1F4D3A"
                     }

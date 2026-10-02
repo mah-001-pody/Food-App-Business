@@ -3,7 +3,7 @@
   "name": "20dd85a65075e2679e48",
   "position": {
     "x": 34,
-    "y": 8,
+    "y": 10,
     "z": 1100,
     "height": 62,
     "width": 1226,
@@ -22,7 +22,7 @@
                     "value": "Danh sách khách hàng theo phân khúc",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
-                      "fontSize": "18pt",
+                      "fontSize": "16pt",
                       "fontWeight": "bold",
                       "color": "#1F4D3A"
                     }

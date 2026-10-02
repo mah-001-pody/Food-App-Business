@@ -3,7 +3,7 @@
   "name": "cfd2d94421f73ef48fee",
   "position": {
     "x": 34,
-    "y": 8,
+    "y": 10,
     "z": 1100,
     "height": 62,
     "width": 1226,
@@ -22,7 +22,7 @@
                     "value": "Vì sao các con số này đáng tin",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
-                      "fontSize": "18pt",
+                      "fontSize": "16pt",
                       "fontWeight": "bold",
                       "color": "#1F4D3A"
                     }

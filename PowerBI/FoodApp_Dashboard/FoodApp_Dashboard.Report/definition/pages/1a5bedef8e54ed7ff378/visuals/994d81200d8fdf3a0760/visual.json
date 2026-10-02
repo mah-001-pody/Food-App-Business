@@ -3,10 +3,10 @@
   "name": "994d81200d8fdf3a0760",
   "position": {
     "x": 34,
-    "y": 8,
+    "y": 10,
     "z": 1100,
     "height": 62,
-    "width": 586,
+    "width": 618,
     "tabOrder": 1100
   },
   "visual": {
@@ -22,7 +22,7 @@
                     "value": "Doanh thu nằm trong tay rất ít khách hàng",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
-                      "fontSize": "18pt",
+                      "fontSize": "16pt",
                       "fontWeight": "bold",
                       "color": "#1F4D3A"
                     }

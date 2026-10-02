@@ -2,18 +2,18 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
   "name": "1148fd8eed54de640929",
   "position": {
-    "x": 640,
-    "y": 358,
+    "x": 632,
+    "y": 365.0,
     "z": 2100,
-    "height": 274,
-    "width": 620,
+    "height": 267.0,
+    "width": 628,
     "tabOrder": 2100
   },
   "visual": {
-    "visualType": "tableEx",
+    "visualType": "pivotTable",
     "query": {
       "queryState": {
-        "Values": {
+        "Columns": {
           "projections": [
             {
               "field": {
@@ -27,8 +27,13 @@
                 }
               },
               "queryRef": "Customers.Web_Visit_Group",
-              "displayName": "Nhóm truy cập web"
-            },
+              "displayName": "Nhóm truy cập web",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
             {
               "field": {
                 "Measure": {
@@ -127,6 +132,54 @@
               "expr": {
                 "Literal": {
                   "Value": "'Truy cập nhiều ≠ mua nhiều: so sánh 2 nhóm truy cập web'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "valuesOnRow": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTotals": [
+        {
+          "properties": {
+            "rowSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "columnSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "7D"
                 }
               }
             }

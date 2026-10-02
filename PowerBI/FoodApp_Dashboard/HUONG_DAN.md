@@ -55,3 +55,14 @@ FoodApp_Dashboard/
 ## Muốn đổi màu sau này?
 
 Sửa file `FoodApp_Dashboard.Report/StaticResources/RegisteredResources/FoodAppTheme.json`, hoặc trong Power BI Desktop: `View → Themes → Customize current theme`.
+
+## Bản 2 - căn chỉnh lại bố cục (từ DB.2)
+
+- **Lưới thống nhất:** lề 20px, khoảng cách giữa các ô đều 12px trên cả 7 trang.
+- **Hàng tiêu đề + slicer:** slicer cao hơn (62px), có lề trong, cách phần nội dung bên dưới 14px nên ô chọn không còn sát thẻ KPI hay biểu đồ.
+- **Tiêu đề trang:** 16pt, luôn nằm trên 1 dòng. Tiêu đề trang 3 rút gọn thành "Catalog bị bỏ quên, web nhiều lượt xem nhưng ít đơn" (bản cũ quá dài, bị xuống dòng và che mất dòng phụ đề).
+- **Trang 3 - Truy cập nhiều ≠ mua nhiều:** bảng 2 dòng (thừa khoảng trắng) đổi thành ma trận: 6 chỉ số theo hàng × 2 nhóm truy cập theo cột, lấp đầy khung.
+- **Trang 4 - Phủ sóng chiến dịch theo nhóm giá trị:** đổi thành ma trận 5 chỉ số × High/Mid/Low (thêm dòng "Chi tiêu TB/khách" để thấy rõ nhóm High là nhóm giá trị nhất).
+- **Trang 5:** 2 bảng phân khúc rộng hơn (716px) để chữ "Hành động đề xuất" không bị tràn.
+- **Trang 6:** bảng Cleaning Log rộng hơn, cột trái gọn lại.
+- **Biểu đồ cột/thanh:** bỏ tiêu đề trục và trục giá trị thừa (đã có nhãn số trên cột), nhìn thoáng hơn.

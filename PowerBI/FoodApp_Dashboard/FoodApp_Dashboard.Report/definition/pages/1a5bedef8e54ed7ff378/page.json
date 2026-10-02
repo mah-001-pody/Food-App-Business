@@ -1,8 +1,1 @@
-{
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/1.4.0/schema.json",
-  "name": "1a5bedef8e54ed7ff378",
-  "displayName": "1. Tổng quan",
-  "displayOption": "FitToPage",
-  "height": 720,
-  "width": 1280
-}
+{"$schema":"https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/1.4.0/schema.json","name":"1a5bedef8e54ed7ff378","displayName":"1. Tổng quan","displayOption":"FitToPage","height":720,"width":1280}

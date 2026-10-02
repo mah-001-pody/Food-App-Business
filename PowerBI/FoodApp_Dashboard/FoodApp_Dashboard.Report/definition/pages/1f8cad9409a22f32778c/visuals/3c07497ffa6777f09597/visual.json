@@ -3,9 +3,9 @@
   "name": "3c07497ffa6777f09597",
   "position": {
     "x": 980,
-    "y": 76,
+    "y": 86,
     "z": 2100,
-    "height": 84,
+    "height": 80,
     "width": 280,
     "tabOrder": 2100
   },
@@ -62,6 +62,42 @@
         }
       ]
     },
-    "drillFilterOtherVisuals": true
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "6D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
   }
 }

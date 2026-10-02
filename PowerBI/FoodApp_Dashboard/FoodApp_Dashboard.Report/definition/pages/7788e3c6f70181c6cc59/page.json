@@ -1,8 +1,1 @@
-{
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/1.4.0/schema.json",
-  "name": "7788e3c6f70181c6cc59",
-  "displayName": "4. Hiệu quả chiến dịch",
-  "displayOption": "FitToPage",
-  "height": 720,
-  "width": 1280
-}
+{"$schema":"https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/1.4.0/schema.json","name":"7788e3c6f70181c6cc59","displayName":"4. Hiệu quả chiến dịch","displayOption":"FitToPage","height":720,"width":1280}
