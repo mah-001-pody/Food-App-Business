@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "ec08336fa5483cb97c8a",
   "position": {
-    "x": 20,
-    "y": 365.0,
+    "x": 19.6846638694294,
+    "y": 352.80974473669613,
     "z": 2000,
-    "height": 267.0,
-    "width": 600,
+    "height": 278.61370399807765,
+    "width": 655.6507273433023,
     "tabOrder": 2000
   },
   "visual": {
@@ -87,29 +87,6 @@
         ]
       }
     },
-    "visualContainerObjects": {
-      "title": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Cơ cấu số lần mua theo kênh và thu nhập'"
-                }
-              }
-            }
-          }
-        }
-      ]
-    },
-    "drillFilterOtherVisuals": true,
     "objects": {
       "dataPoint": [
         {
@@ -236,6 +213,29 @@
           }
         }
       ]
-    }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Cơ cấu số lần mua theo kênh và thu nhập'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
   }
 }

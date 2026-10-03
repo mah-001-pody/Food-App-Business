@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "da4ce34b7cc7642243f5",
+  "name": "01ce126f1dc1a0e66dfe",
   "position": {
-    "x": 544,
-    "y": 422,
-    "z": 2400,
-    "height": 26,
-    "width": 716,
-    "tabOrder": 2400
+    "x": 1029.33,
+    "y": 454.0,
+    "z": 2412,
+    "height": 80.0,
+    "width": 230.67,
+    "tabOrder": 2412
   },
   "visual": {
     "visualType": "textbox",
@@ -19,12 +19,32 @@
               {
                 "textRuns": [
                   {
-                    "value": "Hành động đề xuất theo phân khúc",
+                    "value": "■ ",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
-                      "fontSize": "11pt",
+                      "fontSize": "10pt",
+                      "color": "#3D7EA6"
+                    }
+                  },
+                  {
+                    "value": "New / Promising",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "10pt",
                       "fontWeight": "bold",
-                      "color": "#2B2118"
+                      "color": "#3D7EA6"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Nuôi dưỡng bằng ưu đãi kiểu Chiến dịch 3 (nhóm đại trà)",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "9pt",
+                      "color": "#4A3F35"
                     }
                   }
                 ]
@@ -41,7 +61,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             }
@@ -54,7 +74,18 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#3D7EA6'"
+                    }
+                  }
                 }
               }
             }
@@ -67,28 +98,28 @@
             "top": {
               "expr": {
                 "Literal": {
-                  "Value": "2D"
+                  "Value": "6D"
                 }
               }
             },
             "bottom": {
               "expr": {
                 "Literal": {
-                  "Value": "2D"
+                  "Value": "6D"
                 }
               }
             },
             "left": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
+                  "Value": "10D"
                 }
               }
             },
             "right": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
+                  "Value": "10D"
                 }
               }
             }

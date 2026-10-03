@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "994d81200d8fdf3a0760",
   "position": {
     "x": 34,
@@ -21,10 +21,10 @@
                   {
                     "value": "Doanh thu nằm trong tay rất ít khách hàng",
                     "textStyle": {
+                      "fontWeight": "bold",
                       "fontFamily": "Segoe UI",
                       "fontSize": "16pt",
-                      "fontWeight": "bold",
-                      "color": "#1F4D3A"
+                      "color": "#1f4d3a"
                     }
                   }
                 ]
@@ -32,11 +32,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "Tổng quan hiệu quả kinh doanh Food App - 1.992 khách hàng sau làm sạch",
+                    "value": "Tổng quan hiệu quả kinh doanh Food App",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "10pt",
-                      "color": "#6E5F52"
+                      "color": "#6e5f52"
                     }
                   }
                 ]
@@ -46,7 +46,6 @@
         }
       ]
     },
-    "drillFilterOtherVisuals": true,
     "visualContainerObjects": {
       "background": [
         {
@@ -74,6 +73,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   }
 }

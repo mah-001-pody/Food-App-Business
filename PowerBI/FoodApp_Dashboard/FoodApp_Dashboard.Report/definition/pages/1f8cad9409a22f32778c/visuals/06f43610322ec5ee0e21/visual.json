@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
-  "name": "5c0dd68878fa58e06a1d",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "06f43610322ec5ee0e21",
   "position": {
-    "x": 20,
-    "y": 644,
-    "z": 1200,
-    "height": 66,
-    "width": 1240,
-    "tabOrder": 1200
+    "x": 544.0,
+    "y": 454.0,
+    "z": 2410,
+    "height": 80.0,
+    "width": 230.67,
+    "tabOrder": 2410
   },
   "visual": {
     "visualType": "textbox",
@@ -19,21 +19,20 @@
               {
                 "textRuns": [
                   {
-                    "value": "SO WHAT?  ",
+                    "value": "■ ",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "10pt",
-                      "fontWeight": "bold",
-                      "color": "#C2410C"
+                      "color": "#2E6B4F"
                     }
                   },
                   {
-                    "value": "Loại 204 bản ghi trùng lặp (9,3%) + 9 bản ghi mâu thuẫn logic; giữ lại 90,3% dữ liệu.",
+                    "value": "Champions",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "10pt",
                       "fontWeight": "bold",
-                      "color": "#2B2118"
+                      "color": "#2E6B4F"
                     }
                   }
                 ]
@@ -41,7 +40,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Ngoại lai chi tiêu được GIỮ LẠI có chủ đích: đó là khách VIP thật (Champions/At Risk). Hạn chế: không có ngày giao dịch (dữ liệu dạng snapshot); cột Income nhiều khả năng là thu nhập năm.",
+                    "value": "Chương trình VIP, ưu tiên catalog cao cấp; không cần giảm giá",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "9pt",
@@ -55,7 +54,6 @@
         }
       ]
     },
-    "drillFilterOtherVisuals": true,
     "visualContainerObjects": {
       "background": [
         {
@@ -64,24 +62,6 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
-                }
-              }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#FFF6EA'"
-                    }
-                  }
-                }
-              }
-            },
-            "transparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "0.0D"
                 }
               }
             }
@@ -103,7 +83,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#F2A541'"
+                      "Value": "'#2E6B4F'"
                     }
                   }
                 }
@@ -118,34 +98,35 @@
             "top": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "6D"
                 }
               }
             },
             "bottom": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "6D"
                 }
               }
             },
             "left": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "10D"
                 }
               }
             },
             "right": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "10D"
                 }
               }
             }
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   }
 }

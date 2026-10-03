@@ -1,19 +1,19 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "1148fd8eed54de640929",
   "position": {
-    "x": 632,
-    "y": 365.0,
+    "x": 687.45,
+    "y": 352.81,
     "z": 2100,
-    "height": 267.0,
-    "width": 628,
+    "height": 278.61,
+    "width": 182.79,
     "tabOrder": 2100
   },
   "visual": {
-    "visualType": "pivotTable",
+    "visualType": "clusteredColumnChart",
     "query": {
       "queryState": {
-        "Columns": {
+        "Category": {
           "projections": [
             {
               "field": {
@@ -27,78 +27,13 @@
                 }
               },
               "queryRef": "Customers.Web_Visit_Group",
-              "displayName": "Nhóm truy cập web",
-              "active": true
+              "active": true,
+              "displayName": "Nhóm truy cập web"
             }
           ]
         },
-        "Values": {
+        "Y": {
           "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Số khách hàng"
-                }
-              },
-              "queryRef": "_Measures.Số khách hàng"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Thu nhập TB"
-                }
-              },
-              "queryRef": "_Measures.Thu nhập TB"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Chi tiêu TB/khách"
-                }
-              },
-              "queryRef": "_Measures.Chi tiêu TB/khách"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Tỷ lệ mua giảm giá"
-                }
-              },
-              "queryRef": "_Measures.Tỷ lệ mua giảm giá"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Số đơn web TB"
-                }
-              },
-              "queryRef": "_Measures.Số đơn web TB"
-            },
             {
               "field": {
                 "Measure": {
@@ -114,9 +49,124 @@
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Customers"
+                  }
+                },
+                "Property": "Web_Visit_Group"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
       }
     },
-    "drillFilterOtherVisuals": true,
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E4572E'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Customers"
+                          }
+                        },
+                        "Property": "Web_Visit_Group"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Truy cập cao (≥7 lần/tháng)'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2E6B4F'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Customers"
+                          }
+                        },
+                        "Property": "Web_Visit_Group"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Truy cập thấp (<7 lần/tháng)'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
     "visualContainerObjects": {
       "title": [
         {
@@ -131,19 +181,11 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Truy cập nhiều ≠ mua nhiều: so sánh 2 nhóm truy cập web'"
+                  "Value": "'Truy cập web nhiều gấp ~2 lần…'"
                 }
               }
-            }
-          }
-        }
-      ]
-    },
-    "objects": {
-      "values": [
-        {
-          "properties": {
-            "valuesOnRow": {
+            },
+            "titleWrap": {
               "expr": {
                 "Literal": {
                   "Value": "true"
@@ -152,40 +194,8 @@
             }
           }
         }
-      ],
-      "subTotals": [
-        {
-          "properties": {
-            "rowSubtotals": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "columnSubtotals": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "grid": [
-        {
-          "properties": {
-            "rowPadding": {
-              "expr": {
-                "Literal": {
-                  "Value": "7D"
-                }
-              }
-            }
-          }
-        }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   }
 }

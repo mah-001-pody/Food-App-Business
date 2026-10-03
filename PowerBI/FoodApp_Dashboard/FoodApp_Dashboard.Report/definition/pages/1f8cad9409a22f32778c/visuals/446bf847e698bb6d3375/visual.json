@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "da4ce34b7cc7642243f5",
+  "name": "446bf847e698bb6d3375",
   "position": {
-    "x": 544,
-    "y": 422,
-    "z": 2400,
-    "height": 26,
-    "width": 716,
-    "tabOrder": 2400
+    "x": 1029.33,
+    "y": 546.0,
+    "z": 2415,
+    "height": 80.0,
+    "width": 230.67,
+    "tabOrder": 2415
   },
   "visual": {
     "visualType": "textbox",
@@ -19,12 +19,32 @@
               {
                 "textRuns": [
                   {
-                    "value": "Hành động đề xuất theo phân khúc",
+                    "value": "■ ",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
-                      "fontSize": "11pt",
+                      "fontSize": "10pt",
+                      "color": "#B8ADA1"
+                    }
+                  },
+                  {
+                    "value": "Hibernating",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "10pt",
                       "fontWeight": "bold",
-                      "color": "#2B2118"
+                      "color": "#6E5F52"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Email tự động chi phí thấp; không dồn ngân sách",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "9pt",
+                      "color": "#4A3F35"
                     }
                   }
                 ]
@@ -41,7 +61,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             }
@@ -54,7 +74,18 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#B8ADA1'"
+                    }
+                  }
                 }
               }
             }
@@ -67,28 +98,28 @@
             "top": {
               "expr": {
                 "Literal": {
-                  "Value": "2D"
+                  "Value": "6D"
                 }
               }
             },
             "bottom": {
               "expr": {
                 "Literal": {
-                  "Value": "2D"
+                  "Value": "6D"
                 }
               }
             },
             "left": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
+                  "Value": "10D"
                 }
               }
             },
             "right": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
+                  "Value": "10D"
                 }
               }
             }

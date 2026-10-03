@@ -66,3 +66,16 @@ Sửa file `FoodApp_Dashboard.Report/StaticResources/RegisteredResources/FoodApp
 - **Trang 5:** 2 bảng phân khúc rộng hơn (716px) để chữ "Hành động đề xuất" không bị tràn.
 - **Trang 6:** bảng Cleaning Log rộng hơn, cột trái gọn lại.
 - **Biểu đồ cột/thanh:** bỏ tiêu đề trục và trục giá trị thừa (đã có nhãn số trên cột), nhìn thoáng hơn.
+
+## Bản Final - thay bảng bằng biểu đồ (từ Final.1)
+
+Giữ nguyên theme, bố cục và chỉnh sửa của nhóm trong Final.1 (5 trang; trang Chất lượng dữ liệu và trang drill-through đã bỏ). Chỉ thay 4 bảng, mỗi biểu đồ mới nằm đúng trong khung của bảng cũ:
+
+| Trang | Bảng cũ | Biểu đồ mới |
+|---|---|---|
+| 3 | Truy cập nhiều ≠ mua nhiều (ma trận 6 chỉ số) | 3 biểu đồ cột nhỏ kể 1 câu chuyện: **truy cập nhiều gấp ~2 lần → chi tiêu chỉ ~40% → vì săn hàng giảm giá**. Nhóm truy cập cao = đỏ cà chua, thấp = xanh |
+| 4 | Phủ sóng chiến dịch theo nhóm giá trị | Thanh 100% chồng High / Mid / Low: **Đã từng phản hồi** (xanh) vs **Chưa từng phản hồi** (đỏ) - thấy ngay ~1/2 khách VIP chưa từng phản hồi |
+| 5 | So sánh 6 phân khúc RFM | Cột **% khách hàng vs % doanh thu** theo phân khúc (At Risk 24% khách → 40% doanh thu). Chi tiêu TB, recency, tỷ lệ phản hồi hiện khi rê chuột (tooltip) |
+| 5 | Hành động đề xuất theo phân khúc | 6 thẻ hành động, viền màu theo phân khúc (cùng màu với biểu đồ bong bóng) |
+
+Tiêu đề bảng phân khúc cũ nhắc "chuột phải → Drill through" nhưng trang drill-through đã bị xoá, nên tiêu đề mới bỏ hướng dẫn đó.

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "604f98847d10feda687c",
   "position": {
-    "x": 664,
-    "y": 10,
+    "x": 664.7359568215005,
+    "y": 10.599434391231215,
     "z": 1200,
-    "height": 62,
-    "width": 140,
+    "height": 62.08240143435426,
+    "width": 139.30685199903883,
     "tabOrder": 1200
   },
   "visual": {
@@ -49,12 +49,6 @@
         }
       ]
     },
-    "syncGroup": {
-      "groupName": "sync_income",
-      "fieldChanges": true,
-      "filterChanges": true
-    },
-    "drillFilterOtherVisuals": true,
     "visualContainerObjects": {
       "padding": [
         {
@@ -90,6 +84,12 @@
           }
         }
       ]
-    }
+    },
+    "syncGroup": {
+      "groupName": "sync_income",
+      "fieldChanges": true,
+      "filterChanges": true
+    },
+    "drillFilterOtherVisuals": true
   }
 }

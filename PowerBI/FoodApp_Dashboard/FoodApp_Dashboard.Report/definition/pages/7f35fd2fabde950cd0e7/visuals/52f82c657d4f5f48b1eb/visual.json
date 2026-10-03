@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "52f82c657d4f5f48b1eb",
   "position": {
-    "x": 20,
-    "y": 86,
+    "x": 19.6846638694294,
+    "y": 86.30968004288275,
     "z": 1700,
-    "height": 267.0,
-    "width": 600,
+    "height": 249.84381065045008,
+    "width": 599.6251455610802,
     "tabOrder": 1700
   },
   "visual": {
@@ -87,29 +87,6 @@
         ]
       }
     },
-    "visualContainerObjects": {
-      "title": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Cơ cấu giỏ hàng theo nhóm thu nhập'"
-                }
-              }
-            }
-          }
-        }
-      ]
-    },
-    "drillFilterOtherVisuals": true,
     "objects": {
       "dataPoint": [
         {
@@ -318,6 +295,29 @@
           }
         }
       ]
-    }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Cơ cấu giỏ hàng theo nhóm thu nhập'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
   }
 }
