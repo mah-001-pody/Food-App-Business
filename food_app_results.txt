@@ -1,0 +1,84 @@
+Sau làm sạch: 1992 khách
+RFM_Segment
+At Risk            480
+Loyal Customers    417
+Promising          321
+Hibernating        317
+Champions          290
+Need Attention     167 
+ Preferred_Channel
+Store      1316
+Web         538
+Catalog     138
+
+== OLS ln(Total_Spend) ==
+                     Coef.  Std.Err.        z   P>|z|   [0.025   0.975]
+Intercept        -22.8843    0.9182 -24.9228  0.0000 -24.6840 -21.0847
+np.log(Income)     2.3146    0.0835  27.7066  0.0000   2.1509   2.4783
+Tenure_Years       0.5184    0.0384  13.4920  0.0000   0.4431   0.5937
+Married            0.3731    0.0499   7.4736  0.0000   0.2752   0.4709
+Teens             -0.2249    0.0469  -4.7923  0.0000  -0.3168  -0.1329
+Kids              -0.5740    0.0579  -9.9151  0.0000  -0.6875  -0.4606
+Deal_Ratio        -0.8581    0.2158  -3.9754  0.0001  -1.2811  -0.4350
+Web_Visits_Month   0.0233    0.0151   1.5456  0.1222  -0.0062   0.0528
+Recency            0.0008    0.0006   1.2938  0.1957  -0.0004   0.0021
+Age               -0.0006    0.0017  -0.3715  0.7103  -0.0038   0.0026
+Graduate          -0.0200    0.0656  -0.3054  0.7601  -0.1486   0.1085 
+R2 0.7296
+
+== OLS ln(AOV) ==
+ Intercept        -10.433
+np.log(Income)     1.277
+Kids              -0.229
+Teens             -0.057
+Deal_Ratio        -0.717
+Web_Pref           0.309
+Catalog_Pref       0.376 
+R2 0.698
+
+== Logistic (toàn mẫu) ==
+                        b      OR       p
+const            -3.2267  0.0397  0.0003
+Income10K         0.6467  1.9092  0.0000
+Kids             -0.4092  0.6642  0.0366
+Teens            -0.5774  0.5614  0.0003
+Age              -0.0087  0.9914  0.1066
+Graduate         -0.0538  0.9476  0.7987
+Married           0.4574  1.5800  0.0055
+Tenure_Years     -0.4142  0.6608  0.0005
+Recency10        -0.0048  0.9952  0.8158
+Deal_Ratio       -0.5715  0.5647  0.3455
+Web_Visits_Month  0.3074  1.3598  0.0000
+Catalog_Pref      0.3941  1.4830  0.0611
+Web_Pref          0.2791  1.3220  0.0591
+pseudo R2 0.161 AIC 1743.7
+
+== Chọn ngưỡng trên train (OOF, n = 1394 ) AUC 0.758
+  ngưỡng 0.20: F1 0.481 recall 0.713 precision 0.363 chọn 0.413
+  ngưỡng 0.25: F1 0.502 recall 0.638 precision 0.414 chọn 0.324
+  ngưỡng 0.30: F1 0.508 recall 0.570 precision 0.458 chọn 0.262
+  ngưỡng 0.35: F1 0.475 recall 0.461 precision 0.491 chọn 0.197
+  ngưỡng 0.40: F1 0.445 recall 0.382 precision 0.533 chọn 0.151
+  ngưỡng 0.50: F1 0.339 recall 0.239 precision 0.583 chọn 0.086
+
+== Tập test (n = 598 , dương tính = 125 ) AUC 0.746 Brier 0.138 (mô hình hằng số: 0.165 )
+  ngưỡng 0.5: TP 34 FP 20 FN 91 TN 453 | F1 0.380 recall 0.272 precision 0.630 chọn 0.090
+  ngưỡng 0.3: TP 67 FP 83 FN 58 TN 390 | F1 0.487 recall 0.536 precision 0.447 chọn 0.251
+  Hiệu chỉnh theo 5 nhóm điểm (dự báo TB / thực tế):
+          p      y
+bin              
+0    0.041  0.075
+1    0.091  0.092
+2    0.164  0.167
+3    0.271  0.210
+4    0.501  0.500
+
+== CV toàn mẫu: AUC TB 0.758 độ lệch chuẩn giữa fold 0.037
+  top 20%: chứa 0.474 số khách đã chấp nhận, lift 2.37
+  top 30%: chứa 0.603 số khách đã chấp nhận, lift 2.01
+
+== Cây quyết định: AUC test 0.739
+
+== Độ nhạy - giữ 4 dòng nghi vấn R5-R6: n = 1996; OLS R2 0.709, ln(TN) 2.101, con nhỏ -0.553; logistic OR thu nhập 1.90, OR con nhỏ 0.66 (p 0.032)
+
+== Độ nhạy - giữ 204 dòng trùng: n = 2196; OLS R2 0.734, ln(TN) 2.334, con nhỏ -0.547; logistic OR thu nhập 1.93, OR con nhỏ 0.68 (p 0.038)
